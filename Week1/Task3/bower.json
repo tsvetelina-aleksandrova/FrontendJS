@@ -1,0 +1,19 @@
+{
+  "name": "Task3",
+  "version": "0.0.0",
+  "authors": [
+    "tsvetelina-aleksandrova <tsvetelina-aleksandrova@tenkod.com>"
+  ],
+  "main": "server.js",
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
