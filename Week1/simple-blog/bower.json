@@ -1,0 +1,19 @@
+{
+  "name": "SimpleBlog",
+  "version": "0.0.0",
+  "authors": [
+    "tsvetelina-aleksandrova <tsvetelina-aleksandrova@tenkod.com>"
+  ],
+  "moduleType": [
+    "globals"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
