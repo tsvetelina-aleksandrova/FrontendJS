@@ -11,59 +11,48 @@ function genNumberToGuess() {
 }
 
 function getNumberAsDigitList(number){
-	var digitsList = [];
-	while(number > 0){
-		digitsList.unshift(Math.floor(number % 10));
-		number = Math.floor(number / 10);
-	}
-	return digitsList;
+	return number.toString().split("");
 }
 
-function getGuessCows(digitList, guessList){
-	var cows = 0;
-	for(var i = 0; i < digitList.length; i++){
-		elementIndex = guessList.indexOf(digitList[i]);
-		if(elementIndex != -1 && elementIndex != i) {
-			cows++;
-		}
-	}	
-	return cows;
-}
-
-function getGuessBulls(digitList, guessList){
-	var bulls = 0;
-	for(var i = 0; i < digitList.length; i++){
-		if(digitList[i] === guessList[i]){
-			bulls++;
-		}
-	}	
-	return bulls;
+function getGuessCattle(digitList, guessList){
+	var cattle = {cows: 0, bulls: 0};
+	for (var i = 0; i < digitList.length; i++) {
+        if (digitList[i] == guessList[i]) cattle.bulls++;
+        else if (guessList.indexOf(digitList[i]) != -1) cattle.cows++;
+    }
+	return cattle;
 }
 
 function promptNumber(prompt, numberToGuess){
 	prompt.get("guess", function(err, input){
 		if(err){
-			console.log("Input error");
+			console.log("Incorrect guess format");
 			return;
 		}
-		guessList = getNumberAsDigitList(input.guess);
-		numberToGuessList = getNumberAsDigitList(numberToGuess);
-		console.log(getGuessBulls(numberToGuessList, guessList) + 
-			" bulls, " + getGuessCows(numberToGuessList, guessList) + " cows");
+		if(input.guess.length != 4 ){
+			console.log("Guess should have 4 digits");
+			promptNumber(prompt, numberToGuess);
+		} else{
+			guessList = getNumberAsDigitList(input.guess);
+			numberToGuessList = getNumberAsDigitList(numberToGuess);
+			cattleCount = getGuessCattle(numberToGuessList, guessList);
+			console.log(cattleCount.bulls + 
+				" bulls, " +  cattleCount.cows + " cows");
 			if(input.guess != numberToGuess){
 				promptNumber(prompt, numberToGuess);
 			} else {
 				console.log("Done");
 				return;
 			}
-		});
+		}
+	});
 }
 
 function play(){
 	var prompt = require("prompt");
 	numberToGuess = genNumberToGuess();
-	console.log(numberToGuess);
-	prompt.message = "Let's play Bulls & cows!";
+	//console.log(numberToGuess);
+	console.log("Let's play Bulls & cows!");
 	prompt.start();
 	promptNumber(prompt, numberToGuess);
 }
