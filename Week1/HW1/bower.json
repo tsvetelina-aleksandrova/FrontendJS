@@ -1,0 +1,17 @@
+{
+  "name": "HW1",
+  "version": "0.0.0",
+  "homepage": "https://github.com/tsvetelina-aleksandrova/FrontendJS",
+  "authors": [
+    "tsvetelina-aleksandrova <tsvetelina-aleksandrova@tenkod.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/lib",
+    "test",
+    "tests"
+  ]
+}

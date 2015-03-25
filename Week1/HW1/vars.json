@@ -1,0 +1,19 @@
+{
+	"pageTitle": "This is a blog",
+	"blogTitle": "Blog",
+	"side": {
+		"categories": {
+			"catA": "catA.html", 
+			"catB": "catB.html"},
+		"links": {
+			"linkA": "linkA.html", 
+			"linkB": "linkB.html"}},
+	"articles": {
+		"one": {
+			"author": "john", 
+			"date": "34.23.3652"},
+		"two": {
+			"author": "jane", 
+			"date": "34.23.52"}}
+	}
+}

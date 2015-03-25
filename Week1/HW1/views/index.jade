@@ -1,0 +1,61 @@
+html
+    head
+        title!= pageTitle
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        header
+            img(src="http://i819.photobucket.com/albums/zz118/alittlegraceandmercy/Blue%20Basin%20Designs/Simple%20Green%20Blog/SimpleGreenHeader.png")
+            h1!= blogTitle
+            hr
+        aside
+            h5 Categories
+            ul
+                for value, key in side.categories
+                    li 
+                        a(href="#{value}") #{key}
+            h5 Links
+            ul
+                for value, key in side.links
+                    li 
+                        a(href="#{value}") #{key}
+        article
+            h3!= articles.one.title
+            h6 Written by 
+                a(href="#{articles.one.author}.html") #{articles.one.author} 
+                h6 on #{articles.one.date}
+            div
+                p.
+                    Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.
+                    Text. Text. Text. Text. Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.
+                img(src="http://www.twibies.com/wp-content/uploads/2010/09/large_free-twitter-bird-illustration.jpg")
+                p.code.
+                    Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. 
+                p.   
+                    Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.
+                    Text. Text. Text. Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.
+            div
+                h4
+                    a(href="post.html") Leave a comment
+            hr
+        article
+            h3!= articles.two.title
+            h6 Written by 
+                a(href="#{articles.two.author}.html") #{articles.two.author}
+            h6 on #{articles.two.date}
+            div
+                p.
+                    Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.
+                img(src="http://www.twibies.com/wp-content/uploads/2010/09/large_free-twitter-bird-illustration.jpg")
+                p.
+                    Text.  Text. Text. Text. Text. Text. 
+                    Text. Text. Text.  Text.  Text. Text. 
+                    Text. Text. Text. Text. Text. Text. 
+                    Text. Text. Text. Text. Text. Text. 
+                    Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.
+                    Text. Text. Text. Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.
+            div
+                h4
+                    a(href="post.html") Leave a comment
+            hr
+        footer
+            p Copyright

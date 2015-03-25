@@ -1,0 +1,143 @@
+*
+{
+    font-family: sans-serif;
+    font: Verdana;
+    text-decoration: none;
+    color: black;
+}
+
+body
+{
+    width:60%;
+    margin-left: 15%;
+    margin-right: 20%;
+}
+
+body, a:hover, div, .item div:hover, #buy, .cart
+{
+background-color: lightseagreen;
+}
+
+#mainContent, header nav ul, footer, #mainContent, .row
+{
+    background-color: white;
+}
+
+header ul, .item div, footer, .itemInfo, .info, #mainContent table th
+{
+    background-color: seashell;
+}
+
+header img
+{
+    width: 100%;
+}
+
+header ul, footer ul
+{
+    list-style-type: none;
+    padding: 0;
+    height:30px;
+    display: block; 
+    margin-bottom: 0px;
+}
+
+header li, footer li
+{
+    display: inline;
+    float:left;
+}
+
+header nav ul 
+{
+    margin-top:0px;
+    clear: both;
+}
+
+header li a, footer li a
+{
+    display: block;
+    width: 130px;  
+    height:30px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+header nav ul
+{
+    border-top: dashed 2px;
+}
+
+#mainContent
+{
+    margin-top: 20px;
+    padding: 20px;
+    display: inline-block;
+}
+
+.item img
+{  
+    width: 80%;
+    height: 80%;
+}
+.item,
+{
+    width: 20%;
+    display: inline-block;
+    float: left;
+}
+
+.itemInfo img
+{
+    width: 40%;
+    display: inline;
+    float: left;
+    margin: 20px;
+}
+
+.item div, .itemInfo
+{
+    padding: 5px;
+    text-align: left;
+}
+
+.itemInfo
+{
+    display: inline-block;
+}
+.info
+{
+    float:left;
+    display: inline;
+    padding: 10px;
+}
+.row
+{
+   clear: left;
+}
+
+#buy, .cart
+{
+    display: inline;
+    padding: 20px;
+    float: left;
+}
+
+.cart
+{
+    margin-left: 30%;   
+}
+
+table .cart
+{
+    margin-left: 0%;
+}
+
+#mainContent table, #mainContent table th, #mainContent table td 
+{
+    border: dashed 1px;
+    border-collapse: collapse;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+}
