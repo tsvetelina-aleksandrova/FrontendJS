@@ -1,0 +1,14 @@
+{
+    "headerMain": ["About", "Deliveries", "Shopping cart"],
+    "headerNav": ["Trees", "Shrubs", "Flowers", "Weeds", "Cacti"],
+    "foot": ["Contact us", "Delivery info", "Jobs"],
+    "item": {
+        "name": "Lemon tree",
+        "price": 10.00,
+        "descr": {
+            "par": "This plant is epic.",
+            "par": "This plant is epic.",
+            "par": "This plant is epic."
+        }
+    }
+}

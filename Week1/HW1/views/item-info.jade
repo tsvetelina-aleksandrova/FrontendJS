@@ -1,0 +1,29 @@
+doctype html
+html
+    head
+        title Welcome to shop blah!
+        link(rel="stylesheet", type="text/css", href="/css/style.css")
+    body
+        header
+            img(src="http://40.media.tumblr.com/tumblr_md9f6bHbK81qi4ozmo1_1280.jpg")
+            h1 Shop blah
+            ul
+                each item in headerMain
+                    li: a(href="#") #{item}
+            nav
+               ul
+                each item in headerNav
+                    li: a(href="#") #{item}
+        div#mainContent
+            div.itemInfo
+                img(src="http://www.vanmeuwen.com/medias/sys_master/8797689839646.jpg")
+                div.info
+                    h4 #{item.name}
+                    h5 &euro; #{item.price}
+                    each par in item.descr
+                        p #{par}
+                    a#buy(href="cart") Buy epic plant
+        footer
+            ul
+                each item in foot
+                    li: a(href="#") #{item}

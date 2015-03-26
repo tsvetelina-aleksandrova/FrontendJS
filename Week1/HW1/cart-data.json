@@ -1,0 +1,15 @@
+{
+    "headerMain": ["About", "Deliveries", "Shopping cart"],
+    "headerNav": ["Trees", "Shrubs", "Flowers", "Weeds", "Cacti"],
+    "foot": ["Contact us", "Delivery info", "Jobs"],
+    "rows": [
+        {"trow": {
+            "name": "Lemon tree",
+            "price": 10.00
+        }},
+        {"trow": {
+            "name": "Lemon tree",
+            "price": 2.00
+        }}
+    ]
+}

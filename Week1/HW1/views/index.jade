@@ -1,61 +1,34 @@
+doctype html
 html
     head
-        title!= pageTitle
-        link(rel="stylesheet", href="/css/style.css")
+        title Welcome to shop blah!
+        link(rel="stylesheet", type="text/css", href="/css/style.css")
     body
         header
-            img(src="http://i819.photobucket.com/albums/zz118/alittlegraceandmercy/Blue%20Basin%20Designs/Simple%20Green%20Blog/SimpleGreenHeader.png")
-            h1!= blogTitle
-            hr
-        aside
-            h5 Categories
+            img(src="http://40.media.tumblr.com/tumblr_md9f6bHbK81qi4ozmo1_1280.jpg")
+            h1 Shop blah
             ul
-                for value, key in side.categories
-                    li 
-                        a(href="#{value}") #{key}
-            h5 Links
-            ul
-                for value, key in side.links
-                    li 
-                        a(href="#{value}") #{key}
-        article
-            h3!= articles.one.title
-            h6 Written by 
-                a(href="#{articles.one.author}.html") #{articles.one.author} 
-                h6 on #{articles.one.date}
-            div
-                p.
-                    Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.
-                    Text. Text. Text. Text. Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.
-                img(src="http://www.twibies.com/wp-content/uploads/2010/09/large_free-twitter-bird-illustration.jpg")
-                p.code.
-                    Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. Code. 
-                p.   
-                    Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.
-                    Text. Text. Text. Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.
-            div
-                h4
-                    a(href="post.html") Leave a comment
-            hr
-        article
-            h3!= articles.two.title
-            h6 Written by 
-                a(href="#{articles.two.author}.html") #{articles.two.author}
-            h6 on #{articles.two.date}
-            div
-                p.
-                    Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.
-                img(src="http://www.twibies.com/wp-content/uploads/2010/09/large_free-twitter-bird-illustration.jpg")
-                p.
-                    Text.  Text. Text. Text. Text. Text. 
-                    Text. Text. Text.  Text.  Text. Text. 
-                    Text. Text. Text. Text. Text. Text. 
-                    Text. Text. Text. Text. Text. Text. 
-                    Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.
-                    Text. Text. Text. Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.Text. Text. Text. Text. Text.
-            div
-                h4
-                    a(href="post.html") Leave a comment
-            hr
+                for value in headerMain
+                    li
+                        a(href="#") #{value}
+            nav
+               ul
+                for value in headerNav
+                    li
+                        a(hrerf="#") #{value}
+        div#mainContent
+            for row in rows
+                div.rowDiv
+                    for rowValue, key in row
+                        for item in rowValue
+                            for value, k in item
+                                a.item(href="item-info")
+                                    div.info
+                                        h3 #{value.name}
+                                        img(src="http://www.vanmeuwen.com/medias/sys_master/8797689839646.jpg")
+                                        h4 &euro; #{value.price}
         footer
-            p Copyright
+            ul
+                for value in foot
+                    li
+                        a(href="#") #{value}

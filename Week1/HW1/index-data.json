@@ -1,0 +1,36 @@
+{
+    "headerMain": ["About", "Deliveries", "Shopping cart"],
+    "headerNav": ["Trees", "Shrubs", "Flowers", "Weeds", "Cacti"],
+    "foot": ["Contact us", "Delivery info", "Jobs"],
+    "rows": [
+        {"row": [
+            {"item": {
+                "name": "Lemon tree",
+                "price": 1.00
+            }},
+            {"item": {
+                "name": "Lemon tree",
+                "price": 2.00
+            }},
+            {"item": {
+                "name": "Lemon tree",
+                "price": 10.00
+            }},
+            {"item": {
+                "name": "Lemon tree",
+                "price": 20.00
+            }}
+        ]},
+        {"row": [
+            {"item": {
+                "name": "Lemon tree",
+                "price": 3.00
+            }},
+            {"item": {
+                "name": "Lemon tree",
+                "price": 4.00
+            }}
+        ]
+    }
+    ]
+}

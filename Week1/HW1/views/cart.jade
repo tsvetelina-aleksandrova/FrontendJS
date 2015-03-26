@@ -1,0 +1,34 @@
+doctype html
+html
+    head
+        title Welcome to shop blah!
+        link(rel="stylesheet", type="text/css", href="/css/style.css")
+    body
+        header
+            img(src="http://40.media.tumblr.com/tumblr_md9f6bHbK81qi4ozmo1_1280.jpg")
+            h1 Shop blah
+            ul
+                each item in headerMain
+                    li: a(href="#") #{item}
+            nav
+               ul
+                each item in headerNav
+                    li: a(href="#") #{item}
+        div#mainContent
+            table
+                tr
+                    th Name
+                    th Price
+                    th &nbsp;
+                each trow in rows
+                    tr
+                        each value, key in trow
+                            td #{value.name}
+                            td &euro; #{value.price}
+                            td 
+                                a.cart(href="cart") Delete
+            a.cart(href="cart") Check out
+        footer
+            ul
+                each item in foot
+                    li: a(href="#") #{item}
