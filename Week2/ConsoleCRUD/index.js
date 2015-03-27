@@ -15,10 +15,24 @@ function getMapKeys(){
 }
 
 function printUserData(user){
-	console.log("User:");
-	console.log(user.id);
-	console.log(user.name);
-	console.log(user.email);
+	console.log(user.id + "\t" + user.name + 
+		" ".repeat(getLongestNameLength() - user.name.length) + "\t" + user.email);
+}
+
+String.prototype.repeat = function( num )
+{
+    return new Array( num + 1 ).join( this );
+}
+
+function getLongestNameLength(){
+	len = 0;
+	for(var i = 0; i < users.length; i++){
+		nameLen = users[i].name.length;
+		if(nameLen > len){
+			len = nameLen;
+		}
+	}
+	return len;
 }
 
 function promptCommand() {
@@ -48,7 +62,9 @@ function listCmdAction(){
 	if(users.length == 0){
 		console.log("No users found");
 	} else {
+		console.log("ID" + "\t" + "Name" + " ".repeat(getLongestNameLength()) + "\t" + "Email");
 	 	users.forEach(function(user){
+	 		console.log("---------------------");
 			printUserData(user);
 		});
  	}
