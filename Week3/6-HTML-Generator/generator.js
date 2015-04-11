@@ -6,14 +6,14 @@ function HTMLRenderer(tag, data) {
 	this.getData = function() {
 		return data;
 	}
+}
 
-	this.render = function(nesting) {
-		if(typeof(nesting) === "undefined"){
-			nesting = "";
-		}
-		return [nesting, "<", this.getTag(), ">", this.getData(),
-			"</", this.getTag(), ">",].join("");
+HTMLRenderer.prototype.render = function(nesting) {
+	if(typeof(nesting) === "undefined"){
+		nesting = "";
 	}
+	return [nesting, "<", this.getTag(), ">", this.getData(),
+		"</", this.getTag(), ">",].join("");
 }
 
 function HTMLContainer(tag, text) {
@@ -29,72 +29,94 @@ function HTMLContainer(tag, text) {
 	this.getChildren = function() {
 		return children;
 	}
+}
 
-	this.render = function(nesting) {
-		if(typeof(nesting) === "undefined"){
-			nesting = "";
-		}
-		var result = [nesting, "<", this.getTag(), ">", "\n"].join("");
-		result += children.reduce(function(total, item) {
-			return total += ["\n", nesting, "  ", 
-				item.render(nesting + "  ")].join("");
-		}, "");
-		return [result, "\n", nesting, "  ", 
-				["</", this.getTag(), ">"].join("")].join("");
+HTMLContainer.prototype.render = function(nesting) {
+	if(typeof(nesting) === "undefined"){
+		nesting = "";
 	}
+	var result = [nesting, "<", this.getTag(), ">", "\n"].join("");
+	result += this.getChildren().reduce(function(total, item) {
+		return total += ["\n", nesting, "  ", 
+			item.render(nesting + "  ")].join("");
+	}, "");
+	return [result, "\n", nesting, "  ", 
+			["</", this.getTag(), ">"].join("")].join("");
 }
 
 function Paragraph(text) {
 	HTMLRenderer.call(this, "p", text);
 }
 
+Paragraph.prototype = Object.create(HTMLRenderer.prototype);
+
 function Div(text) {
 	HTMLContainer.call(this, "div", text);
 }
+
+Div.prototype = Object.create(HTMLContainer.prototype);
 
 function TableCell(text) {
 	HTMLRenderer.call(this, "td", text);
 }
 
+TableCell.prototype = Object.create(HTMLRenderer.prototype);
+
 function TableRow() {
 	HTMLContainer.call(this, "tr", "");
 }
+
+TableRow.prototype = Object.create(HTMLContainer.prototype);
 
 function TableBody() {
 	HTMLContainer.call(this, "tbody", "");
 }
 
+TableBody.prototype = Object.create(HTMLContainer.prototype);
+
 function TableHeader() {
 	HTMLContainer.call(this, "thead", "");
 }
 
+TableHeader.prototype = Object.create(HTMLContainer.prototype);
+
 function Table(values) {
 	HTMLContainer.call(this, "table", "");
-	
-	this.render = function() {
-		var container = new HTMLContainer();
-		if(!(values instanceof Array)) {
-			var vals = [Object.keys(values)];
-			Object.keys(values).forEach(function(key) {
-				for(var i = 0; i < values[key].length; i+= 1) {
-					if(typeof(vals[i + 1]) === "undefined"){
-						vals[i + 1] = [];
-					}
-					vals[i + 1].push(values[key][i]);
-				}
-			});
-			values = vals;
+
+	this.getValues = function() {
+		if(values instanceof Array) {
+			return values;
 		}
+		var valuesArray = [Object.keys(values)];
+		Object.keys(values).forEach(function(key) {
+			for(var i = 0; i < values[key].length; i+= 1) {
+				if(typeof(valuesArray[i + 1]) === "undefined"){
+					valuesArray[i + 1] = [];
+				}
+				valuesArray[i + 1].push(values[key][i]);
+			}
+		});
+		return valuesArray;
+	}
+}
+
+Table.prototype = Object.create(HTMLContainer.prototype);
+
+Table.prototype.render = function() {
+	var values = this.getValues();
+	var that = this;
+	return (function() {
 		values.forEach(function(item) {
 			var row = [new TableHeader(), 
 				new TableRow()][+(values.indexOf(item) > -1)];
 			item.forEach(function(x) {
-				row.addChild(new TableCell(x));
+				var cell = new TableCell(x);
+				row.addChild(cell);
 			});
-			container.addChild.call(this, row);
+			that.addChild(row);
 		});
-		return container.render.call(this);
-	}
+		return HTMLContainer.prototype.render.call(that);
+	}());
 }
 
 var p = new Paragraph("Some text here");
