@@ -1,49 +1,48 @@
 window.onload = function() {
-	createDOMElements();
-	addScoreEventListeners();
+	createDOMElements(["A", "B"]);
 }
 
-function createDOMElements() {
-	var teamNames = ["Team A", "Team B"];
-	var buttons = [];
-	var pars = [];
-	var i;
-	var teamNameForIds;
+function createDOMElements(teamNames) {
+	var button, 
+		par, 
+		span, 
+		i, 
+		teamNameForIds;
 	var container = document.getElementById("container");
 
-	for(i = 0; i < teamNames.length; i+= 1) {
-		teamNameForIds = teamNames[i].toLowerCase().replace(" ", "-");
+	teamNames.forEach(function(teamName) {
+		teamNameForIds = teamName.replace(" ", "-");
 
-		pars[i] = document.createElement("p");
-		pars[i].innerHTML = [teamNames[i], " Score: 0"].join("");
-		pars[i].id =  teamNameForIds + "-score";
+		span = document.createElement("span");
+		span.appendChild(document.createTextNode("0"));
 
-		buttons[i] = document.createElement("button");
-		buttons[i].innerHTML = teamNames[i];
-		buttons[i].id = teamNameForIds + "-button";
+		par = document.createElement("p");
+		par.appendChild(document.createTextNode(
+			["Team ", teamName, " Score: "].join("")));
+		par.id =  teamNameForIds + "-score";
+		par.appendChild(span);
+
+		button = document.createElement("button");
+		button.appendChild(document.createTextNode("Team " + teamName));
+		button.id = teamNameForIds + "-button";
 		
-		buttons[i].className = "teamScoreButton";
+		button.addEventListener("click", increaseScore);
 
-		container.appendChild(buttons[i]);
-		container.appendChild(pars[i]);
-	}
+		container.appendChild(button);
+		container.appendChild(par);
+	});
 }
 
-function addScoreEventListeners() {
-	var scoreButtons = document.getElementsByClassName("teamScoreButton");
+function increaseScore(event) {
+	var targetId = event.target.id;
+	var teamNameInId = targetId.substring(0, targetId.indexOf("-button"));
+	var teamName = teamNameInId.replace("-", " ");
 
-	for(i = 0; i < scoreButtons.length; i+= 1) {
-		scoreButtons[i].addEventListener("click", function(e) {
-			var teamNameInId = e.target.id.substring(0, e.target.id.indexOf("-button"));
-			var teamName = teamNameInId.replace("-", " ");
+	var scorePar = document.getElementById(teamNameInId + "-score")
+	var scoreSpan = scorePar.getElementsByTagName("span")[0];
+	var newScore = parseInt(scoreSpan.innerHTML) + 1;
 
-			var scorePar = document.getElementById(teamNameInId + "-score");
-			var scoreTextDelimIndex = scorePar.innerHTML.indexOf("Score: ") + "Score: ".length;
-			var scoreText = scorePar.innerHTML.substring(0, scoreTextDelimIndex);
-			var newScore = parseInt(scorePar.innerHTML.substring(scoreTextDelimIndex)) + 1;
-
-			console.log([teamName, " scores a point and now has a score of ", newScore].join(""));
-			scorePar.innerHTML = [scoreText, newScore].join("");
-		});
-	}
+	console.log([teamName, " scores a point and now has a score of ", 
+		newScore].join(""));
+	scoreSpan.innerHTML = newScore;
 }
