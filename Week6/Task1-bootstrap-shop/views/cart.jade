@@ -1,0 +1,21 @@
+extends layout
+
+block vars
+  - var footer = foot
+  - var navig = nav
+
+block content
+    div.container-fluid
+        table.table-striped
+            tr
+                th Name
+                th Price
+                th &nbsp;
+            each trow in rows
+                tr
+                    each value, key in trow
+                        td #{value.name}
+                        td &euro; #{value.price}
+                        td 
+                            button.btn Delete
+        button.btn.btn-primary Check out

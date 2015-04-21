@@ -4,12 +4,23 @@
 }
 
 #task-list {
-	background-color: lavender;
 	list-style-type: none;
 	width: 40%;
+}
+
+#task-list li {
+	padding: 10px;
+	margin-bottom: 10px;
+	background-color: lavender;
 }
 
 .finished-task {
 	text-decoration: line-through;
 }
 
+.delete-task-btn {
+	float: right;
+	clear: right;
+	margin-right: 10%;
+	color: red;
+}

@@ -1,0 +1,14 @@
+html
+    block vars
+    head
+        title Bootstrap shop
+        link(rel="stylesheet", type="text/css", href="lib/bootstrap/dist/css/bootstrap.min.css")
+    body
+        .container-fluid
+            header.page-header
+                h1 Coffee shop
+            section
+                .sidebar
+                    include nav
+                .content
+                    block content
