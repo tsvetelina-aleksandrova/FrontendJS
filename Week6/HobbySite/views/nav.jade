@@ -1,0 +1,21 @@
+div.navbar.navbar-default
+    div.row
+        div.col-md-8
+            div.navbar-header
+                a.navbar-brand(href="/") artbrag
+                form.navbar-form.navbar-left(role="search")
+                    div.form-group
+                        input.form-control(type="text", placeholder="Search")
+                        button.btn.btn-default(type="submit") Go!
+            a(href="/") Prints
+            button.btn.btn-primary Submit
+            div.nav.navbar-nav.navbar-right
+                button.btn.btn-primary Join
+div.navbar.navbar-default
+    ul.nav.navbar-nav.navbar-left
+        for item in navig
+            if (item == navigCurrent)
+               li.active: a(href="/") #{item}
+            else
+                li: a(href="/") #{item}
+            

@@ -1,0 +1,21 @@
+extends layout
+
+block vars
+  - var footer = foot
+  - var navig = nav.all
+  - var navigCurrent = nav.current
+
+block content
+    ul.thumbnails.list-unstyled.text-center.pull-left
+        for row in rows
+            div.row
+                for rowValue, key in row
+                    for item in rowValue
+                        for value, k in item
+                            div.col-md-3
+                                li.span4
+                                    a(href="/piece")
+                                        div.thumbnail                                
+                                            h3 #{value.name}
+                                            img(src="img/blah.jpg")
+                                            p by: #{value.author}

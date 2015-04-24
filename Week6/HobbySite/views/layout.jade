@@ -1,0 +1,12 @@
+html
+    block vars
+    head
+        title artbrag
+        link(rel="stylesheet", type="text/css", href="lib/bootstrap/dist/css/bootstrap.min.css")
+    body
+        .container-fluid
+            section
+                .sidebar
+                    include nav
+                .content
+                    block content
