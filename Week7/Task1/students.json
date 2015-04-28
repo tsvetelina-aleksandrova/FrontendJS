@@ -1,0 +1,112 @@
+[
+    {
+        "id": 1,
+        "name": "John",
+        "email": "johnny@snowland.com",
+        "classes": [
+            "Knowing things 101"
+        ],
+        "gitrepo": "https://github.com/jsnow"
+    },
+    {
+        "id": 2,
+        "name": "Hound",
+        "email": "doge@some.com",
+        "classes": [
+            "Advanced Survival",
+            "Swordsmanship 9"
+        ],
+        "gitrepo": "https://github.com/doge"
+    },
+    {
+        "id": 3,
+        "name": "Peter",
+        "email": "pete@sneaky.net",
+        "classes": [
+            "Theatrical art",
+            "Retorics",
+            "Advanced human handling"
+        ],
+        "gitrepo": "https://github.com/mock.bird"
+    },
+    {
+        "id": 4,
+        "name": "Hodor",
+        "email": "hodor@hodor.com",
+        "classes": [
+            "Hodor",
+            "Hodor"
+        ],
+        "gitrepo": "https://github.com/hodor"
+    },
+    {
+        "id": "5",
+        "name": "sfsafdfsf"
+    },
+    {
+        "id": "2",
+        "name": "",
+        "email": "",
+        "classes": "",
+        "gitrepo": ""
+    },
+    {},
+    {
+        "id": "2",
+        "name": "",
+        "email": "",
+        "classes": "",
+        "gitrepo": ""
+    },
+    {},
+    {
+        "id": "3245646",
+        "name": "",
+        "email": "",
+        "classes": "",
+        "gitrepo": ""
+    },
+    {},
+    {
+        "id": "3245646\t",
+        "name": "",
+        "email": "",
+        "classes": "dsfsfsfsdfa",
+        "gitrepo": ""
+    },
+    {
+        "id": "2432",
+        "name": "",
+        "email": "",
+        "classes": "232",
+        "gitrepo": ""
+    },
+    {
+        "id": "34234",
+        "name": "",
+        "email": "23432",
+        "classes": "",
+        "gitrepo": ""
+    },
+    {
+        "id": "34234",
+        "name": "",
+        "email": "23432",
+        "classes": "",
+        "gitrepo": ""
+    },
+    {
+        "id": "34234",
+        "name": "",
+        "email": "23432",
+        "classes": "",
+        "gitrepo": ""
+    },
+    {
+        "id": "34234",
+        "name": "",
+        "email": "23432",
+        "classes": "",
+        "gitrepo": ""
+    }
+]
