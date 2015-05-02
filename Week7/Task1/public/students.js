@@ -34,11 +34,12 @@ var loadAllStudents = function() {
 
 var getStudentData = function() {
 	var student = {};
-	student.id = $("#add-id-input").val();
-	student.name = $("#add-name-input").val();
-	student.email = $("#add-email-input").val();
-	student.classes = $("#add-classes-input").val();
-	student.gitrepo = $("#add-git-input").val();
+	console.log("damn" + $('#student-form').serializeArray());
+	$.each($('#student-form').serializeArray(), function(i, item) {
+    	student[item.name] = item.value;
+    	console.log(item.name + "   " + item.value);
+    	return obj;
+	});
 
 	return student;
 }

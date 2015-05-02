@@ -47,6 +47,11 @@ app.post('/api/students', function(req, res) {
  students.push(newStudent);
 
  writeStudents();
+
+ res.jsonp({
+ 	msg: 'student created',
+ 	data: newStudent
+ });
 });
 
 app.put('/api/students/:id', function(req, res) {
@@ -64,14 +69,25 @@ app.put('/api/students/:id', function(req, res) {
  students.push(newStudent);
  
  writeStudents();
+
+ res.jsonp({
+ 	msg: 'student updated',
+ 	data: newStudent
+ });
 });
 
 app.delete('/api/students/:id', function(req, res) {
+	var studentId = req.params.id;
 	students = students.filter(function(student) {
- 		return student.id !== req.params.id;
- });
+		return student.id !== studentId;
+});
 
 	writeStudents();
+
+	res.jsonp({
+		msg: 'student deleted',
+		data: studentId
+ 	});
 });
 
 // listen for requests

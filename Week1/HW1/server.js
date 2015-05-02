@@ -1,10 +1,10 @@
 var express = require('express')
-var app = express()
-app.use(express.static('public'));
-
 var indexVars = require('./index-data.json')
 var cartVars = require('./cart-data.json')
 var itemInfoVars = require('./item-info-data.json')
+
+var app = express()
+app.use(express.static('public'));
 
 app.set('views', './views')
 app.set('view engine', 'jade')

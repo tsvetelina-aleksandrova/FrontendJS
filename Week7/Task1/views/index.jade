@@ -15,40 +15,40 @@ html
                         li: a(href="#") Update
                         li: a(href="#") Find
             div.row
-                form
+                form#student-form
                     div.row
                         div.col-md-1
                             label ID:
                         div.col-md-1
-                            input#add-id-input(type="text")
+                            input(type="text")
                     div.row
                         div.col-md-1
                             label Name:
                         div.col-md-1
-                            input#add-name-input(type="text")
+                            input(type="text")
                     div.row
                         div.col-md-1    
                             label Email:
                         div.col-md-1
-                            input#add-email-input(type="text")
+                            input(type="text")
                     div.row
                         div.col-md-1
                             label Classes
                         div.col-md-1
-                            input#add-classes-input(type="text")
+                            input(type="text")
                     div.row
                         div.col-md-1
                             label gitrepo:
                         div.col-md-1
-                            input#add-git-input(type="text")
+                            input(type="text")
                     div.row
                         div.col-md-1
-                            button#add-btn.btn.btn-primary Add
+                            button#add-btn.btn.btn-primary(type="submit") Add
                         div.col-md-1
-                            button#up-btn.btn.btn-primary Update
+                            button#up-btn.btn.btn-primary(type="submit") Update
                         div.col-md-1
-                            button#del-btn.btn.btn-primary Delete
+                            button#del-btn.btn.btn-primary(type="submit") Delete
                         div.col-md-1
-                            button#find-btn.btn.btn-primary Find
+                            button#find-btn.btn.btn-primary(type="submit") Find
     script(src="lib/jquery/dist/jquery.js")
     script(src="students.js")

@@ -4,21 +4,21 @@ function getRandomInt(min, max) {
 
 function genWordToGuess() {
 	var word = "";
-	for(var i = 0; i < 6; i++) {
+	for(var i = 0; i < 6; i += 1) {
 		word += String.fromCharCode(97 + getRandomInt(0, 26)); 
 	}
 	return word;
 }
 
 function isLetterOK(wordToGuess, letter) {
-	return wordToGuess.search(letter) != -1;
+	return wordToGuess.search(letter) !== -1;
 }
 
 function getRemainingWordToGuess(wordToGuess, letter, maskedWord) {
-	newMaskedWord = maskedWord.split("");
-	letters = wordToGuess.split("");
+	var newMaskedWord = maskedWord.split("");
+	var letters = wordToGuess.split("");
 	for(var i = 0; i < letters.length; i++){
-		if(letters[i] == letter) {
+		if(letters[i] === letter) {
 			newMaskedWord[i] = letter;
 		}
 	}
@@ -36,9 +36,10 @@ function promptLetter(prompt, wordToGuess, maskedWord, attempts) {
 			promptLetter(prompt, wordToGuess, attempts);
 		} else {
 			if(isLetterOK(wordToGuess, input.guess)) {
-				newMaskedWord = getRemainingWordToGuess(wordToGuess, input.guess, maskedWord);
+				var newMaskedWord = 
+					getRemainingWordToGuess(wordToGuess, input.guess, maskedWord);
 				console.log(newMaskedWord);
-				if(newMaskedWord != wordToGuess) {
+				if(newMaskedWord !== wordToGuess) {
 					promptLetter(prompt, wordToGuess, newMaskedWord, attempts);
 				} else {
 					console.log("You win");

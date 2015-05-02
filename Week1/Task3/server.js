@@ -1,15 +1,13 @@
 var express = require('express')
+var vars = require('./vars.json')
+
 var app = express()
 app.use(express.static('public'));
 
-var vars = require('./vars.json')
-
 app.set('views', './views')
-// need this if we want to skip explicitly writing .jade file extensions
 app.set('view engine', 'jade')
 
 app.get('/', function (req, res) {
-	//so now we can have file name "index" instead of "index.jade"
   res.render('index', vars);
 })
 
