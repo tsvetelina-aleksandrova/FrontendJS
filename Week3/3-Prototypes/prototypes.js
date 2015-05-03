@@ -17,14 +17,14 @@ String.prototype.words = function() {
 
 String.prototype.format = function() {
 	var result = this;
-	var m = /\{\S*\}/.exec(result);
+	var nextMatch = /\{\S*\}/.exec(result);
 	var i = 0;
-	while(typeof m != 'undefined' && m !== null) {
-		result = result.substring(0, m['index']) +
+	while(typeof nextMatch !== "undefined" && nextMatch !== null) {
+		result = result.substring(0, nextMatch["index"]) +
 			arguments[i.toString()] +
-			result.substring(m['index'] + m[0].length);
+			result.substring(nextMatch["index"] + nextMatch[0].length);
 		i += 1;
-		m = /\{\S*\}/.exec(result);
+		nextMatch = /\{\S*\}/.exec(result);
 	}
 	return result;
 }
@@ -48,27 +48,27 @@ Array.prototype.range = function(start, end) {
 	var result = [];
 	while(i <= end) {
 		result.push(i);
-		i++;
+		i += 1;
 	}
 	return result;
 }
 
 Array.prototype.sum = function() {
-	return this.reduce(function(total, x){
+	return this.reduce(function(total, x) {
 		return total + x;
 	}, 0);
 }
 
 Array.prototype.product = function() {
-	return this.reduce(function(total, x){
+	return this.reduce(function(total, x) {
 		return total * x;
 	}, 1);
 }
 
 Array.prototype.compact = function() {
 	var falsies = [false, 0, "", null, undefined, NaN];
-	return this.filter(function(x){
-		if(falsies.indexOf(x) == -1){
+	return this.filter(function(x) {
+		if(falsies.indexOf(x) === -1) {
 			return x;
 		}
 	});
@@ -89,10 +89,9 @@ Array.prototype.take = function(n) {
 Array.prototype.drop = function(n) {
 	var result = [];
 	var i;
-	if(n > this.length) {
-		n = this.length;
-	}
-	for(i = n; i < this.length; i += 1) { 
+	var strLen = this.length;
+	n = [n, strLen][+(n > strLen)];
+	for(i = n; i < strLen; i += 1) { 
 		result.push(this[i]);
 	}
 	return result;
@@ -102,7 +101,7 @@ Array.prototype.dedup = function() {
 	var result = [];
 	var i;
 	for(i = 0; i < this.length; i += 1) {
-		if(result.indexOf(this[i]) == -1) {
+		if(result.indexOf(this[i]) === -1) {
 			result.push(this[i]);
 		}
 	}
@@ -113,40 +112,44 @@ Array.prototype.sample = function() {
 	return this[getRandomInt(0, this.length)];
 }
 
-console.log('javaScript'.capitalize() === 'JavaScript');
+function testPrototypes() {
+	console.log("javaScript".capitalize() === "JavaScript");
 
-console.log(' '.isBlank() == true);
-console.log('       '.isBlank() == true);
-console.log('  asda  '.isBlank() == false);
+	console.log(" ".isBlank() == true);
+	console.log("       ".isBlank() == true);
+	console.log("  asda  ".isBlank() == false);
 
-var words = 'This is    a   very   clever   sentence!'.words();
-console.log(words);
+	var words = "This is    a   very   clever   sentence!".words();
+	console.log(words);
 
-var result = 'Hello there {name}! Do you speak {language}?'.format('Ivan', 'Bulgarian');
-console.log(result);
+	var result = "Hello there {name}! Do you speak {language}?".format("Ivan", "Bulgarian");
+	console.log(result);
 
-console.log('Hi, my name is {}. Nice to meet you {}'.format('Bla', 'Good sir!'));
+	console.log("Hi, my name is {}. Nice to meet you {}".format("Bla", "Good sir!"));
 
-var a = [1, 2, 3];
-console.log(a.head() == 1);
-console.log(a.tail());
-console.log(a.last());
-console.log(a);
+	var a = [1, 2, 3];
+	console.log(a.head() == 1);
+	console.log(a.tail());
+	console.log(a.last());
+	console.log(a);
 
-var result = [].range(1, 10);
-console.log(result);
+	var result = [].range(1, 10);
+	console.log(result);
 
-console.log([1, 2, 3].sum() == 6);
-console.log([1, 2, 3].product() == 6);
+	console.log([1, 2, 3].sum() == 6);
+	console.log([1, 2, 3].product() == 6);
 
-console.log([false, true, 0, "", null, 5, undefined, NaN, "JavaScript"].compact());
+	console.log([false, true, 0, "", null, 5, undefined, NaN, "JavaScript"].compact());
 
-var a = [].range(1, 10);
-console.log(a.take(3));
-console.log(a.drop(5));
-console.log(a.take(100));
-console.log(a.drop(100));
+	var a = [].range(1, 10);
+	console.log(a.take(3));
+	console.log(a.drop(5));
+	console.log(a.take(100));
+	console.log(a.drop(100));
 
-console.log([1, 1, 1, 1, 1].dedup());
+	console.log([1, 1, 1, 1, 1].dedup());
 
-console.log([1, 2, 3].sample());
+	console.log([1, 2, 3].sample());
+}
+
+testPrototypes();

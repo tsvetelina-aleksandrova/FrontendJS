@@ -1,9 +1,12 @@
+var male = "male";
+var female = "female";
+
 function Panda(name, sex) {
 	this.name = name;
-	if(['male', 'female'].indexOf(sex) !== -1) {
+	if([male, female].indexOf(sex) !== -1) {
 		this.sex = sex;
 	} else {
-		this.sex = 'male';
+		this.sex = male;
 	}
 	this.weight = 20;
 }
@@ -14,28 +17,31 @@ Panda.prototype.toString = function() {
 }
 
 Panda.prototype.isMale = function() {
-	return this.sex === 'male';
+	return this.sex === male;
 }
 
 Panda.prototype.isFemale = function() {
-	return this.sex ===  'female';
+	return this.sex ===  female;
 }
 
 Panda.prototype.eat = function(bamboo) {
-	initWeight = this.weight;
+	var initWeight = this.weight;
 	this.weight += bamboo / 2;
 	if(this.weight > 80 && initWeight <= 80) {
-		this.name = 'Lazy Panda ' + this.name;
+		this.name = "Lazy Panda " + this.name;
 	}
 }
 
 Panda.prototype.mate = function(anotherPanda) {
 	if(this.sex === anotherPanda.sex) {
 		throw {
-			'name': 'Cannot mate pandas',
-			'message': 'So sad'
+			"name": "Cannot mate pandas",
+			"message": "So sad"
 		}
 	}
+	var fatherName,
+		motherName,
+		babyGender;
 	if(this.isMale()) {
 		fatherName = this.name;
 		motherName = anotherPanda.name;
@@ -43,32 +49,35 @@ Panda.prototype.mate = function(anotherPanda) {
 		fatherName = anotherPanda.name;
 		motherName = anotherPanda.name;
 	}
-	babyGender = ['male', 'female'][Math.floor(Math.random()*2) >= 0.5 ? 0 : 1];
-	if(babyGender === 'male') {
-		return new Panda([fatherName, motherName].join(" "), 'male');
+	babyGender = [male, female][Math.floor(Math.random()*2) >= 0.5 ? 0 : 1];
+	if(babyGender === male) {
+		return new Panda([fatherName, motherName].join(" "), male);
 	} else { 
-		return new Panda([motherName, fatherName].join(" "), 'female');
+		return new Panda([motherName, fatherName].join(" "), female);
 	}
 }
 
+function testPanda() {
+	var ivo = new Panda("Ivo", "male");
+	var ivan = new Panda("Ivan", "male");
+	var ivanka = new Panda("Ivanka", "female");
 
-var ivo = new Panda("Ivo", "male");
+	console.log(ivo.weight === 20); // true
+	console.log(ivo.isMale() === true); // true
+	console.log(ivo.isFemale() === false); // true
+	console.log(ivo.toString() === 
+		"Ivo is a male panda which weighs 20 kg") // true
 
-console.log(ivo.weight == 20); // true
-console.log(ivo.isMale() == true); // true
-console.log(ivo.isFemale() == false); // true
-console.log(ivo.toString() == "Ivo is a male panda which weighs 20 kg") // true
+	console.log(ivo.eat(80));
+	console.log(ivo.weight == 60); // true
 
-console.log(ivo.eat(80));
-console.log(ivo.weight == 60); // true
+	console.log(ivo.eat(80));
+	console.log(ivo.weight === 100); // true
 
-console.log(ivo.eat(80));
-console.log(ivo.weight == 100); // true
+	console.log(ivo.name === "Lazy Panda Ivo") // true
 
-console.log(ivo.name == "Lazy Panda Ivo") // true
+	var baby = ivan.mate(ivanka);
+	console.log(baby.toString());
+}
 
-var ivan = new Panda("Ivan", "male");
-var ivanka = new Panda("Ivanka", "female");
-
-var baby = ivan.mate(ivanka);
-console.log(baby.toString());
+testPanda();

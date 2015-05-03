@@ -12,7 +12,7 @@ var c1 = makeCounter();
 console.log(c1());
 console.log(c1());
 
-console.log("Swiching counters");
+console.log("Switching counters");
 
 var c2 = makeCounter();
 console.log(c2());
