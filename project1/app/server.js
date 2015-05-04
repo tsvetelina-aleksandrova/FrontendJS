@@ -14,10 +14,13 @@ app.set('views', './views');
 app.set('view engine', 'jade');
 
 app.get('/', function(req, res) {
-	res.render('main-nav');
+	res.render('index');
 });
 
-// listen for requests
+app.get('/register', function(req, res) {
+	res.render('register');
+});
+
 var server = app.listen(3000, function() {
  console.log('Listening on port %d', server.address().port);
 });

@@ -1,0 +1,36 @@
+extends layout
+
+block content
+	div.content-fluid
+		form.center-block
+			div.row
+				div.col-md-1
+					label Username:
+				div.col-md-1
+					input(type="text", placeholder="Sign in name")
+			div.row
+				div.col-md-1
+					label Name:
+				div.col-md-1
+					input(type="text", placeholder="Your real first name")
+			div.row
+				div.col-md-1
+					label Last name:
+				div.col-md-1
+					input(type="text", placeholder="Your real last name")
+			div.row
+				div.col-md-1
+					label Email:
+				div.col-md-1
+					input(type="text", placeholder="Your primary email")
+			div.row
+				div.col-md-1
+					label Password:
+				div.col-md-1
+					input(type="password", placeholder="Sign in password")
+			div.row
+				div.col-md-2
+					input(type="radio", name="terms", value="terms", checked="true") 
+					label &nbsp I have read all the terms
+			div.row
+				button.btn.btn-success Register me!
