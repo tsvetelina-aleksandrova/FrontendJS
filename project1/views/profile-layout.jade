@@ -1,0 +1,20 @@
+.profile-layout
+    div.col-md-2
+        div.row
+            img(src="/img/logo.png", alt="user profile photo")
+        div.row
+            h3 #{user}
+        div.row
+            h4 Guy Named
+    div.col-md-4
+        nav.nav.nav-tabs
+            ul.nav.nav-tabs.navbar-left
+                li
+                    a(href="#") Art
+                li
+                    a(href="#") Groups
+                li
+                    a(href="#") Friends
+                li
+                    a.fa.fa-plus(href="#") &nbsp Befriend
+        include profile-gallery-layout
