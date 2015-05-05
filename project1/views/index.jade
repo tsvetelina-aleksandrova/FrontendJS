@@ -1,5 +1,9 @@
 extends layout
 
+block vars
+    - var user = username
+
 block content
     include index-layout
     include main-gallery-layout
+    p #{username}

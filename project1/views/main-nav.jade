@@ -16,7 +16,7 @@
                         span &nbsp
                         button.btn.btn-default.fa.fa-search.fa-lg(type="submit")
                 ul.nav.navbar-nav.navbar-right
-                    if username
+                    if user
                         li
                             a.fa.fa-home.fa-2x(href="/")
                         li
@@ -36,10 +36,10 @@
                         li 
                             form#sign-in-nav-form
                                 label Name: &nbsp
-                                input(type="text")
+                                input(type="text", name="username")
                                 label &nbsp Password: &nbsp
-                                input(type="password")
+                                input(type="password", name="password")
                                 span &nbsp
-                                button.btn Sign in
+                                button.btn(type="submit") Sign in
                         li
                             a(href="/register") Register
