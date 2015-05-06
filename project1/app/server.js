@@ -40,7 +40,7 @@ app.post('/login', passport.authenticate('login'),
 
 app.post('/register', passport.authenticate('signup'),
   function(req, res){
-    res.redirect('/?username=' + req.body.username);
+    res.redirect('/');
 });
 
 app.get('/register', function(req, res){
@@ -55,12 +55,23 @@ app.get('/logout', function(req, res) {
 
 app.get("/profile", function(req, res){
   var username = req.session.username;
-  res.render("profile", {"username": username});
+  console.log(username);
+  ArtPieces.find({ artist : username }, function(err, artArr) {
+    res.render("profile", {"data": {"username": username, "art": artArr}});
+  }); 
 });
 
 app.get("/all-art", function(req, res){
   ArtPieces.find({}, function(err, pieces) {
       res.send(pieces);  
+    });
+});
+
+app.get("/art:id", function(req, res){
+  var id = req.params.id.substring(1);
+  console.log(id);
+  ArtPieces.findOne({ _id : id }, function(err, artObj) {
+      res.render("piece", {"piece": artObj});  
     });
 });
 

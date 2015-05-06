@@ -5,21 +5,20 @@ block vars
 
 block content
     div.row
-        img(src="/img/logo-large.png", alt="art piece overview")
+        img(src="/img/" + piece.img, alt="art piece overview")
     div.row
         div.col-md-2
-            h4 art thingy name
-        div.col-md-3
-            div.row
-                a.pull-right.fa.fa-shopping-cart(href="#") &nbsp Buy
-            div.row
-                a.pull-right.fa.fa-star(href="#") &nbsp Like
-                    span &nbsp [123]
+            h4 #{piece.name}
+        div.col-md-1
+            a.pull-right.fa.fa-shopping-cart(href="#") &nbsp Buy
+        div.col-md-1
+            a.pull-right.fa.fa-star(href="#") &nbsp Like
+                span &nbsp #{piece.likes}
     div.row
-        div.col-md-6
+        div.col-md-1
             img(src="img/logo.png", alt="user profile photo")
         div-col-md-3
-            a(href="#") #{user}
+            a(href="#") #{piece.artist}
     div.row
         h4 Comments:
         include comment-layout

@@ -58,13 +58,13 @@ var loginAction = function(req, username, password, done){
   );
 }
 
-var createUser = function(username, password, req){
-  var newUser = new User();
+var createUser = function(req, username, password, done){
+  var newUser = new Users();
   newUser.username = username;
   newUser.password = encr.createHash(password);
-  newUser.email = req.param('email');
-  newUser.firstName = req.param('firstName');
-  newUser.lastName = req.param('lastName');
+  newUser.email = req.body.email;
+  newUser.firstName = req.body.firstName;
+  newUser.lastName = req.body.lastName;
 
   newUser.save(function(err){
     if (err){
@@ -76,7 +76,7 @@ var createUser = function(username, password, req){
   });
 }
 
-var findOrCreateUser = function(){
+var findOrCreateUser = function(req, username, password, done){
   Users.findOne({'username': username}, function(err, user){
     if (err){
       console.log('Error in SignUp: '+ err);
@@ -87,13 +87,13 @@ var findOrCreateUser = function(){
       return done(null, false, 
          req.flash('message', 'User Already Exists'));
     } else{
-      createUser(username, password, req);
+      createUser(req, username, password, done);
     }
   });
 }
 
 var registerAction = function(req, username, password, done){
-    // Delay the execution of findOrCreateUser and execute 
-    // the method in the next tick of the event loop
-    process.nextTick(findOrCreateUser);
+    process.nextTick(function() {
+      findOrCreateUser(req, username, password, done);
+    });
 }

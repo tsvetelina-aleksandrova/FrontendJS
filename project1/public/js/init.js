@@ -10,8 +10,8 @@ var loadAllArt = function() {
 		var index = 0;
 		while(index < data.length){
 			var $galleryItem = $("<li class=\"col-md-3 thumbnail\"></li>");
-
-			var $imageLink = $("<a href=\"#\ class=\"bounding-box\"></a>");
+			var $imageLink = $("<a class=\"bounding-box\"></a>")
+								.attr("href", "/art:" + data[index]._id);
 			var $image = $([
 				"<img src=\"",
 				"img/",
@@ -80,8 +80,26 @@ var handleUserSessionEvents = function() {
 		event.preventDefault();
 	});
 
-	$("#view-profile").click(function(event) {
-		$.get("/profile/");
+	$("#register-form").submit(function(event) {
+		var formData = $( this ).serializeArray();
+		var userData = {};
+		userData["username"] = formData[0].value;
+		userData["firstName"] = formData[1].value;
+		userData["lastName"] = formData[2].value;
+		userData["email"] = formData[3].value;
+		userData["password"] = formData[4].value;
+
+	    $.ajax({
+			"method": "POST",
+			"url": "/register",
+			"data": userData,
+			"dataType": 'html'
+		})
+		  .done(function() {
+		    console.log("Registered!");
+		  });
+
+		$(this)[0].reset();
 		event.preventDefault();
 	});
 }
