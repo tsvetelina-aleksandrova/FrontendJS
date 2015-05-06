@@ -1,0 +1,11 @@
+for art in galleryData
+    .row
+        li.col-md-10.thumbnail
+            a(href="/art:" + art._id)
+                img(src="img/" + art.img, alt=art.name + "by" + art.artist)
+            h3
+                a(href="#") #{art.name}
+                a.pull-right.fa.fa-shopping-cart(href="#")
+                a.pull-right.fa.fa-star(href="#")
+            h5
+               a(href="#") #{art.artist}

@@ -1,57 +1,19 @@
-$(document).ready(function() {
+$(document).ready(function() {;
 	handleUserSessionEvents();
 	loadAllArt();
 });
 
 var loadAllArt = function() {
-	var $galleryList = $("#gallery-all");
-	$.get("/all-art", function(data) {
-		var $currentRow = $("<div class=\"row\"></div>");
-		var index = 0;
-		while(index < data.length){
-			var $galleryItem = $("<li class=\"col-md-3 thumbnail\"></li>");
-			var $imageLink = $("<a class=\"bounding-box\"></a>")
-								.attr("href", "/art:" + data[index]._id);
-			var $image = $([
-				"<img src=\"",
-				"img/",
-				data[index].img,
-				"\" alt=\"",
-				data[index].name,
-				"\"/>"].join(""));
-			$imageLink
-				.append($image);
-
-			var $imageInfo = $("<h3></h3>");
-			var $imageTitle = $("<a href=\"#\"></a>")
-								.text(data[index].name);
-			var $imageCart = $("<a href=\"#\" class=\"pull-right fa fa-shopping-cart\"></a>");
-			var $imageLike = $("<a href=\"#\" class=\"pull-right fa fa-star\"></a>");
-			$imageInfo
-				.append($imageTitle)
-				.append($imageCart)
-				.append($imageLike);
-
-			var $userInfo = $("<h5></h5>")
-							 .append($("<a href=\"#\"></a>")
-										.text(data[index].artist)
-								);
-			$galleryItem
-				.append($imageLink)
-				.append($imageInfo)
-				.append($userInfo);
-			$currentRow
-				.append($galleryItem);
-			if(((index + 1) % 3 === 0 && index > 0) ||
-					index + 1 == data.length ){
-				$galleryList.append($currentRow);
-				$currentRow = $("<div class=\"row\"></div>");
-			}
-			index += 1;
-		}
+	var $galleryList = $(".gallery");
+	$.get("/thumbnails", function(html){
+		$galleryList.html(html);
 	});
 }
-
+/* 
+$("#thumbnails").on("click",".view", function(){
+	
+})
+*/
 var handleUserSessionEvents = function() {
 	$('#sign-in-nav-form').submit(function(event) {
 		var formData = $( this ).serializeArray();
@@ -83,11 +45,16 @@ var handleUserSessionEvents = function() {
 	$("#register-form").submit(function(event) {
 		var formData = $( this ).serializeArray();
 		var userData = {};
-		userData["username"] = formData[0].value;
-		userData["firstName"] = formData[1].value;
-		userData["lastName"] = formData[2].value;
-		userData["email"] = formData[3].value;
-		userData["password"] = formData[4].value;
+		var userDataMapNames = [
+			"username", 
+			"firstName",
+			"lastName",
+			"email",
+			"password"
+			];
+		for(var i=0; i < formData.length; i+=1){
+			userData[userDataMapNames[i]] = formData[i].value;
+		}
 
 	    $.ajax({
 			"method": "POST",

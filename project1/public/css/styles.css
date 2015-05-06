@@ -1,0 +1,25 @@
+header .navbar-brand {
+  margin: 0px;
+  height: 50px;
+  line-height: 50px;
+  padding: 8px; }
+
+@media (min-width: 768px) {
+  header .navbar-brand, header form.navbar-form {
+    margin: 0px;
+    height: 50px;
+    line-height: 50px;
+    padding: 8px 0px;
+    display: inline-block;
+    vertical-align: middle; }
+    header .navbar-brand .btn, header .navbar-brand > img, header .navbar-brand label, header form.navbar-form .btn, header form.navbar-form > img, header form.navbar-form label {
+      height: 34px;
+      margin: 0px 5px; }
+    header .navbar-brand label, header form.navbar-form label {
+      line-height: 34px; } }
+@media (max-width: 768px) {
+  #form-search .btn {
+    display: block;
+    width: 100%; } }
+
+/*# sourceMappingURL=styles.css.map */

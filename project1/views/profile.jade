@@ -4,14 +4,14 @@ block vars
     - var user = data.username
 
 block content
-    div.col-md-1
-        div.row
+    .col-md-1
+        .row
             img(src="/img/logo.png", alt="user profile photo")
-        div.row
+        .row
             h3 #{user}
-        div.row
+        .row
             h4 Guy Named
-    div.col-md-9
+    .col-md-9
         nav.nav.nav-tabs
             ul.nav.nav-tabs.navbar-left
                 li
@@ -22,19 +22,5 @@ block content
                     a(href="#") Friends
                 li
                     a.fa.fa-plus(href="#") &nbsp Befriend
-        div.content-fluid
-            ul.thumbnails
-                for art in data.art
-                    div.row
-                        li.col-md-12.thumbnail
-                            a(href="/art:" + art._id)
-                                img(src="img/" + art.img, alt=art.name + "by" + art.artist)
-                            h3
-                                a(href="#") #{art.name}
-                                a.pull-right.fa.fa-shopping-cart(href="#")
-                                a.pull-right.fa.fa-star(href="#")
-                            h5
-                                p Short description
-                                | Short description
-                                | Short description.. 
-                                a(href="#") (More)
+        .content-fluid
+            ul.thumbnails.gallery

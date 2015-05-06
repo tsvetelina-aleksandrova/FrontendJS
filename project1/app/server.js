@@ -5,6 +5,7 @@ var expressSession = require('express-session');
 var flash = require('connect-flash');
 var passport = require('./auth.js')();
 var ArtPieces = require('./art-piece.js');
+var jade = require("jade");
 
 var app = express();
 
@@ -55,16 +56,16 @@ app.get('/logout', function(req, res) {
 
 app.get("/profile", function(req, res){
   var username = req.session.username;
-  console.log(username);
   ArtPieces.find({ artist : username }, function(err, artArr) {
     res.render("profile", {"data": {"username": username, "art": artArr}});
   }); 
 });
 
-app.get("/all-art", function(req, res){
+app.get("/thumbnails", function(req, res){
   ArtPieces.find({}, function(err, pieces) {
-      res.send(pieces);  
-    });
+    var html = jade.renderFile("views/thumbnails.jade", {"galleryData": pieces});
+    res.send(html);
+  });
 });
 
 app.get("/art:id", function(req, res){

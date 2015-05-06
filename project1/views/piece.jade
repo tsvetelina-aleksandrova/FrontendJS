@@ -4,21 +4,21 @@ block vars
     - var user = username
 
 block content
-    div.row
+    .row
         img(src="/img/" + piece.img, alt="art piece overview")
-    div.row
-        div.col-md-2
+    .row
+        .col-md-2
             h4 #{piece.name}
-        div.col-md-1
+        .col-md-1
             a.pull-right.fa.fa-shopping-cart(href="#") &nbsp Buy
-        div.col-md-1
+        .col-md-1
             a.pull-right.fa.fa-star(href="#") &nbsp Like
                 span &nbsp #{piece.likes}
-    div.row
-        div.col-md-1
+    .row
+        .col-md-1
             img(src="img/logo.png", alt="user profile photo")
-        div-col-md-3
+        col-md-3
             a(href="#") #{piece.artist}
-    div.row
+    .row
         h4 Comments:
         include comment-layout
