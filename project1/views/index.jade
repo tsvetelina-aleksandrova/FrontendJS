@@ -4,5 +4,24 @@ block vars
     - var user = username
 
 block content
-    include index-layout
+    nav.nav.nav-tabs
+    div.container-fluid
+        ul.nav.nav-tabs.navbar-left
+            li
+                a(href="#") Groups
+            li
+                a(href="#") Friends
+            li.dropdown
+                a.dropdown-toggle(href="#", data-toggle="dropdown", 
+                    role="button", aria-expanded="false") Browse
+                    span.caret
+                        ul.dropdown-menu(role="menu")
+                            li
+                                a(href="#") Newest
+                            li
+                                a(href="#") Popular
+                            li
+                                a(href="#") Editor's picks
+            li
+                a.fa.fa-plus(href="#") &nbsp Share new art
     include main-gallery-layout

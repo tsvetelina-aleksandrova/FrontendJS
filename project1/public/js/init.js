@@ -14,7 +14,7 @@ $(document).ready(function() {
 		  .done(function() {
 		    console.log("Signed in!");
 		  });
-		$(this).reset();
+		$(this)[0].reset();
 		event.preventDefault();
 	});
 

@@ -1,0 +1,25 @@
+extends layout
+
+block vars
+    - var user = username
+
+block content
+    div.row
+        img(src="/img/logo-large.png", alt="art piece overview")
+    div.row
+        div.col-md-2
+            h4 art thingy name
+        div.col-md-3
+            div.row
+                a.pull-right.fa.fa-shopping-cart(href="#") &nbsp Buy
+            div.row
+                a.pull-right.fa.fa-star(href="#") &nbsp Like
+                    span &nbsp [123]
+    div.row
+        div.col-md-6
+            img(src="img/logo.png", alt="user profile photo")
+        div-col-md-3
+            a(href="#") #{user}
+    div.row
+        h4 Comments:
+        include comment-layout
