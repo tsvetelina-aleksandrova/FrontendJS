@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var expressSession = require('express-session');
 var flash = require('connect-flash');
 var passport = require('./auth.js')();
+var ArtPieces = require('./art-piece.js');
 
 var app = express();
 
@@ -55,6 +56,12 @@ app.get('/logout', function(req, res) {
 app.get("/profile", function(req, res){
   var username = req.session.username;
   res.render("profile", {"username": username});
+});
+
+app.get("/all-art", function(req, res){
+  ArtPieces.find({}, function(err, pieces) {
+      res.send(pieces);  
+    });
 });
 
 var server = app.listen(3000, function() {

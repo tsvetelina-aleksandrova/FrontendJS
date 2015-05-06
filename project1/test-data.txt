@@ -1,0 +1,70 @@
+db project1
+
+db.createCollection("users")
+
+db.users.insert({
+"username": "a",
+"password": "a",
+"email": "a"
+})
+
+db.users.insert({
+"username": "b",
+"password": "b",
+"email": "b"
+})
+
+======
+
+
+db.createCollection("pieces")
+
+db.pieces.insert({
+"name": "Viserion", 
+"artist": "a",
+"img": "f1.jpg",
+"likes": 1,
+"orders": 0,
+"isReal": true
+})
+
+db.pieces.insert({
+"name": "Annihilation",
+"artist": "b",
+"img": "f2.jpg",
+"likes": 0,
+"orders": 0,
+"isReal": false
+})
+
+db.pieces.insert({
+"name": "Rhaegal", 
+"artist": "a",
+"img": "f3.jpg",
+"likes": 0,
+"orders": 0,
+"isReal": false
+})
+
+db.pieces.insert({
+"name": "Smaug", 
+"artist": "b",
+"img": "f4.png",
+"likes": 6,
+"orders": 1,
+"isReal": false
+})
+
+db.pieces.insert({
+"name": "Power", 
+"artist": "a",
+"img": "f5.jpg",
+"likes": 0,
+"orders": 0,
+"isReal": true
+})
+
+
+======
+
+

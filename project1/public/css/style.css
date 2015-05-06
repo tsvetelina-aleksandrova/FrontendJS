@@ -1,0 +1,21 @@
+#gallery-all .thumbnail {
+	width: 25%;
+	margin: 10px;
+	height: 70%;
+}
+
+#gallery-all .thumbnail h5 {
+	position:absolute; 
+	bottom:0;
+}
+
+#gallery-all .thumbnail h3 {
+	position:absolute; 
+	bottom:20;
+	margin-bottom: 10px;
+}
+
+#gallery-all .thumbnail img {
+	max-width: 90%;
+	max-height: 80%;
+}

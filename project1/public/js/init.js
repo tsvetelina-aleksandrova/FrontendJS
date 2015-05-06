@@ -1,4 +1,58 @@
 $(document).ready(function() {
+	handleUserSessionEvents();
+	loadAllArt();
+});
+
+var loadAllArt = function() {
+	var $galleryList = $("#gallery-all");
+	$.get("/all-art", function(data) {
+		var $currentRow = $("<div class=\"row\"></div>");
+		var index = 0;
+		while(index < data.length){
+			var $galleryItem = $("<li class=\"col-md-3 thumbnail\"></li>");
+
+			var $imageLink = $("<a href=\"#\ class=\"bounding-box\"></a>");
+			var $image = $([
+				"<img src=\"",
+				"img/",
+				data[index].img,
+				"\" alt=\"",
+				data[index].name,
+				"\"/>"].join(""));
+			$imageLink
+				.append($image);
+
+			var $imageInfo = $("<h3></h3>");
+			var $imageTitle = $("<a href=\"#\"></a>")
+								.text(data[index].name);
+			var $imageCart = $("<a href=\"#\" class=\"pull-right fa fa-shopping-cart\"></a>");
+			var $imageLike = $("<a href=\"#\" class=\"pull-right fa fa-star\"></a>");
+			$imageInfo
+				.append($imageTitle)
+				.append($imageCart)
+				.append($imageLike);
+
+			var $userInfo = $("<h5></h5>")
+							 .append($("<a href=\"#\"></a>")
+										.text(data[index].artist)
+								);
+			$galleryItem
+				.append($imageLink)
+				.append($imageInfo)
+				.append($userInfo);
+			$currentRow
+				.append($galleryItem);
+			if(((index + 1) % 3 === 0 && index > 0) ||
+					index + 1 == data.length ){
+				$galleryList.append($currentRow);
+				$currentRow = $("<div class=\"row\"></div>");
+			}
+			index += 1;
+		}
+	});
+}
+
+var handleUserSessionEvents = function() {
 	$('#sign-in-nav-form').submit(function(event) {
 		var formData = $( this ).serializeArray();
 		var userData = {};
@@ -14,6 +68,7 @@ $(document).ready(function() {
 		  .done(function() {
 		    console.log("Signed in!");
 		  });
+
 		$(this)[0].reset();
 		event.preventDefault();
 	});
@@ -26,18 +81,7 @@ $(document).ready(function() {
 	});
 
 	$("#view-profile").click(function(event) {
-		$.get("/profile/?username=" + getUrlValue("username"));
+		$.get("/profile/");
 		event.preventDefault();
 	});
-});
-
-function getUrlValue(varSearch){
-    var searchString = window.location.search.substring(1);
-    var variableArray = searchString.split('&');
-    for(var i = 0; i < variableArray.length; i+=1){
-        var keyValuePair = variableArray[i].split('=');
-        if(keyValuePair[0] === varSearch){
-            return keyValuePair[1];
-        }
-    }
 }

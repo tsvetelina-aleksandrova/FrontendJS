@@ -1,4 +1,4 @@
-var User = require('./user.js');
+var Users = require('./user.js');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var encr = require('./encr.js')();
@@ -11,8 +11,6 @@ mongoose.connection.on("open", function(){
 
 mongoose.connect(dbConfig.url);
 
-// current test data: 
-// username: a, password: a, email: a
 module.exports = function() {
   passport.use('login', new LocalStrategy({
     passReqToCallback : true
@@ -27,7 +25,7 @@ module.exports = function() {
   });
  
   passport.deserializeUser(function(id, done){
-    User.findById(id, function(err, user){
+    Users.findById(id, function(err, user){
       done(err, user);
     });
   });
@@ -37,7 +35,7 @@ module.exports = function() {
 
 var loginAction = function(req, username, password, done){ 
   mongoose.connection.db.collection('user', 
-    User.findOne({ 'username' :  username }, 
+    Users.findOne({ 'username' :  username }, 
       function(err, user) {
         if (err) {
           console.log("Some error!");
@@ -79,7 +77,7 @@ var createUser = function(username, password, req){
 }
 
 var findOrCreateUser = function(){
-  User.findOne({'username': username}, function(err, user){
+  Users.findOne({'username': username}, function(err, user){
     if (err){
       console.log('Error in SignUp: '+ err);
       return done(err);
