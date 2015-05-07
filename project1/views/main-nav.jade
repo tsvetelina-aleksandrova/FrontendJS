@@ -5,9 +5,8 @@ header.navbar.navbar-default
              data-toggle="collapse", data-target="#main-nav")
                 span.sr-only Toggle navigation
                 span.fa.fa-bars
-            a.navbar-brand(href="/")
-                img(alt="Brand" src="img/logo.png")
-        div#main-nav.collapse.navbar-collapse
+            a.navbar-brand(href="/") Artasie
+        #main-nav.collapse.navbar-collapse
             form.navbar-form.navbar-left#form-search(role="search")
                 .form-group
                     input.form-control(type="text", placeholder="Search artists") 
@@ -32,15 +31,5 @@ header.navbar.navbar-default
                             li
                                 a#logout-elem(href="#") Logout
             else
-                ul.nav.navbar-nav.navbar-right
-                    li
-                        a(href="/register") Register
-            
-                form.navbar-form.navbar-right#sign-in-nav-form
-                    .form-group
-                        label Name: 
-                        input.form-control(type="text", name="username")
-                    .form-group
-                        label Password:
-                        input.form-control(type="password", name="password")
-                    button.btn.btn-default(type="submit") Sign in
+                .nav.navbar-nav.navbar-right
+                    a.btn.btn-default(href="#login-register") Join

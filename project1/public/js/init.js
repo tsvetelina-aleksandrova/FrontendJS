@@ -15,7 +15,7 @@ $("#thumbnails").on("click",".view", function(){
 })
 */
 var handleUserSessionEvents = function() {
-	$('#sign-in-nav-form').submit(function(event) {
+	$('#sign-in-form').submit(function(event) {
 		var formData = $( this ).serializeArray();
 		var userData = {};
 		userData["username"] = formData[0].value;

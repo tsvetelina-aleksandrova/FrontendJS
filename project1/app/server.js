@@ -70,9 +70,9 @@ app.get("/thumbnails", function(req, res){
 
 app.get("/art:id", function(req, res){
   var id = req.params.id.substring(1);
-  console.log(id);
+  var username = req.session.username;
   ArtPieces.findOne({ _id : id }, function(err, artObj) {
-      res.render("piece", {"piece": artObj});  
+      res.render("piece", {"username": username, "piece": artObj});  
     });
 });
 
