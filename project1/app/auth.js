@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var dbConfig = require('./db-config.js');
 
 mongoose.connection.on("open", function(){
-  console.log("mongodb is connected");
+  console.log("connected to mongodb");
 });
 
 mongoose.connect(dbConfig.url);

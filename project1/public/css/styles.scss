@@ -1,11 +1,11 @@
 
 body{
-	background-image: url("../img/lightpaperfibers.png");
 	font-family: 'Josefin Sans', sans-serif;
 }
 
-.navbar, header, .navbar-collapse{
+body, .navbar, header, .navbar-collapse, .thumbnail, .user-profile-side{
 	background-image: url("../img/lightpaperfibers.png");
+	border-color: #d6ded4;
 }
 
 a {
@@ -21,25 +21,31 @@ a:hover{
 }
 
 @media (min-width: 768px){
-	header {
+	header.navbar {
 		position: fixed;
 	  top: 0;
 	  left: 0;
 	  z-index: 9999;
 	  width: 100%;
-	  height: 50px;
+	  height: 55px;
 	  .btn {
 			height: 34px;
 			margin: 0px 5px;
 			vertical-align: middle;
 		}
-		form.navbar-form, .navbar-nav.navbar-right {
+		form.navbar-form, .navbar-nav.navbar-right{
 			margin: 0px;
 			height: 50px;
 			line-height: 50px;
-			padding: 8px 0px;
+			padding: 10px 0px;
 			display: inline-block;
 			vertical-align: middle;
+		}
+		.navbar-nav.navbar-right {
+			padding: 0px 0px;
+		}
+		.navbar-nav.navbar-right .btn{
+			margin: 10px 0px;
 		}
 	}
 }
@@ -50,12 +56,6 @@ a:hover{
 		width: 100%;
 	}
 }
-
-.thumbnail {
-  height: 80%;
-  width: 80%;
-}
-
 
 .navbar {
 	position: relative;
@@ -69,6 +69,7 @@ a:hover{
 		display: block;
 		width: 100%;
 	}
+	margin-bottom: 20%;
 }
 
 .form-control:focus {
@@ -93,6 +94,7 @@ a:hover{
 	text-align: center;
 	padding-top: 10%;
 	color: white;
+	text-shadow: 0 0 7px #2F4F4F;
 	a {
 		color: white;
 	}
@@ -120,12 +122,51 @@ a:hover{
 	width: 45%;
 }
 
-.navbar-brand{
+.navbar-brand, .caption h2{
 	font-family: 'Cinzel Decorative', cursive;
+}
+
+.caption h4{
+	font-family: 'Cinzel', cursive;
 }
 
 .btn{
 	background-color: #d6ded4;
 	border-color: #2F4F4F;
 	color: black;
+}
+
+.caption{
+  border-radius: 8px;
+  width: 60%;
+}
+
+.img-thumbnail{
+	max-width: 80%;
+	max-height: 80%;
+}
+
+.content{
+	margin-top: 5%;
+	h3{
+		font-family: 'Cinzel', cursive;
+		text-align: center;
+	}
+}
+
+.gallery{
+	margin: 2% 0% 2% 0%; 
+}
+
+.nav-tabs a:hover{
+	background-color: #d6ded4;
+}
+
+.user-profile-side img{
+	max-width: 90%;
+	max-height: 90%;
+}
+
+.user-profile-side{
+	border-width: 1px;
 }

@@ -1,26 +1,29 @@
 extends layout
 
 block vars
-    - var user = data.username
+    - var user = data.user.name
+    - var galleryData = data.user.art
 
 block content
-    .col-md-1
-        .row
-            img(src="/img/logo.png", alt="user profile photo")
-        .row
-            h3 #{user}
-        .row
-            h4 Guy Named
-    .col-md-9
-        nav.nav.nav-tabs
-            ul.nav.nav-tabs.navbar-left
-                li
-                    a(href="#") Art
-                li
-                    a(href="#") Groups
-                li
-                    a(href="#") Friends
-                li
-                    a.fa.fa-plus(href="#") &nbsp Befriend
-        .content-fluid
-            ul.thumbnails.gallery
+    .content
+        .col-md-3
+            .thumbnail
+                img.img-thumbnail(src="/img/" + data.user.img, alt=user + " profile photo")
+                .capture
+                    h3 #{user}
+                    hr
+                    h4 Contact:
+                    h4 #{data.user.email}
+        .col-md-9
+            nav.nav.nav-tabs
+                ul.nav.nav-tabs.navbar-left
+                    li.active
+                        a(href="#") Art
+                    li
+                        a(href="#") Groups
+                    li
+                        a(href="#") Friends
+                    li
+                        a.fa.fa-plus(href="#") &nbsp Befriend
+            .content-fluid
+                ul.thumbnails.gallery(name=user)

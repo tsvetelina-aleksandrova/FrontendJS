@@ -1,11 +1,14 @@
 for art in galleryData
     .row
-        li.col-md-10.thumbnail
-            a(href="/art:" + art._id)
-                img(src="img/" + art.img, alt=art.name + "by" + art.artist)
-            h3
-                a(href="#") #{art.name}
-                a.pull-right.fa.fa-shopping-cart(href="#")
-                a.pull-right.fa.fa-star(href="#")
-            h5
-               a(href="#") #{art.artist}
+        .col-md-1
+        li.col-md-10
+            .row.thumbnail
+                a(href="/art:" + art._id)
+                    img.img-thumbnail.img-responsive.center-block(src="img/" + art.img, alt=art.name + "by" + art.artist)
+                .row.caption.center-block
+                    h2 
+                        a(href="#") #{art.name}
+                        a.pull-right.fa.fa-shopping-cart(href="#")
+                        a.pull-right.fa.fa-star(href="#")
+                    h4 by &nbsp
+                        a(href="#") #{art.artist}

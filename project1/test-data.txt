@@ -5,12 +5,14 @@ db.createCollection("users")
 db.users.insert({
 "username": "a",
 "password": "a",
+"img": "u1.png",
 "email": "a"
 })
 
 db.users.insert({
 "username": "b",
 "password": "b",
+"img": "u2.jpg",
 "email": "b"
 })
 

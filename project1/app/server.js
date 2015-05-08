@@ -5,6 +5,7 @@ var expressSession = require('express-session');
 var flash = require('connect-flash');
 var passport = require('./auth.js')();
 var ArtPieces = require('./art-piece.js');
+var Users = require('./user.js');
 var jade = require("jade");
 
 var app = express();
@@ -24,10 +25,10 @@ app.set('view engine', 'jade');
 
 app.get('/', function(req, res){
   var username = req.session.username;
-  if(username){
-    res.render('index', {"username": username});
-  } else {
+  if(!username){
 	  res.render('index');
+  } else {
+    res.redirect('/home');
   }
 });
 
@@ -36,7 +37,16 @@ app.post('/login', passport.authenticate('login'),
     var username = req.body.username;
     req.session.username = username;
     req.session.loggedIn = true;
-    res.redirect('/');
+    res.redirect('/home');
+});
+
+app.get('/home', function(req, res) {
+  var username = req.session.username;
+  if(username){
+    res.render('user-home', {'username': username});
+  } else{
+    res.render('index');
+  }
 });
 
 app.post('/register', passport.authenticate('signup'),
@@ -51,13 +61,26 @@ app.get('/register', function(req, res){
 app.get('/logout', function(req, res) {
   req.session.username = "";
   req.logout();
-  res.render('index');
+  res.redirect('/');
 });
 
 app.get("/profile", function(req, res){
   var username = req.session.username;
   ArtPieces.find({ artist : username }, function(err, artArr) {
-    res.render("profile", {"data": {"username": username, "art": artArr}});
+    Users.findOne({username: username}, function(e, user){
+      if(user){
+        var profileData = {
+          "data": {
+            "user": {
+              "name": username,
+              "img": user.img,
+              "email": user.email
+            },
+            "art": artArr
+          }};
+        res.render("profile", profileData);
+      }
+    })
   }); 
 });
 
@@ -66,6 +89,25 @@ app.get("/thumbnails", function(req, res){
     var html = jade.renderFile("views/thumbnails.jade", {"galleryData": pieces});
     res.send(html);
   });
+});
+
+app.get("/thumbnails:username", function(req, res){
+  var username = req.params.username.substring(1);
+  console.log(username);
+  ArtPieces.find({artist: username}, function(err, pieces) {
+    console.log(pieces);
+    var html = jade.renderFile("views/thumbnails.jade", {"galleryData": pieces});
+    res.send(html);
+  });
+});
+
+app.get("/search:name", function(req, res){
+  var name = req.params.name.substring(1);
+  Users.find({}, function(err, users){
+    var matchingUsers = users.filter(function(user){
+      return user.username === name;
+    });
+  })
 });
 
 app.get("/art:id", function(req, res){

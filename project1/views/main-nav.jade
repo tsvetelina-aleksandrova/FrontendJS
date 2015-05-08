@@ -6,14 +6,13 @@ header.navbar.navbar-default
                 span.sr-only Toggle navigation
                 span.fa.fa-bars
             a.navbar-brand(href="/") Artasie
-        #main-nav.collapse.navbar-collapse
-            form.navbar-form.navbar-left#form-search(role="search")
-                .form-group
-                    input.form-control(type="text", placeholder="Search artists") 
-                button.btn.btn-default(type="submit") 
-                    i.fa.fa-search
-           
-            if user
+        if user
+            #main-nav.collapse.navbar-collapse
+                form.navbar-form.navbar-left#form-search(role="search")
+                    .form-group
+                        input.form-control(type="text", placeholder="Search artists") 
+                    button.btn.btn-default(type="submit") 
+                        i.fa.fa-search
                 ul.nav.navbar-nav.navbar-right
                     li
                         a.fa.fa-home.fa-2x(href="/")
@@ -30,6 +29,6 @@ header.navbar.navbar-default
                             li.divider
                             li
                                 a#logout-elem(href="#") Logout
-            else
-                .nav.navbar-nav.navbar-right
-                    a.btn.btn-default(href="#login-register") Join
+        else
+            .nav.navbar-nav.navbar-right
+                a.btn.btn-default(href="#login-register") Join

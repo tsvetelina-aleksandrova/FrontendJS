@@ -5,9 +5,16 @@ $(document).ready(function() {;
 
 var loadAllArt = function() {
 	var $galleryList = $(".gallery");
-	$.get("/thumbnails", function(html){
-		$galleryList.html(html);
-	});
+	var username = $galleryList.attr("name");
+	if(username){
+		$.get("/thumbnails:" + username, function(html){
+			$galleryList.html(html);
+		});
+	} else{
+		$.get("/thumbnails", function(html){
+			$galleryList.html(html);
+		});
+	}
 }
 /* 
 $("#thumbnails").on("click",".view", function(){
