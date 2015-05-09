@@ -1,20 +1,13 @@
-/*
-* add order to tasks
-* prioritize
-* and stuff
-* drag n drop them
-* and stuff
-*/
-
-var TaskList = (function() {
+var TodoApp = (function() {
 	var tasks = [];
 	var idCounter = 1;
 
 	var createTask = function(newTaskName) {
-		tasks.push({"id": idCounter, 
-					"name": newTaskName,
-					"finished": false,
-				});
+		tasks.push({
+			"id": idCounter, 
+			"name": newTaskName,
+			"finished": false,
+		});
 		idCounter += 1;
 
 		console.log("Added task with name " + newTaskName);
@@ -34,17 +27,14 @@ var TaskList = (function() {
 	}
 
 	var displayList = function($container) {
-		$container.empty();
+		if(typeof $container !== 'undefined') {
+			$container.empty();
 
-		$container[0].addEventListener("drop", drop(event));
-		$container[0].addEventListener("dragover", allowDrop(event));
-			//.on("drop", drop(event))
-			//.on("dragover", allowDrop(event));
-
-		tasks.forEach(function(task) {
-			var $taskElem = createTaskDomElem($container, task);
-			$container.append($taskElem);
-		});
+			tasks.forEach(function(task) {
+				var $taskElem = createTaskDomElem($container, task);
+				$container.append($taskElem);
+			});
+		}
 	}
 
 	var createTaskDomElem = function($container, task) {
@@ -74,9 +64,7 @@ var TaskList = (function() {
 		var $newTask = $("<li></li>")
 						.append($newTaskBox)
 						.append($newTaskLabel)
-						.append($newTaskDeleteBtn)
-						.attr("draggable", "true");
-		$newTask[0].addEventListener("dragstart", drag(event));
+						.append($newTaskDeleteBtn);
 
 		return $newTask;
 	}
@@ -92,30 +80,10 @@ var TaskList = (function() {
 		console.log(tasksAsString());
 	}
 
-	function allowDrop(evt) {
-    //drag over
-evt.preventDefault();
-//specify operation
-evt.dataTransfer.dropEffect = "move";
-}
-
-function drag(evt) {
-   //start drag
-source=evt.target;
-//set data
-evt.dataTransfer.setData("text/plain", evt.target.innerHTML);
-//specify allowed transfer
-evt.dataTransfer.effectAllowed = "move";
-}
-
-function drop(evt) {
-    //drop
-evt.preventDefault();
-evt.stopPropagation();
-//update text in dragged item
-//update text in drop target
-//evt.target.innerHTML = evt.dataTransfer.getData("text/plain");
-}
+	var moveTask = function(fromIndex, toIndex){
+		var movedElem = tasks.splice(fromIndex, 1)[0];
+		tasks.splice(toIndex, 0, movedElem);
+	}
 
 	var tasksAsString = function() {
 		if(tasks.length === 0) {
@@ -132,6 +100,7 @@ evt.stopPropagation();
 	return {
     	"createTask": createTask,
     	"finishTask": finishTask,
-    	"displayList": displayList
+    	"displayList": displayList,
+    	"moveTask": moveTask
   };
 }());

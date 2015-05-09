@@ -13,5 +13,8 @@
     "test",
     "tests"
   ],
-  "main": "todo.js"
+  "main": "todo.js",
+  "dependencies": {
+    "jqueryui": "~1.11.4"
+  }
 }
