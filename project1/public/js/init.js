@@ -1,6 +1,22 @@
 $(document).ready(function() {;
 	handleUserSessionEvents();
 	loadAllArt();
+
+	$(".fa.fa-star").click(function(event){
+		var _this = $(this);
+		var hrefValue = _this.attr("href");
+		if(typeof hrefValue === 'undefined'){
+			event.preventDefault();
+			return;
+		}
+		$.get(hrefValue, function(data){
+			console.log("blah");
+			_this.toggleClass("fa-star");
+			_this.text("Liked");
+			_this.removeAttr('href');
+		});
+		event.preventDefault();
+	});
 });
 
 var loadAllArt = function() {

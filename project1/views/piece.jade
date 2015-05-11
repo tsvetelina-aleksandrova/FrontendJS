@@ -4,21 +4,22 @@ block vars
     - var user = username
 
 block content
-    .row
-        img(src="/img/" + piece.img, alt="art piece overview")
-    .row
-        .col-md-2
-            h4 #{piece.name}
+    .content
+        .col-md-3
+            .thumbnail
+                img.img-thumbnail(src="/img/" + "u2.jpg", alt=user + " profile photo")
+                .capture  
+                    h3 
+                        a(href="#") #{piece.artist}
         .col-md-1
-            a.pull-right.fa.fa-shopping-cart(href="#") &nbsp Buy
-        .col-md-1
-            a.pull-right.fa.fa-star(href="#") &nbsp Like
-                span &nbsp #{piece.likes}
-    .row
-        .col-md-1
-            img(src="img/logo.png", alt="user profile photo")
-        col-md-3
-            a(href="#") #{piece.artist}
-    .row
-        h4 Comments:
-        include comment-layout
+        .col-md-5
+            .thumbnail
+                .caption.center-block
+                    h2 
+                        a(href="#") #{piece.name}
+                        a.pull-right.fa.fa-shopping-cart(href="#")
+                        a.pull-right.fa.fa-star(href="#")
+                a(href="/art:" + piece._id)
+                    img.img-thumbnail.img-responsive.center-block(src="img/" + piece.img, alt=piece.name + "by" + piece.artist)         
+            .row
+                include comment-layout

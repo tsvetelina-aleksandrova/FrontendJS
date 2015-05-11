@@ -96,7 +96,7 @@ a:hover {
 .navbar-brand, .caption h2 {
   font-family: 'Cinzel Decorative', cursive; }
 
-.caption h4 {
+.caption h4, .comment-section h3, h2 {
   font-family: 'Cinzel', cursive; }
 
 .btn {
@@ -107,6 +107,16 @@ a:hover {
 .caption {
   border-radius: 8px;
   width: 60%; }
+
+.comment, .comment > .text {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d6ded4;
+  border-radius: 8px;
+  padding: 0 3% 3% 3%;
+  margin-bottom: 20px; }
+  .comment .text, .comment > .text .text {
+    background-color: white; }
 
 .img-thumbnail {
   max-width: 80%;
@@ -130,5 +140,11 @@ a:hover {
 
 .user-profile-side {
   border-width: 1px; }
+
+#comment-form .btn {
+  margin: 8px 0px 8px 0px; }
+
+.comment-section h3 {
+  text-align: left; }
 
 /*# sourceMappingURL=styles.css.map */

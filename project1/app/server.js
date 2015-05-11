@@ -118,6 +118,16 @@ app.get("/art:id", function(req, res){
     });
 });
 
+
+app.get("/like:id", function(req, res){
+  var id = req.params.id.substring(1);
+  ArtPieces.findOne({ _id : id }, function(err, artObj) {
+      artObj.likes += 1;
+      artObj.save();
+      res.send("Liked");  
+    });
+});
+
 var server = app.listen(3000, function() {
   console.log('Listening on port %d', server.address().port);
 });
