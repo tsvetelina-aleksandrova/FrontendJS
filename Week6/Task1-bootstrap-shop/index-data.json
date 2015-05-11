@@ -1,43 +1,77 @@
 {
-    "nav": ["Happy", "Evil", "Java", "Kava", "Arabica", "Robusta"],
-    "foot": ["Contact us", "Delivery info", "Jobs"],
-    "rows": [
-        {"row": [
-            {"item": {
-                "name": "psilocybe",
-                "price": 7.00
-            }},
-            {"item": {
-                "name": "happy",
-                "price": 4.00
-            }},
-            {"item": {
-                "name": "extra sugar",
-                "price": 5.00
-            }},
-            {"item": {
-                "name": "black blood",
-                "price": 3.00
-            }}
-        ]},
-        {"row": [
-            {"item": {
-                "name": "black",
-                "price": 3.00
-            }},
-            {"item": {
-                "name": "demonic mischief",
-                "price": 9.00
-            }},
-            {"item": {
-                "name": "surprise special",
-                "price": 20.00
-            }},
-            {"item": {
-                "name": "demonic evil",
-                "price": 9.00
-            }}
-        ]
+  "nav": [
+    "Happy",
+    "Evil",
+    "Java",
+    "Kava",
+    "Arabica",
+    "Robusta"
+  ],
+  "foot": [
+    "Contact us",
+    "Delivery info",
+    "Jobs"
+  ],
+  "rows": [
+    {
+      "row": [
+        {
+          "item": {
+            "name": "psilocybe",
+            "price": 7
+          }
+        },
+        {
+          "item": {
+            "name": "happy",
+            "price": 4
+          }
+        },
+        {
+          "item": {
+            "name": "extra sugar",
+            "price": 5
+          }
+        }
+      ]
+    },
+    {
+      "row": [
+        {
+          "item": {
+            "name": "black blood",
+            "price": 3
+          }
+        },
+        {
+          "item": {
+            "name": "black",
+            "price": 3
+          }
+        },
+        {
+          "item": {
+            "name": "demonic mischief",
+            "price": 9
+          }
+        }
+      ]
+    },
+    {
+      "row": [
+        {
+          "item": {
+            "name": "surprise special",
+            "price": 20
+          }
+        },
+        {
+          "item": {
+            "name": "demonic evil",
+            "price": 9
+          }
+        }
+      ]
     }
-    ]
+  ]
 }

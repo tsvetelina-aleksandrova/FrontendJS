@@ -1,13 +1,22 @@
 {
-    "nav": ["Happy", "Evil", "Java", "Kava", "Arabica", "Robusta"],
-    "foot": ["Contact us", "Delivery info", "Jobs"],
-    "item": {
-        "name": "Extra sugar",
-        "price": 7.00,
-        "descr": {
-            "par": "This coffee is epic.",
-            "par": "This coffee is epic.",
-            "par": "This coffee is epic."
-        }
+  "nav": [
+    "Happy",
+    "Evil",
+    "Java",
+    "Kava",
+    "Arabica",
+    "Robusta"
+  ],
+  "foot": [
+    "Contact us",
+    "Delivery info",
+    "Jobs"
+  ],
+  "item": {
+    "name": "Extra sugar",
+    "price": 7,
+    "descr": {
+      "par": "This coffee is epic."
     }
+  }
 }

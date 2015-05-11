@@ -5,16 +5,16 @@ block vars
   - var navig = nav
 
 block content
-    ul.thumbnails.list-unstyled.text-center.pull-left
-        for row in rows
-            div.row
-                for rowValue, key in row
-                    for item in rowValue
-                        for value, k in item
-                            div.col-md-3
-                                li.span4
-                                    div.thumbnail                                
+    .col-md-10.container-fluid
+        ul.thumbnails.list-unstyled.text-center
+            for row in rows
+                .row
+                    for rowValue, key in row
+                        for item in rowValue
+                            for value, k in item
+                                .col-md-4
+                                    li.span4.thumbnail                           
                                         h3 #{value.name}
                                         img(src="img/product1.png")
                                         button.btn.btn-primary(onclick="location.href='/product'") 
-                                            &euro; #{value.price} Order now!
+                                             &euro; #{value.price} Order now!

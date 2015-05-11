@@ -1,14 +1,29 @@
 {
-    "nav": ["Happy", "Evil", "Java", "Kava", "Arabica", "Robusta"],
-    "foot": ["Contact us", "Delivery info", "Jobs"],
-    "rows": [
-        {"trow": {
-            "name": "Black",
-            "price": 3.00
-        }},
-        {"trow": {
-            "name": "Psilocybe",
-            "price": 7.00
-        }}
-    ]
+  "nav": [
+    "Happy",
+    "Evil",
+    "Java",
+    "Kava",
+    "Arabica",
+    "Robusta"
+  ],
+  "foot": [
+    "Contact us",
+    "Delivery info",
+    "Jobs"
+  ],
+  "rows": [
+    {
+      "trow": {
+        "name": "Black",
+        "price": 3
+      }
+    },
+    {
+      "trow": {
+        "name": "Psilocybe",
+        "price": 7
+      }
+    }
+  ]
 }

@@ -5,12 +5,12 @@ block vars
   - var navig = nav
 
 block content
-    div.container-fluid
-        div.thumbnail.pull-left
-            img(src="img/product1.png")
-        div
-            h4 #{item.name}
-            each par in item.descr
-                p #{par}
-            button.btn.btn-primary(onclick="location.href='/cart'")
-                &euro; #{item.price} Order now!
+    .col-md-1
+    .col-md-2
+        img.img-thumbnail(src="img/product1.png")
+    .col-md-4
+        h4 #{item.name}
+        each par in item.descr
+            p #{par}
+        button.btn.btn-primary(onclick="location.href='/cart'")
+            &euro; #{item.price} Order now!
