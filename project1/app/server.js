@@ -1,27 +1,14 @@
-var express = require('express');
-var fileSys = require('fs');
-var bodyParser = require('body-parser');
-var expressSession = require('express-session');
-var flash = require('connect-flash');
 var passport = require('./auth.js')();
+var jade = require("jade");
+var app = require("./express-config.js")();
+var mongoose = require('mongoose');
 var ArtPieces = require('./art-piece.js');
 var Users = require('./user.js');
-var jade = require("jade");
+var Comments = require('./comment.js');
 
-var app = express();
-
-app.use(express.static('public'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-app.use(expressSession({secret: 'mySecretKey'}));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash());
-
-app.set('views', './views');
-app.set('view engine', 'jade');
+var ArtPieces = mongoose.model('ArtPieces');
+var Users = mongoose.model('Users');
+var Comments = mongoose.model('Comments');
 
 app.get('/', function(req, res){
   var username = req.session.username;
@@ -71,11 +58,7 @@ app.get("/profile", function(req, res){
       if(user){
         var profileData = {
           "data": {
-            "user": {
-              "name": username,
-              "img": user.img,
-              "email": user.email
-            },
+            "user": user,
             "art": artArr
           }};
         res.render("profile", profileData);
@@ -93,9 +76,7 @@ app.get("/thumbnails", function(req, res){
 
 app.get("/thumbnails:username", function(req, res){
   var username = req.params.username.substring(1);
-  console.log(username);
   ArtPieces.find({artist: username}, function(err, pieces) {
-    console.log(pieces);
     var html = jade.renderFile("views/thumbnails.jade", {"galleryData": pieces});
     res.send(html);
   });
@@ -114,20 +95,47 @@ app.get("/art:id", function(req, res){
   var id = req.params.id.substring(1);
   var username = req.session.username;
   ArtPieces.findOne({ _id : id }, function(err, artObj) {
-      res.render("piece", {"username": username, "piece": artObj});  
+    Users.findOne({username: artObj.artist}, function(err, userObj){
+      Comments.find({pieceId: id}, function(err, commentsObj){
+        res.render("piece", {
+          "userObj": userObj, 
+          "piece": artObj, 
+          "comments": commentsObj});  
+      });
     });
+  });
 });
 
 
 app.get("/like:id", function(req, res){
   var id = req.params.id.substring(1);
   ArtPieces.findOne({ _id : id }, function(err, artObj) {
-      artObj.likes += 1;
-      artObj.save();
+      artObj.likes.$inc();
+      artObj.save(mongoAfterSaveAction);
       res.send("Liked");  
     });
+});
+
+app.post('/comment:id', function(req, res){
+  var id = req.params.id.substring(3);
+  var username = req.session.username;
+  var newComment = new Comments({
+    "pieceId": id,
+    "writer": username,
+    "text": req.body.commentText
+  });
+  newComment.save(mongoAfterSaveAction);
+  res.send("Commented");  
 });
 
 var server = app.listen(3000, function() {
   console.log('Listening on port %d', server.address().port);
 });
+
+var mongoAfterSaveAction = function(e){
+  if(e){
+    console.log('Error while saving mongo document.')
+  } else{
+    console.log('Mongo document is saved.')
+  }
+}

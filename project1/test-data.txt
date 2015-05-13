@@ -69,4 +69,16 @@ db.pieces.insert({
 
 ======
 
+db.createCollection("comments")
 
+db.comments.insert({
+	"pieceId": "5549e1e4f840bc084579f6e8",
+	"writer": "b",
+	"text": "lsafsdfs\nsdfa"
+})
+
+db.comments.insert({
+	"pieceId": "5549e1e4f840bc084579f6e8",
+	"writer": "z",
+	"text": "krtyiroueotiu"
+})

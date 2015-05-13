@@ -17,6 +17,27 @@ $(document).ready(function() {;
 		});
 		event.preventDefault();
 	});
+
+	$("#comment-form").submit(function(event){
+		var formData = $( this ).serializeArray();
+		var commentData = {};
+		commentData["commentText"] = formData[0].value;
+		var _this = $(this);
+		console.log(_this.attr("name"));
+		$.ajax({
+			"method": "POST",
+			"url": "/comment:id" + _this.attr("name"),
+			"data": commentData,
+			"dataType": 'html'
+		})
+		  .done(function() {
+		    console.log("Commented");
+		  });
+		event.preventDefault();
+	});
+	// make jade $("#form-search")
+
+
 });
 
 var loadAllArt = function() {
@@ -52,15 +73,15 @@ var handleUserSessionEvents = function() {
 		})
 		  .done(function() {
 		    console.log("Signed in!");
+		    window.location = "/home";
 		  });
-
-		$(this)[0].reset();
 		event.preventDefault();
 	});
 
 	$("#logout-elem").click(function(event) {
 		$.get( "/logout", function() {
 			console.log("Signed out!");
+			window.location = "/home";
 		});
 		event.preventDefault();
 	});
@@ -87,9 +108,8 @@ var handleUserSessionEvents = function() {
 		})
 		  .done(function() {
 		    console.log("Registered!");
+		    window.location = "/";
 		  });
-
-		$(this)[0].reset();
 		event.preventDefault();
 	});
 }

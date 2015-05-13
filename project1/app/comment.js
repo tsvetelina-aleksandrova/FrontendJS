@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
  
-module.exports = mongoose.model("Comment", {
+module.exports = mongoose.model("Comments", {
     pieceId: String,
     writer: String,
-    text: Integer
-}, "comment");
+    text: String
+}, "comments");

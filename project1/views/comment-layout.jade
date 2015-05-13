@@ -1,28 +1,12 @@
 .comment-section
     h3 Add comment
-    form#comment-form
-        textarea.form-control
+    form#comment-form(name= "" + piece._id)
+        textarea.form-control(name="commentText")
         button.btn.btn-default(type="submit") Comment
     h3 Comments
-    .comment
-        h4 
-            a(href="#") username
-        .text
-            p text text text
-            p text text text
-            p text text text
-    .comment
-        h4 
-            a(href="#") username
-        .text
-            p text text text
-            p text text text
-            p text text text
-    .comment
-        h4 
-            a(href="#") username
-        .text
-            p text text text
-            p text text text
-            p text text text
+    for c in comments
+        .comment
+            h4 
+                a(href="#") #{c.writer}
+            .text #{c.text}
 
