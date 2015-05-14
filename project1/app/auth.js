@@ -1,9 +1,9 @@
-var Users = require('./user.js');
+var Users = require('./db/user.js');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var encr = require('./encr.js')();
 var mongoose = require('mongoose');
-var dbConfig = require('./db-config.js');
+var dbConfig = require('./db/db-config.js');
 
 mongoose.connection.on("open", function(){
   console.log("connected to mongodb");

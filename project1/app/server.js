@@ -2,9 +2,9 @@ var passport = require('./auth.js')();
 var jade = require("jade");
 var app = require("./express-config.js")();
 var mongoose = require('mongoose');
-var ArtPieces = require('./art-piece.js');
-var Users = require('./user.js');
-var Comments = require('./comment.js');
+var ArtPieces = require('./db/art-piece.js');
+var Users = require('./db/user.js');
+var Comments = require('./db/comment.js');
 
 var ArtPieces = mongoose.model('ArtPieces');
 var Users = mongoose.model('Users');
@@ -114,6 +114,7 @@ app.get("/comments:id", function(req, res){
   var id = req.params.id.substring(1);
   Comments.find({pieceId: id}, function(err, commentsObj){
     var html = jade.renderFile("views/comments.jade", {
+      "pieceId": id,
       "comments": commentsObj
     });
     res.send(html);  

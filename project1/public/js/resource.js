@@ -1,46 +1,42 @@
-var Resource = (function(url){
-
-	function register(userData){
-		return Q($.ajax({
-			"method": "POST",
-			"url": "/register",
-			"data": userData,
-			"dataType": 'html'
-		}));
+var Resource = function(url){
+	this.getUrl = function(){
+		return url;
 	}
+}
 
-	function login(userData){
-		return Q( $.ajax({
-			"method": "POST",
-			"url": "/login",
-			"data": userData,
-			"dataType": 'html'
-		}));
-	}
+Resource.prototype.register = function(userData){
+	return Q($.ajax({
+		"method": "POST",
+		"url": this.getUrl() + "/register",
+		"data": userData,
+		"dataType": 'html'
+	}));
+}
 
-	function addComment(artPieceId, commentData){
-		console.log("asfafsfda");
-		return Q($.ajax({
-			"method": "POST",
-			"url": "/comment:" + artPieceId,
-			"data": commentData,
-			"dataType": 'html'
-		}));
-	}
+Resource.prototype.login = function(userData){
+	return Q( $.ajax({
+		"method": "POST",
+		"url": this.getUrl() + "/login",
+		"data": userData,
+		"dataType": 'html'
+	}));
+}
 
-	function searchUsers(searchData){
-		return Q($.ajax({
-			"method": "POST",
-			"url": url + "/search",
-			"data": searchData,
-			"dataType": 'html'
-		}));
-	}
+Resource.prototype.addComment = function(artPieceId, commentData){
+	console.log(commentData);
+	return Q($.ajax({
+		"method": "POST",
+		"url": this.getUrl() + "/comment:" + artPieceId,
+		"data": commentData,
+		"dataType": 'html'
+	}));
+}
 
-	return {
-		register: register,
-		login: login,
-		addComment: addComment,
-		searchUsers: searchUsers
-	};
-}());
+Resource.prototype.searchUsers = function(searchData){
+	return Q($.ajax({
+		"method": "POST",
+		"url": this.getUrl() + "/search",
+		"data": searchData,
+		"dataType": 'html'
+	}));
+}
