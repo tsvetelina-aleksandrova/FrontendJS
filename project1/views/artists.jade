@@ -1,0 +1,17 @@
+extends layout
+
+block vars
+    - var user = username
+
+block content
+    .col-md-1
+    .col-md-3
+    for artist in artists
+        .row.thumbnail
+            .col-md-3
+                img.img-thumbnail(src="/img/" + artist.img, alt=artist.username + " profile photo")
+            .col-md-3.capture  
+                h3 #{artist.username}
+                hr
+                h4 Contact:
+                h4 #{artist.email}

@@ -21,5 +21,4 @@ block content
                         a.pull-right.fa.fa-star(href="#")
                 a(href="/art:" + piece._id)
                     img.img-thumbnail.img-responsive.center-block(src="img/" + piece.img, alt=piece.name + "by" + piece.artist)         
-            .row
-                include comment-layout
+            .row.comment-section(name= "" + piece._id)

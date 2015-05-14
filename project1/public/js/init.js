@@ -1,6 +1,7 @@
-$(document).ready(function() {;
+$(document).ready(function() {
 	handleUserSessionEvents();
 	loadAllArt();
+	loadComments();
 
 	$(".fa.fa-star").click(function(event){
 		var _this = $(this);
@@ -18,25 +19,16 @@ $(document).ready(function() {;
 		event.preventDefault();
 	});
 
-	$("#comment-form").submit(function(event){
-		var formData = $( this ).serializeArray();
-		var commentData = {};
-		commentData["commentText"] = formData[0].value;
-		var _this = $(this);
-		console.log(_this.attr("name"));
-		$.ajax({
-			"method": "POST",
-			"url": "/comment:id" + _this.attr("name"),
-			"data": commentData,
-			"dataType": 'html'
-		})
-		  .done(function() {
-		    console.log("Commented");
-		  });
+	$("#form-search").submit(function(event){
+		var formData = $(this).serializeArray();
+		var searchData = {"searchName": formData[0].value};
+		Resource.searchUsers(searchData)
+		.then(function(data){
+		    window.location = "/search";
+		});
+		$(this)[0].reset();
 		event.preventDefault();
 	});
-	// make jade $("#form-search")
-
 
 });
 
@@ -53,28 +45,31 @@ var loadAllArt = function() {
 		});
 	}
 }
-/* 
-$("#thumbnails").on("click",".view", function(){
+
+var loadComments = function(){
+	var $commentSec = $(".comment-section").first();
 	
-})
-*/
+	if($commentSec.length > 0){
+		var pieceId = $commentSec.attr("name");
+		$commentSec.empty();
+		$.get("/comments:" + pieceId, function(htmlResult){
+			$commentSec.html(htmlResult);
+			handleCommentAdd();
+		});
+	}
+}
 var handleUserSessionEvents = function() {
 	$('#sign-in-form').submit(function(event) {
-		var formData = $( this ).serializeArray();
-		var userData = {};
-		userData["username"] = formData[0].value;
-		userData["password"] = formData[1].value;
+		var formData = $(this).serializeArray();
+		var userData = {
+			username: formData[0].value,
+			password: formData[1].value
+		};
 
-	    $.ajax({
-			"method": "POST",
-			"url": "/login",
-			"data": userData,
-			"dataType": 'html'
-		})
-		  .done(function() {
-		    console.log("Signed in!");
-		    window.location = "/home";
-		  });
+	   	Resource.login(userData)
+		.then(function() {
+			window.location = "/home";
+		});
 		event.preventDefault();
 	});
 
@@ -100,16 +95,25 @@ var handleUserSessionEvents = function() {
 			userData[userDataMapNames[i]] = formData[i].value;
 		}
 
-	    $.ajax({
-			"method": "POST",
-			"url": "/register",
-			"data": userData,
-			"dataType": 'html'
-		})
-		  .done(function() {
-		    console.log("Registered!");
-		    window.location = "/";
-		  });
+		Resource.register(userData)
+	  	.then(function(){
+	   		window.location = "/";
+	  	});
+		event.preventDefault();
+	});
+}
+
+var handleCommentAdd = function(){
+	$("#comment-form").submit(function(event){
+		var formData = $(this).serializeArray();
+		var commentData = {commentText: formData[0].value};
+		var artPieceId = $(this).attr("name");
+
+		Resource.addCommend(artPieceId, commentData)
+		.then(function() {
+			loadComments();
+		});
+		$(this)[0].reset();
 		event.preventDefault();
 	});
 }

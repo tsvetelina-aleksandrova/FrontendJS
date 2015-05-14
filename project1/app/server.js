@@ -10,13 +10,18 @@ var ArtPieces = mongoose.model('ArtPieces');
 var Users = mongoose.model('Users');
 var Comments = mongoose.model('Comments');
 
-app.get('/', function(req, res){
+app.all("*", function(req, res, next){
   var username = req.session.username;
-  if(!username){
-	  res.render('index');
+  if((req.url === "/login" && req.method === "POST") ||
+      username){
+    next();
   } else {
+    res.render('index');
+    }
+});
+
+app.get('/', function(req, res){
     res.redirect('/home');
-  }
 });
 
 app.post('/login', passport.authenticate('login'),
@@ -29,11 +34,7 @@ app.post('/login', passport.authenticate('login'),
 
 app.get('/home', function(req, res) {
   var username = req.session.username;
-  if(username){
-    res.render('user-home', {'username': username});
-  } else{
-    res.render('index');
-  }
+  res.render('user-home', {'username': username});
 });
 
 app.post('/register', passport.authenticate('signup'),
@@ -82,13 +83,18 @@ app.get("/thumbnails:username", function(req, res){
   });
 });
 
-app.get("/search:name", function(req, res){
-  var name = req.params.name.substring(1);
+app.post("/search", function(req, res){
+  var name = req.body.searchName;
+  var username = req.session.username;
   Users.find({}, function(err, users){
     var matchingUsers = users.filter(function(user){
       return user.username === name;
     });
-  })
+    res.redirect("/artists", {
+      username: username, 
+      artists: matchingUsers
+    });
+  });
 });
 
 app.get("/art:id", function(req, res){
@@ -96,16 +102,23 @@ app.get("/art:id", function(req, res){
   var username = req.session.username;
   ArtPieces.findOne({ _id : id }, function(err, artObj) {
     Users.findOne({username: artObj.artist}, function(err, userObj){
-      Comments.find({pieceId: id}, function(err, commentsObj){
-        res.render("piece", {
+       res.render("piece", {
           "userObj": userObj, 
-          "piece": artObj, 
-          "comments": commentsObj});  
-      });
+          "piece": artObj
+        });
     });
   });
 });
 
+app.get("/comments:id", function(req, res){
+  var id = req.params.id.substring(1);
+  Comments.find({pieceId: id}, function(err, commentsObj){
+    var html = jade.renderFile("views/comments.jade", {
+      "comments": commentsObj
+    });
+    res.send(html);  
+  });
+});
 
 app.get("/like:id", function(req, res){
   var id = req.params.id.substring(1);

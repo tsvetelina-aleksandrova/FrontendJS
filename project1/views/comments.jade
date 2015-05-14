@@ -1,0 +1,11 @@
+h3 Add comment
+form#comment-form(name= "" + comments[0].pieceId)
+    textarea.form-control(name="commentText")
+    button.btn.btn-default(type="submit") Comment
+h3 Comments
+for c in comments
+    .comment
+        h4 
+            a(href="#") #{c.writer}
+        .text #{c.text}
+
