@@ -1,4 +1,4 @@
-var Users = require('./db/user.js');
+var Users = require('./db/user-model.js');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var encr = require('./encr.js')();
@@ -34,7 +34,6 @@ module.exports = function() {
 };
 
 var loginAction = function(req, username, password, done){ 
-  mongoose.connection.db.collection('user', 
     Users.findOne({ 'username' :  username }, 
       function(err, user) {
         if (err) {
@@ -54,8 +53,7 @@ var loginAction = function(req, username, password, done){
         console.log("User is found!");
         return done(null, user);
       }
-    )
-  );
+    );
 }
 
 var createUser = function(req, username, password, done){

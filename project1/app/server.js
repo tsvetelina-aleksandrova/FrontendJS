@@ -2,9 +2,9 @@ var passport = require('./auth.js')();
 var jade = require("jade");
 var app = require("./express-config.js")();
 var mongoose = require('mongoose');
-var ArtPieces = require('./db/art-piece.js');
-var Users = require('./db/user.js');
-var Comments = require('./db/comment.js');
+var ArtPieces = require('./db/art-piece-model.js');
+var Users = require('./db/user-model.js');
+var Comments = require('./db/comment-model.js');
 
 var ArtPieces = mongoose.model('ArtPieces');
 var Users = mongoose.model('Users');

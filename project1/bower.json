@@ -18,8 +18,6 @@
     "bootstrap": "~3.3.4",
     "fontawesome": "~4.3.0",
     "object-fit": "~0.4.1",
-    "q": "1.x",
-    "jquery.lazyload": "~1.9.5",
-    "waypoints": "~3.1.1"
+    "q": "1.x"
   }
 }
