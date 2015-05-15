@@ -9,6 +9,8 @@ var User = function(){
 	   	new Resource("http://localhost:3000").login(userData)
 		.then(function() {
 			window.location = "/home";
+		}, function(){
+			console.log("unable to login");
 		});
 		event.preventDefault();
 	}
@@ -38,7 +40,9 @@ var User = function(){
 		new Resource("http://localhost:3000").register(userData)
 	  	.then(function(){
 	   		window.location = "/";
-	  	});
+	  	}, function(){
+			console.log("unable to register");
+		});
 		event.preventDefault();
 	}
 
@@ -50,7 +54,9 @@ var User = function(){
 
 		new Resource("http://localhost:3000").addComment(artPieceId, commentData)
 		.then(function() {
-			$(".comment-section").trigger("load");
+			$.each($(".comment-section"), function(index, elem){
+				$(elem).trigger("load");
+			});
 		});
 		$(this)[0].reset();
 		event.preventDefault();

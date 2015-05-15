@@ -147,4 +147,11 @@ a:hover {
 .comment-section h3 {
   text-align: left; }
 
+#see-more-btn {
+  width: 60%;
+  background-color: white;
+  margin-bottom: 20px;
+  bottom: 20px;
+  display: block; }
+
 /*# sourceMappingURL=styles.css.map */

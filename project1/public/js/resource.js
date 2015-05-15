@@ -23,7 +23,6 @@ Resource.prototype.login = function(userData){
 }
 
 Resource.prototype.addComment = function(artPieceId, commentData){
-	console.log(commentData);
 	return Q($.ajax({
 		"method": "POST",
 		"url": this.getUrl() + "/comment:" + artPieceId,

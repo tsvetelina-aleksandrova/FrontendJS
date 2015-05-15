@@ -1,36 +1,62 @@
-var onGalleryLoad = function(event){
-	var $galleryList = $(this);	
-	var username = $galleryList.attr("name");
-	console.log(username);
-	if(username){
-		$.get("/thumbnails:" + username, function(html){
-			$galleryList.html(html);
-		});
-	} else{
-		$.get("/thumbnails", function(html){
-			$galleryList.html(html);
-		});
-	}
-}
 
 var loadGallery = function(){
 	$.each($(".gallery"), function(index, elem){
-		var elemGalleryLoad = onGalleryLoad.bind(elem);
-		$(elem).load(onGalleryLoad);
-		elemGalleryLoad();
+		var $galleryList = $(elem);	
+		var username = $galleryList.attr("name");
+		var currentThumbsNum = $(".gallery .row.thumbnail").length;
+		var newThumbsLimitNum = 4;
+
+		var url = "/thumbnails";
+		if(username){
+			url+= "/" + username;
+		}
+		url = [
+			url, 
+			":", 
+			currentThumbsNum, 
+			":", 
+			newThumbsLimitNum].join("");
+
+		$.get(url, function(result){
+			if(typeof result.end !== 'undefined'){
+				var $noMoreThumbsNote = $("<h3></h3>")
+				$noMoreThumbsNote.html("No more images to display");
+				$galleryList.append($noMoreThumbsNote);
+
+				return;
+			}
+			$galleryList.append(result);
+			$galleryList.show();
+
+			$("#see-more-btn").hover(function(event){
+				console.log("moar");
+			  		$("#see-more-btn").remove();
+			  		loadGallery();
+			});
+			  	
+		});
 	});
+}
+
+var onLoadComments = function(user){
+	var $commentSec = $(this);
+	var pieceId = $commentSec.attr("name");
+	$commentSec.empty();
+
+	$.get("/comments:" + pieceId, function(htmlResult){
+			$commentSec.html(htmlResult);
+			$commentSec.show();
+			$("#comment-form").submit(user.addComment);
+		});
 }
 
 var loadComments = function(user){
 	$.each($(".comment-section"), function(index, elem){
 		var $commentSec = $(elem);
-		var pieceId = $commentSec.attr("name");
-		$commentSec.empty();
-		
-		$.get("/comments:" + pieceId, function(htmlResult){
-			$commentSec.html(htmlResult);
-			$("#comment-form").submit(user.addComment);
-		});
+		var elemCommentsLoad = onLoadComments.bind(elem, user);
+
+		$(elem).load(onLoadComments);
+		elemCommentsLoad();
 	});
 }
 

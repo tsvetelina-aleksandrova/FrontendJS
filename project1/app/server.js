@@ -68,19 +68,36 @@ app.get("/profile", function(req, res){
   }); 
 });
 
-app.get("/thumbnails", function(req, res){
-  ArtPieces.find({}, function(err, pieces) {
+var getThumbnailsData = function(req, res, username){
+    var range = req.params.range.match(/[0-9]/g);
+  var currentNum = parseInt(range[0], 10);
+  var limitNum = parseInt(range[1], 10);
+  var queryParams = {};
+  if(username){
+    queryParams = {artist: username};
+  }
+
+  ArtPieces
+  .find(queryParams)
+  .limit(limitNum)
+  .skip(currentNum)
+  .exec(function(err, pieces) {
+    if(pieces.length === 0){
+      res.send({end: "No more data"});
+      return;
+    }
     var html = jade.renderFile("views/thumbnails.jade", {"galleryData": pieces});
     res.send(html);
   });
+}
+
+app.get("/thumbnails:range", function(req, res){
+  return getThumbnailsData(req, res);
 });
 
-app.get("/thumbnails:username", function(req, res){
-  var username = req.params.username.substring(1);
-  ArtPieces.find({artist: username}, function(err, pieces) {
-    var html = jade.renderFile("views/thumbnails.jade", {"galleryData": pieces});
-    res.send(html);
-  });
+app.get("/thumbnails/:username:range", function(req, res){
+  var username = req.params.username;
+  return getThumbnailsData(req, res, username);
 });
 
 app.post("/search", function(req, res){
@@ -103,8 +120,9 @@ app.get("/art:id", function(req, res){
   ArtPieces.findOne({ _id : id }, function(err, artObj) {
     Users.findOne({username: artObj.artist}, function(err, userObj){
        res.render("piece", {
-          "userObj": userObj, 
-          "piece": artObj
+        "username": username,
+        "userObj": userObj, 
+        "piece": artObj
         });
     });
   });
@@ -131,7 +149,7 @@ app.get("/like:id", function(req, res){
 });
 
 app.post('/comment:id', function(req, res){
-  var id = req.params.id.substring(3);
+  var id = req.params.id.substring(1);
   var username = req.session.username;
   var newComment = new Comments({
     "pieceId": id,
