@@ -1,14 +1,22 @@
-var passport = require('./auth.js')();
 var jade = require("jade");
-var app = require("./express-config.js")();
 var mongoose = require('mongoose');
+var dbConfig = require("./config/db-config.js");
+var passport = require('./config/passport-config.js')();
+var app = require("./config/express-config.js")();
+
 var ArtPieces = require('./db/art-piece-model.js');
 var Users = require('./db/user-model.js');
 var Comments = require('./db/comment-model.js');
 
-var ArtPieces = mongoose.model('ArtPieces');
-var Users = mongoose.model('Users');
-var Comments = mongoose.model('Comments');
+var ArtPieces = mongoose.model("ArtPieces");
+var Users = mongoose.model("Users");
+var Comments = mongoose.model("Comments");
+
+mongoose.connection.on("open", function(){
+  console.log("connected to mongodb");
+});
+
+mongoose.connect(dbConfig.url);
 
 app.all("*", function(req, res, next){
   var username = req.session.username;
@@ -25,7 +33,7 @@ app.get('/', function(req, res){
 });
 
 app.post('/login', passport.authenticate('login'),
-	function(req, res){
+  function(req, res){
     var username = req.body.username;
     req.session.username = username;
     req.session.loggedIn = true;
