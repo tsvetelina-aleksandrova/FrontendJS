@@ -1,55 +1,25 @@
+@import 'header';
+@import 'index';
 
 body{
 	font-family: 'Josefin Sans', sans-serif;
 }
 
 body, .navbar, header, .navbar-collapse, .thumbnail, .user-profile-side{
-	background-image: url("../img/lightpaperfibers.png");
+	background-image: url('../img/lightpaperfibers.png');
 	border-color: #d6ded4;
 }
 
 a {
 	color: black;
-}
-
-a:link, a:visited, a:hover, a:active{
-	text-decoration: none;
-}
-
-a:hover{
-	color: #2F4F4F;
-}
-
-@media (min-width: 768px){
-	header.navbar {
-		position: fixed;
-	  top: 0;
-	  left: 0;
-	  z-index: 9999;
-	  width: 100%;
-	  height: 55px;
-	  .btn {
-			height: 34px;
-			margin: 0px 5px;
-			vertical-align: middle;
-		}
-		form.navbar-form, .navbar-nav.navbar-right{
-			margin: 0px;
-			height: 50px;
-			line-height: 50px;
-			padding: 10px 0px;
-			display: inline-block;
-			vertical-align: middle;
-		}
-		.navbar-nav.navbar-right {
-			padding: 0px 0px;
-		}
-		.navbar-nav.navbar-right .btn{
-			margin: 10px 0px;
-		}
+	&:hover{
+		color: #2F4F4F;
+	}
+	&:link, &:visited, &:hover, &:active{
+		text-decoration: none;
 	}
 }
- 
+
 @media (max-width: 768px){
 	#form-search .btn {
 		display: block;
@@ -64,66 +34,9 @@ a:hover{
 	line-height: 50px;
 }
 
-#register-form, #sign-in-form {
-	.btn, input {
-		display: block;
-		width: 100%;
-	}
-	margin-bottom: 20%;
-}
-
 .form-control:focus {
     border-color: #2F4F4F;
     box-shadow: 0 0 5px #2F4F4F;
-}
-
-#intro-div{
-	display: inline-block;
- 	width: 1500px;
-  margin-left: auto;
-  margin-right: auto;
-	width: 100%;
-	height: 90%;
-	background-image: url("../img/maxresdefault.jpg");
-	background-repeat: no-repeat;
-	background-size: 1500px;
-	background-position: center;
-	margin-top: 0px;
-	margin-bottom: 5%;
-	font-family: 'Cinzel', serif;
-	text-align: center;
-	padding-top: 10%;
-	color: white;
-	text-shadow: 0 0 7px #2F4F4F;
-	a {
-		color: white;
-	}
-	a:hover{
-		color: #d6ded4;
-	}
-	font-size: 20;
-	h1 {
-		font-size: 50;
-		font-family: 'Cinzel Decorative', cursive;
-	}
-	h3{
-		font-family: 'Cinzel', cursive;
-	}
-}
-
-@media (max-width: 1500px){
-	#intro-div{
-		background-size: fit;
-		margin-left:0;
-	}
-}
-
-#intro-div hr{
-	width: 45%;
-}
-
-.navbar-brand, .caption h2{
-	font-family: 'Cinzel Decorative', cursive;
 }
 
 .caption h4, .comment-section h3, h2{
@@ -168,7 +81,7 @@ a:hover{
 }
 
 .gallery{
-	margin: 2% 0% 2% 0%; 
+	margin: 2% 0 2% 0; 
 }
 
 .nav-tabs a:hover{
@@ -185,7 +98,7 @@ a:hover{
 }
 
 #comment-form .btn{
-	margin: 8px 0px 8px 0px;
+	margin: 8px 0 8px 0;
 }
 .comment-section h3{
 	text-align: left;

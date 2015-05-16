@@ -1,0 +1,50 @@
+#register-form, #sign-in-form {
+	margin-bottom: 20%;
+	.btn, input {
+		display: block;
+		width: 100%;
+	}
+}
+
+#intro-div{
+	display: inline-block;
+ 	width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+	width: 100%;
+	height: 90%;
+	background-image: url('../img/maxresdefault.jpg');
+	background-repeat: no-repeat;
+	background-size: 1500px;
+	background-position: center;
+	margin-top: 0px;
+	margin-bottom: 5%;
+	font-family: 'Cinzel', serif;
+	text-align: center;
+	padding-top: 10%;
+	color: white;
+	text-shadow: 0 0 7px #2F4F4F;
+	a {
+		color: white;
+		&:hover{
+			color: #d6ded4;
+		}
+	}
+	h1 {
+		font-size: 50;
+		font-family: 'Cinzel Decorative', cursive;
+	}
+	h3{
+		font-family: 'Cinzel', cursive;
+	}
+	hr{
+		width: 45%;
+	}
+}
+
+@media (max-width: 1500px){
+	#intro-div{
+		background-size: fit;
+		margin-left:0;
+	}
+}

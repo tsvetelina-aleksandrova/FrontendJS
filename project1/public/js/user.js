@@ -7,10 +7,18 @@ var User = function(){
 		};
 
 	   	new Resource("http://localhost:3000").login(userData)
-		.then(function() {
+		.then(function(data) {
 			window.location = "/home";
-		}, function(){
-			console.log("unable to login");
+		}, function(err){
+			var errorMsg = "Incorrect user name/password";
+			var $form = $("#sign-in-form");
+			var $loginErrorNote = $form.find(".error");
+			
+			if($loginErrorNote.length === 0){
+				$loginErrorNote = $("<h4 class =\"error\"></h4>");
+				$loginErrorNote.html(errorMsg);
+				$form.append($loginErrorNote);
+			}
 		});
 		event.preventDefault();
 	}
