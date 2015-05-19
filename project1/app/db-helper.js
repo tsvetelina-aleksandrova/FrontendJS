@@ -17,7 +17,7 @@ mongoose.connection.on("open", function(){
 mongoose.connect(dbConfig.url);
 
 module.exports = function(){
-	var mongoAfterSaveAction = function(e){
+	var logMongoSave = function(e){
 	  if(e){
 	    console.log('Error while saving mongo document.')
 	  } else{
@@ -66,14 +66,14 @@ module.exports = function(){
 		    "writer": username,
 		    "text": commentText
 		  });
-		newComment.save(mongoAfterSaveAction);
+		newComment.save(logMongoSave);
 		res.send("Commented");
 	}
 
 	var likeArtPiece = function(id, res){
 		ArtPieces.findOne({ _id : id }, function(err, artObj) {
       artObj.likes.$inc();
-      artObj.save(mongoAfterSaveAction);
+      artObj.save(logMongoSave);
       res.send("Liked");
     });
 	}
@@ -100,12 +100,20 @@ module.exports = function(){
 	  });
 	}
 
+	var addArt = function(artData, res){
+		artData.likes = 0;
+		var newArtPiece = new ArtPieces(artData);
+		newArtPiece.save(logMongoSave);
+		console.log("Added");
+	}
+
 	return {
 		getArtOfUser: getArtOfUser,
 		getGalleryData: getGalleryData,
 		createComment: createComment,
 		likeArtPiece: likeArtPiece,
 		getCommentsForArtPiece: getCommentsForArtPiece,
-		getArtPieceData: getArtPieceData
+		getArtPieceData: getArtPieceData,
+		addArt: addArt
 	};
 }

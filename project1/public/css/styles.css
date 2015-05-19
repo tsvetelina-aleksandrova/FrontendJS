@@ -24,9 +24,9 @@
 .navbar-brand, .caption h2 {
   font-family: 'Cinzel Decorative', cursive; }
 
-#register-form, #sign-in-form {
+#register-form, #sign-in-form, #add-art-form {
   margin-bottom: 20%; }
-  #register-form .btn, #register-form input, #sign-in-form .btn, #sign-in-form input {
+  #register-form .btn, #register-form input, #sign-in-form .btn, #sign-in-form input, #add-art-form .btn, #add-art-form input {
     display: block;
     width: 100%; }
 
@@ -103,6 +103,9 @@ a {
 .caption {
   border-radius: 8px;
   width: 60%; }
+
+.descr {
+  padding: 10px; }
 
 .comment, .comment > .text {
   border-style: solid;

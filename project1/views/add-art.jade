@@ -1,0 +1,22 @@
+.col-md-1
+.content-fluid.col-md-7
+	h5.art-added
+	h4 Add new art piece
+	form#add-art-form(role="form", method="post", action="/add-art", enctype="multipart/form-data")
+		.form-group
+			label Name
+			input.form-control(type="text", name="name")
+		.form-group
+			label Select image
+			input.form-control(type="file", name="image", accept="image/*")
+		.form-group
+			label Description
+			textarea.form-control(name="descr")
+		.radio
+			label.control-label Print
+			label.radio-inline 
+				input(type="radio", name="isReal", value="false", checked="true")
+			label.control-label Real
+			label.radio-inline 
+				input(type="radio", name="isReal", value="true")
+		button.btn.btn-default(type="submit") Add

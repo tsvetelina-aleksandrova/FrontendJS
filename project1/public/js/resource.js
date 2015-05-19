@@ -39,3 +39,12 @@ Resource.prototype.searchUsers = function(searchData){
 		"dataType": 'html'
 	}));
 }
+
+Resource.prototype.addArt = function(artData){
+	return Q($.ajax({
+			"method": "POST",
+			"url": this.getUrl() + "/add-art",
+			"data": artData,
+			"processData": false
+	}));
+}

@@ -1,6 +1,9 @@
 var passport = require('./config/passport-config.js')();
 var app = require("./config/express-config.js")();
 var dbHelper = require("./db-helper.js")();
+var fsHelper = require("./fs-helper.js")();
+var jade = require("jade");
+var multer = require('multer');
 
 app.all("*", function(req, res, next){
   var username = req.session.username;
@@ -76,12 +79,34 @@ app.get("/like:id", function(req, res){
   dbHelper.likeArtPiece(id, res);
 });
 
-app.post('/comment:id', function(req, res){
+//collection/doc/subcollection:doc
+app.post('/arts/:artId/comments/', function(req, res){
   var id = req.params.id.substring(1);
   var username = req.session.username;
   var comment = req.body.commentText;
   dbHelper.createComment(id, username, comment, res);  
 });
+
+app.get("/add-art", function(req, res){
+  var html = jade.renderFile("views/add-art.jade");
+  res.send(html);
+});
+
+app.post("/add-art", function(req, res){
+  var imgName = req.files.image.originalname;
+  var imgPath = req.files.image.path;
+  var artData = {
+    name: req.body.name,
+    artist: req.session.username,
+    img: imgName,
+    isReal: req.body.isReal,
+    descr: req.body.descr
+  };
+
+  fsHelper.saveImage(imgName, imgPath, res);
+  dbHelper.addArt(artData, res);
+});
+
 
 var server = app.listen(3000, function() {
   console.log('Listening on port %d', server.address().port);

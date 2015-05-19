@@ -26,8 +26,8 @@ db.pieces.insert({
 "artist": "a",
 "img": "f1.jpg",
 "likes": 1,
-"orders": 0,
-"isReal": true
+"isReal": true,
+"descr": "white dude"
 })
 
 db.pieces.insert({
@@ -35,8 +35,8 @@ db.pieces.insert({
 "artist": "b",
 "img": "f2.jpg",
 "likes": 0,
-"orders": 0,
-"isReal": false
+"isReal": false,
+"descr": "dudes who haven't had their morning coffee yet"
 })
 
 db.pieces.insert({
@@ -44,8 +44,8 @@ db.pieces.insert({
 "artist": "a",
 "img": "f3.jpg",
 "likes": 0,
-"orders": 0,
-"isReal": false
+"isReal": false,
+"descr": "green scaly dude"
 })
 
 db.pieces.insert({
@@ -53,17 +53,17 @@ db.pieces.insert({
 "artist": "b",
 "img": "f4.png",
 "likes": 6,
-"orders": 1,
-"isReal": false
+"isReal": false,
+"descr": "having a chill nap"
 })
 
 db.pieces.insert({
-"name": "Power", 
+"name": "Fetch", 
 "artist": "a",
 "img": "f5.jpg",
 "likes": 0,
-"orders": 0,
-"isReal": true
+"isReal": true,
+"descr": "hungry dude and his mommy"
 })
 
 

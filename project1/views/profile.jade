@@ -24,6 +24,9 @@ block content
                     li
                         a(href="#") Friends
                     li
-                        a.fa.fa-plus(href="#") &nbsp Befriend
-            .content-fluid
+                        if user == user
+                            a.fa.fa-plus.add-art-btn(href="#") &nbsp Add art
+                        else
+                            a.fa.fa-plus(href="#") &nbsp Befriend
+            .content-fluid.profile-content
                 ul.thumbnails.gallery(name=user)

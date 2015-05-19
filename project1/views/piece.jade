@@ -20,5 +20,6 @@ block content
                         a.pull-right.fa.fa-shopping-cart(href="#")
                         a.pull-right.fa.fa-star(href="#")
                 a(href="/art:" + piece._id)
-                    img.img-thumbnail.img-responsive.center-block(src="img/" + piece.img, alt=piece.name + "by" + piece.artist)         
+                    img.img-thumbnail.img-responsive.center-block(src="img/" + piece.img, alt=piece.name + "by" + piece.artist)
+                p.descr #{piece.descr}     
             .row.comment-section(name= "" + piece._id)

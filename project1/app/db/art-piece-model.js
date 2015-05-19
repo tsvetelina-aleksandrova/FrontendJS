@@ -5,6 +5,6 @@ module.exports = mongoose.model("ArtPieces", {
     artist: String,
     img: String,
     likes: Number,
-    orders: Number,
-    isReal: Boolean
+    isReal: Boolean,
+    descr: String
 }, "pieces");

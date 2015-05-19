@@ -11,7 +11,7 @@ var CommentSection = function(){
 			});
 	}
 
-	this.loadWithCommenter = function(user){
+	this.init = function(user){
 		$.each($(".comment-section"), function(index, elem){
 			var $commentSec = $(elem);
 			var elemCommentsLoad = onLoadComments.bind(elem, user);
