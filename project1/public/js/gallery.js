@@ -3,9 +3,9 @@ var Gallery = function(){
 		var currentThumbsNum = $(".gallery .row.thumbnail").length;
 		var newThumbsLimitNum = 3;
 
-		var url = "/thumbnails";
+		var url = "/gallery";
 		if(username){
-			url+= "/" + username;
+			url = "/users/" + username + url;
 		}
 		url = [
 			url, 

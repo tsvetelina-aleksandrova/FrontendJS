@@ -16,8 +16,13 @@ app.all("*", function(req, res, next){
 });
 
 app.get('/', function(req, res){
-    res.redirect('/home');
+  res.redirect('/home');
 });
+
+app.get("/home", function(req, res){
+  var username = req.session.username;
+  res.render('user-home', {'username': username});
+})
 
 app.post('/login', passport.authenticate('login'),
   function(req, res){
@@ -27,18 +32,9 @@ app.post('/login', passport.authenticate('login'),
     res.redirect('/home');
 });
 
-app.get('/home', function(req, res) {
-  var username = req.session.username;
-  res.render('user-home', {'username': username});
-});
-
-app.post('/register', passport.authenticate('signup'),
+app.post('/users', passport.authenticate('signup'),
   function(req, res){
     res.redirect('/');
-});
-
-app.get('/register', function(req, res){
-  res.render('register');
 });
 
 app.get('/logout', function(req, res) {
@@ -52,12 +48,12 @@ app.get("/profile", function(req, res){
   dbHelper.getArtOfUser(username, res);
 });
 
-app.get("/thumbnails:range", function(req, res){
+app.get("/gallery:range", function(req, res){
   var range = req.params.range.match(/[0-9]/g);
   dbHelper.getGalleryData(range, res);
 });
 
-app.get("/thumbnails/:username:range", function(req, res){
+app.get("/users/:username/gallery:range", function(req, res){
   var range = req.params.range.match(/[0-9]/g);
   var username = req.params.username;
   dbHelper.getGalleryData(range, res, username);
@@ -69,8 +65,8 @@ app.get("/art:id", function(req, res){
   dbHelper.getArtPieceData(id, username, res);
 });
 
-app.get("/comments:id", function(req, res){
-  var id = req.params.id.substring(1);
+app.get("/art/:artId/comments", function(req, res){
+  var id = req.params.artId.substring(1);
   dbHelper.getCommentsForArtPiece(id, res);  
 });
 
@@ -80,19 +76,19 @@ app.get("/like:id", function(req, res){
 });
 
 //collection/doc/subcollection:doc
-app.post('/arts/:artId/comments/', function(req, res){
-  var id = req.params.id.substring(1);
+app.post('/art/:artId/comments/', function(req, res){
+  var id = req.params.artId.substring(1);
   var username = req.session.username;
   var comment = req.body.commentText;
   dbHelper.createComment(id, username, comment, res);  
 });
 
-app.get("/add-art", function(req, res){
+app.get("/art", function(req, res){
   var html = jade.renderFile("views/add-art.jade");
   res.send(html);
 });
 
-app.post("/add-art", function(req, res){
+app.post("/art", function(req, res){
   var imgName = req.files.image.originalname;
   var imgPath = req.files.image.path;
   var artData = {

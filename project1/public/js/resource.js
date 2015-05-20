@@ -1,50 +1,43 @@
 var Resource = function(url){
-	this.getUrl = function(){
-		return url;
+	this.query = function(queryParams) {
+		console.log(url);
+		console.log(queryParams);
+		return Q($.ajax({
+		    url: url,
+		    method: "get",
+		    data: queryParams,
+		    dataType: "json"
+		}));
 	}
-}
 
-Resource.prototype.register = function(userData){
-	return Q($.ajax({
-		"method": "POST",
-		"url": this.getUrl() + "/register",
-		"data": userData,
-		"dataType": 'html'
-	}));
-}
+	this.create = function(data) {
+		return Q($.ajax({
+		    url: url, 
+		    method: "post",
+		    data: data,
+		    dataType: "json"
+		}));
+	}
 
-Resource.prototype.login = function(userData){
-	return Q( $.ajax({
-		"method": "POST",
-		"url": this.getUrl() + "/login",
-		"data": userData,
-		"dataType": 'html'
-	}));
-}
 
-Resource.prototype.addComment = function(artPieceId, commentData){
-	return Q($.ajax({
-		"method": "POST",
-		"url": this.getUrl() + "/comment:" + artPieceId,
-		"data": commentData,
-		"dataType": 'html'
-	}));
-}
+	this.view = function(id) {
+		return Q($.get(url + "/" + id));
+	}
 
-Resource.prototype.searchUsers = function(searchData){
-	return Q($.ajax({
-		"method": "POST",
-		"url": this.getUrl() + "/search",
-		"data": searchData,
-		"dataType": 'html'
-	}));
-}
+	this.update = function(id, data) {
+		return Q($.ajax({
+		    url: url + "/" + id,
+		    method: "put",
+		    data: data,
+		    dataType: "json"
+		}));
+	}
 
-Resource.prototype.addArt = function(artData){
-	return Q($.ajax({
-			"method": "POST",
-			"url": this.getUrl() + "/add-art",
-			"data": artData,
-			"processData": false
-	}));
+	this.delete = function(id) {
+		return Q($.ajax({
+		    url: url + "/" + id,
+		    method: "delete",
+		    dataType: "json"
+		}));
+	}
 }

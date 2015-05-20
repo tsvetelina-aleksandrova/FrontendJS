@@ -13,7 +13,7 @@ block content
     .col-md-2
     a(name="login-register")
     .col-md-3
-        form#sign-in-form
+        form#login-form
             h4 
                 i.fa.fa-sign-in 
                 | &nbsp Login
@@ -24,6 +24,7 @@ block content
                 label Password
                 input.form-control(type="password", name="password")
             button.btn.btn-default(type="submit") Login
+            h4.error
     .col-md-1
     .col-md-3 
         form#register-form
@@ -41,4 +42,5 @@ block content
                 input.form-control(type="password",  name="password")
             label &nbsp I have read all the terms
             button.btn.btn-default Register
+        h4.error
 
