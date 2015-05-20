@@ -1,7 +1,5 @@
 var Resource = function(url){
 	this.query = function(queryParams) {
-		console.log(url);
-		console.log(queryParams);
 		return Q($.ajax({
 		    url: url,
 		    method: "get",

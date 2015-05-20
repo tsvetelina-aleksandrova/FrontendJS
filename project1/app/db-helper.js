@@ -40,16 +40,14 @@ module.exports = function(){
 	}
 
 	var getGalleryData = function(thumbnailNumRange, res, username){
-	  var skipNum = parseInt(thumbnailNumRange[0], 10);
-	  var limitNum = parseInt(thumbnailNumRange[1], 10);
 	  var queryParams = {};
 	  if(username){
 	    queryParams = {artist: username};
 	  }
 	  ArtPieces
 	  .find(queryParams)
-	  .limit(limitNum)
-	  .skip(skipNum)
+	  .limit(thumbnailNumRange.limitNum)
+	  .skip(thumbnailNumRange.skipNum)
 	  .exec(function(err, pieces) {
 	    if(pieces.length === 0){
 	      res.send({end: "No more data"});

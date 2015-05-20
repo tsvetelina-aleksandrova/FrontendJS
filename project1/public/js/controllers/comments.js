@@ -3,15 +3,18 @@ var Comments = function(){
 
 	var onLoadComments = function(comments){
 		var $commentSec = $(this);
+		console.log("c" + $commentSec);
 		var artId = $commentSec.attr("name");
 		
 		$commentSec.empty();
 
-		resourceUrl = ["/art/", artId, "/comments"].join("");
+		resourceUrl = ["/art:", artId, "/comments"].join("");
 
 		new Resource(resourceUrl).query()
-		.then(function(htmlResult){
-				$commentSec.html(htmlResult);
+		.then(function(err){
+			console.log("Oops");
+		}, function(htmlResult){
+				$commentSec.html(htmlResult.responseText);
 				$commentSec.show();
 				$("#comment-form").submit(comments.addComment);
 		});
@@ -21,10 +24,12 @@ var Comments = function(){
 		var commentData = getDataFromForm($(this));
 		var artId = $(this).attr("name");
 		
-		resourceUrl = ["/art/", artId, "/comments"].join("");
+		resourceUrl = ["/art:", artId, "/comments"].join("");
 		
 		new Resource(resourceUrl).create(commentData)
-		.then(function() {
+		.then(function(err){
+			console.log("Oops");
+		}, function() {
 			$.each($(".comment-section"), function(index, elem){
 				$(elem).trigger("load");
 			});
@@ -36,7 +41,6 @@ var Comments = function(){
 	this.init = function(){
 		var _this = this;
 		$.each($(".comment-section"), function(index, elem){
-			var $commentSec = $(elem);
 			var elemCommentsLoad = onLoadComments.bind(elem, _this);
 
 			$(elem).load(onLoadComments);

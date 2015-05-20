@@ -6,11 +6,11 @@ var User = function(){
 		var userData = getDataFromForm($form);
 
 	   	new Resource("/login").create(userData)
-		.then(function(data) {
-			window.location = "/";
-		}, function(err){
+		.then(function(err){
 			var $loginErrorNote = $form.find(".error");
 			$loginErrorNote.html("Incorrect user name/password");
+		}, function(data) {
+			window.location = "/";
 		});
 		event.preventDefault();
 	}

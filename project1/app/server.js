@@ -48,13 +48,13 @@ app.get("/profile", function(req, res){
   dbHelper.getArtOfUser(username, res);
 });
 
-app.get("/gallery:range", function(req, res){
-  var range = req.params.range.match(/[0-9]/g);
+app.get("/art", function(req, res){
+  var range = req.query.range;
   dbHelper.getGalleryData(range, res);
 });
 
-app.get("/users/:username/gallery:range", function(req, res){
-  var range = req.params.range.match(/[0-9]/g);
+app.get("/art/users/:username", function(req, res){
+  var range = req.query.range;
   var username = req.params.username;
   dbHelper.getGalleryData(range, res, username);
 });
@@ -65,7 +65,7 @@ app.get("/art:id", function(req, res){
   dbHelper.getArtPieceData(id, username, res);
 });
 
-app.get("/art/:artId/comments", function(req, res){
+app.get("/art:artId/comments", function(req, res){
   var id = req.params.artId.substring(1);
   dbHelper.getCommentsForArtPiece(id, res);  
 });
@@ -75,17 +75,11 @@ app.get("/like:id", function(req, res){
   dbHelper.likeArtPiece(id, res);
 });
 
-//collection/doc/subcollection:doc
-app.post('/art/:artId/comments/', function(req, res){
+app.post('/art:artId/comments/', function(req, res){
   var id = req.params.artId.substring(1);
   var username = req.session.username;
   var comment = req.body.commentText;
   dbHelper.createComment(id, username, comment, res);  
-});
-
-app.get("/art", function(req, res){
-  var html = jade.renderFile("views/add-art.jade");
-  res.send(html);
 });
 
 app.post("/art", function(req, res){
