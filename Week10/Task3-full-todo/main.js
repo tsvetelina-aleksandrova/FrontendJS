@@ -16,6 +16,10 @@ function MainCtrl($scope){
 		$scope.task = "";
 	};
 
+	$scope.resetTask = function(task){
+		task = "";
+	};
+
 	$scope.removeTask = function(index){
 		$scope.tasks.splice(index, 1);
 	};
