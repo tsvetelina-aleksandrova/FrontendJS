@@ -3,7 +3,6 @@ var Comments = function(){
 
 	var onLoadComments = function(comments){
 		var $commentSec = $(this);
-		console.log("c" + $commentSec);
 		var artId = $commentSec.attr("name");
 		
 		$commentSec.empty();
@@ -11,10 +10,8 @@ var Comments = function(){
 		resourceUrl = ["/art:", artId, "/comments"].join("");
 
 		new Resource(resourceUrl).query()
-		.then(function(err){
-			console.log("Oops");
-		}, function(data){
-			displayWithJade($commentSec, "/views/comments.jade", data);
+		.then(function(data){
+			displayWithJade($commentSec, "/views/comments.jade", data).done();
 			$("#comment-form").submit(comments.addComment);
 		});
 	}

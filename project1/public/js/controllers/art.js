@@ -3,20 +3,24 @@ var Art = function(){
 	var sortOpts = ["show-latest", "show-popular"];
 	var currentSort = sortOpts[0];
 
-	this.likeArtPiece = function(event){
-		var _this = $(this);
-		var artId = _this.attr("name");
-		var res = new Resource("/art:" + artId + "/likes");
+	this.handleArtLikes = function(event){
+		$.each($(".fa.fa-star"), function(index, elem){
+			$(elem).click(function(event){
+				var _this = $(this);
+				var artId = _this.attr("name");
+				var res = new Resource("/art:" + artId + "/likes");
 
-		res.create()
-		.then(function(err){
-			console.log("Oops");
-		}, function(data){
-			_this.toggleClass("fa-star");
-			_this.text("Liked");
-			_this.removeAttr('href');
+				res.create()
+				.then(function(err){
+					console.log("Oops");
+				}, function(data){
+					_this.toggleClass("fa-star");
+					_this.text("Liked");
+					_this.removeAttr('href');
+				});
+				event.preventDefault();
+			});
 		});
-		event.preventDefault();
 	}
 
 	this.viewAddArtForm = function(){
@@ -72,9 +76,21 @@ var Art = function(){
 		});
 	}
 
+	this.viewArt = function(id){
+		var _this = this;
+		new Resource("/art").view(id)
+		.then(function(data){
+			displayWithJade($(".content"), "/views/art.jade", data)
+			.then(function(res){
+				var comments = new Comments();
+				comments.init();
+				_this.handleArtLikes();
+			});
+		});
+	}
+
 	this.loadGallery = function(){
 		var gallery = this;
-		console.log("sdfa");
 		$.each($(".gallery"), function(index, elem){
 			var $galleryList = $(elem);	
 			var username = $galleryList.attr("name");
@@ -85,27 +101,31 @@ var Art = function(){
 
 			resource.query(queryData)
 			.then(function(data){
-				var html = getJadeAsHtml("views/thumbnails.jade", data);
-				$galleryList.append(html);
-				$.each($(".view-art"), function(index, elem){
-					$(elem).click(function(event){
-						new Resource("/art").view($(elem).attr("name"))
-						.then(function(data){
-							displayWithJade($(".content"), "/views/art.jade", data);
-						})
+				if(data.end){
+					var $noMoreThumbsNote = $("<h3></h3>");
+					$noMoreThumbsNote.html("No more images to display");
+					$galleryList.append($noMoreThumbsNote);
+					return;
+				}
+				getJadeAsHtml("views/thumbnails.jade", data)
+				.then(function(html){
+					$galleryList.append(html);
+
+					$.each($(".view-art"), function(index, elem){
+						$(elem).click(function(event){
+							gallery.viewArt($(this).attr("name"));
+						});
+					});
+					var user = new User();
+					user.handleProfileViews();
+					gallery.handleArtLikes();
+
+					$("#see-more-btn").hover(function(event){
+				  		$("#see-more-btn").remove();
+				  		gallery.loadGallery();
 					});
 				});
-				$galleryList.show();
 
-				$("#see-more-btn").hover(function(event){
-			  		$("#see-more-btn").remove();
-			  		gallery.loadGallery();
-				});
-			}, function(err){
-				var $noMoreThumbsNote = $("<h3></h3>");
-				$noMoreThumbsNote.html("No more images to display");
-				$galleryList.append($noMoreThumbsNote);
-				return;
 			});
 		});
 	}
@@ -122,5 +142,6 @@ var Art = function(){
 		clearAndLoadGallery.bind(_this)();
 
 		this.viewAddArtForm();
+		this.handleArtLikes();
 	}
 }
