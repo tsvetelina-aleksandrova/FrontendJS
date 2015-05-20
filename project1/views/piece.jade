@@ -18,7 +18,7 @@ block content
                     h2 
                         a(href="#") #{piece.name}
                         a.pull-right.fa.fa-shopping-cart(href="#")
-                        a.pull-right.fa.fa-star(href="#")
+                        a.pull-right.fa.fa-star(name=piece._id)
                 a(href="/art:" + piece._id)
                     img.img-thumbnail.img-responsive.center-block(src="img/" + piece.img, alt=piece.name + "by" + piece.artist)
                 p.descr #{piece.descr}     

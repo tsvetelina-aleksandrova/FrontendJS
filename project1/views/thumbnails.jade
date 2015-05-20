@@ -9,7 +9,7 @@ for art in galleryData
                     h2 
                         a(href="#") #{art.name}
                         a.pull-right.fa.fa-shopping-cart(href="#")
-                        a.pull-right.fa.fa-star(href="/like:" + art._id)
+                        a.pull-right.fa.fa-star(name=art._id)
                     h4 by &nbsp
                         a(href="#") #{art.artist}
 .col-md-1

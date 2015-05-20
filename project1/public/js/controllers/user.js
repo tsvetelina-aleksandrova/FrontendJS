@@ -47,6 +47,10 @@ var User = function(){
 		event.preventDefault();
 	}
 
+	this.edit = function(event){
+		
+	}
+
 	this.init = function(){
 		$('#login-form').submit(this.login);
 		$("#logout-elem").click(this.logout);

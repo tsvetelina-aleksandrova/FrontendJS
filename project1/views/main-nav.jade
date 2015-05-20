@@ -16,9 +16,10 @@ header.navbar.navbar-default
                 ul.nav.navbar-nav.navbar-right
                     li
                         a.fa.fa-home.fa-2x(href="/")
+                    //li
+                    //    a.fa.fa-users.fa-lg(href="#")
                     li
-                        a.fa.fa-users.fa-lg(href="#")
-                    
+                        a.fa.fa-plus.add-art-btn(href="#")
                     li.dropdown
                         a.dropdown-toggle(href="#", data-toggle="dropdown", 
                             role="button", aria-expanded="false") #{user}
@@ -26,6 +27,8 @@ header.navbar.navbar-default
                         ul.dropdown-menu(role="menu")
                             li
                                 a#view-profile(href="/profile") View profile
+                            li
+                                a#view-profile(href="/profile") Edit profile
                             li.divider
                             li
                                 a#logout-elem(href="#") Logout

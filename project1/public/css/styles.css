@@ -123,13 +123,15 @@ a {
 
 .content {
   margin-top: 5%; }
-  .content h3 {
+  .content h3, .content h4 {
     font-family: 'Cinzel', cursive;
     text-align: center; }
 
 .gallery {
   margin: 2% 0 2% 0; }
 
+.nav-tabs li.active > a {
+  background-image: url("../img/lightpaperfibers.png"); }
 .nav-tabs a:hover {
   background-color: #d6ded4; }
 

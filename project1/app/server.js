@@ -49,14 +49,12 @@ app.get("/profile", function(req, res){
 });
 
 app.get("/art", function(req, res){
-  var range = req.query.range;
-  dbHelper.getGalleryData(range, res);
+  dbHelper.getGalleryData(req.query, res);
 });
 
 app.get("/art/users/:username", function(req, res){
-  var range = req.query.range;
   var username = req.params.username;
-  dbHelper.getGalleryData(range, res, username);
+  dbHelper.getGalleryData(req.query, res, username);
 });
 
 app.get("/art:id", function(req, res){
@@ -70,8 +68,8 @@ app.get("/art:artId/comments", function(req, res){
   dbHelper.getCommentsForArtPiece(id, res);  
 });
 
-app.get("/like:id", function(req, res){
-  var id = req.params.id.substring(1);
+app.post("/art:artId/likes", function(req, res){
+  var id = req.params.artId.substring(1);
   dbHelper.likeArtPiece(id, res);
 });
 

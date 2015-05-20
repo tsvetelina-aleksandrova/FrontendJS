@@ -39,15 +39,21 @@ module.exports = function(){
 		});
 	}
 
-	var getGalleryData = function(thumbnailNumRange, res, username){
-	  var queryParams = {};
-	  if(username){
-	    queryParams = {artist: username};
+	var getGalleryData = function(params, res, username){
+	  var findParams = {};
+	  var sortParams = [['_id', -1]];
+	  if(typeof params.popular !== 'undefined'){
+	  	sortParams = [['likes', -1]];
 	  }
+	  if(username){
+	    findParams = {artist: username};
+	  }
+
 	  ArtPieces
-	  .find(queryParams)
-	  .limit(thumbnailNumRange.limitNum)
-	  .skip(thumbnailNumRange.skipNum)
+	  .find(findParams)
+	  .sort(sortParams)
+	  .limit(params.range.limitNum)
+	  .skip(params.range.skipNum)
 	  .exec(function(err, pieces) {
 	    if(pieces.length === 0){
 	      res.send({end: "No more data"});
@@ -70,7 +76,7 @@ module.exports = function(){
 
 	var likeArtPiece = function(id, res){
 		ArtPieces.findOne({ _id : id }, function(err, artObj) {
-      artObj.likes.$inc();
+      artObj.likes += 1;
       artObj.save(logMongoSave);
       res.send("Liked");
     });

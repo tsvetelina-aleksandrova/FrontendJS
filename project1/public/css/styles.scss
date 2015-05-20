@@ -78,7 +78,7 @@ a {
 
 .content{
 	margin-top: 5%;
-	h3{
+	h3, h4{
 	  font-family: 'Cinzel', cursive;
 	  text-align: center;
   }
@@ -88,8 +88,13 @@ a {
 	margin: 2% 0 2% 0; 
 }
 
-.nav-tabs a:hover{
-	background-color: #d6ded4;
+.nav-tabs {
+	li.active > a{
+		background-image: url('../img/lightpaperfibers.png');
+	}
+	a:hover{
+		background-color: #d6ded4;
+	}
 }
 
 .user-profile-side img{

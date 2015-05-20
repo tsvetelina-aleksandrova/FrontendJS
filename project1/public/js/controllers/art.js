@@ -1,15 +1,17 @@
 var Art = function(){
 	var resource = new Resource("/art");
+	var sortOpts = ["show-latest", "show-popular"];
+	var currentSort = sortOpts[0];
 
 	this.likeArtPiece = function(event){
 		var _this = $(this);
-		var hrefValue = _this.attr("href");
-		if(typeof hrefValue === 'undefined'){
-			event.preventDefault();
-			return;
-		}
-		$.get(hrefValue, function(data){
-			console.log("blah");
+		var artId = _this.attr("name");
+		var res = new Resource("/art:" + artId + "/likes");
+
+		res.create()
+		.then(function(err){
+			console.log("Oops");
+		}, function(data){
 			_this.toggleClass("fa-star");
 			_this.text("Liked");
 			_this.removeAttr('href');
@@ -27,14 +29,24 @@ var Art = function(){
 		});
 	}
 
-	var getGalleryRange = function(){
+	var getGalleryParams = function(){
 		var currentThumbsNum = $(".gallery .row.thumbnail").length;
-		return {
+		var params = {
 			range: {
 				limitNum: 3,
 				skipNum: currentThumbsNum
 			}
 		};
+		if(currentSort !== sortOpts[0]) {
+			params.popular = true;
+		}
+		return params;
+	}
+
+	var clear = function(){
+		$.each($(".gallery"), function(index, elem){
+			$(elem).empty();
+		});
 	}
 
 	this.loadGallery = function(){
@@ -42,7 +54,7 @@ var Art = function(){
 		$.each($(".gallery"), function(index, elem){
 			var $galleryList = $(elem);	
 			var username = $galleryList.attr("name");
-			var queryData = getGalleryRange();
+			var queryData = getGalleryParams();
 			if(username){
 				resource = new Resource("/art/users/" + username);
 			}
@@ -61,7 +73,21 @@ var Art = function(){
 			  		$("#see-more-btn").remove();
 			  		gallery.loadGallery();
 				});
-				  	
+				
+				$(".show-latest").toggleClass("active");
+
+				sortOpts.forEach(function(opt){
+					$("." + opt).click(function(event){
+						console.log(currentSort);
+						if(currentSort !== opt){
+							clear();
+							currentSort = opt;
+							gallery.loadGallery();
+							$(this).toggleClass("active");
+						}
+						event.preventDefault();
+					});
+		});
 			});
 		});
 	}
@@ -69,7 +95,19 @@ var Art = function(){
 	this.init = function(){
 		var _this = this;
 		
+		clear();
+
+		$.each($(".gallery"), function(index, elem){
+			$.get("/views/gallery-opts.jade", function(jadeString){
+				var galleryOptsHtml = jade.render(jadeString);
+				console.log(galleryOptsHtml);
+				console.log($(elem));
+				$(elem).prepend(galleryOptsHtml);
+			});
+		});
+
 		this.loadGallery();
+
 		this.viewAddArtForm();
 
 		$.each($(".fa.fa-star"), function(index, elem){
