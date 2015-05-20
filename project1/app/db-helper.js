@@ -25,17 +25,13 @@ module.exports = function(){
 	  }
   }
 
-	var getArtOfUser = function(username, res){
-		Users.findOne({username: username}, function(e, user){
-			ArtPieces.find({artist : username}, function(err, artArr) {
-		        var userArtData = {
-		        	"data": {
-		            	"user": user,
-		            	"art": artArr
-		          	}
-		    	};
-		    	res.render("profile", userArtData);
-	    	});
+	var getArtOfUser = function(username, profileUsername, res){
+		Users.findOne({username: profileUsername}, function(e, user){
+		    var userArtData = {
+	        	"user": username,
+	            "profileUser": user
+	    	};
+	    	res.send(userArtData);
 		});
 	}
 
@@ -59,8 +55,7 @@ module.exports = function(){
 	      res.send({end: "No more data"});
 	      return;
 	    }
-	    var html = jade.renderFile("views/thumbnails.jade", {"galleryData": pieces});
-	    res.send(html);
+	    res.send({"galleryData": pieces});
 	  });
 	}
 
@@ -84,19 +79,18 @@ module.exports = function(){
 
 	var getCommentsForArtPiece = function(id, res){
 		Comments.find({pieceId: id}, function(err, commentsObj){
-			var html = jade.renderFile("views/comments.jade", {
-	      "pieceId": id,
-	      "comments": commentsObj
-	    });
-	    res.send(html);
+		    res.send({
+		      "pieceId": id,
+		      "comments": commentsObj
+		    });
 		});
 	}
 
 	var getArtPieceData = function(id, username, res){
 		ArtPieces.findOne({ _id : id }, function(err, artObj) {
 	    Users.findOne({username: artObj.artist}, function(err, userObj){
-	      res.render("piece", {
-	        "username": username,
+	      res.send({
+	        "user": username,
 	        "userObj": userObj, 
 	        "piece": artObj
 	      });

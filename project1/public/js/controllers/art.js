@@ -49,8 +49,32 @@ var Art = function(){
 		});
 	}
 
+	var loadGalleryOpts = function(){
+		var _this = this;
+
+		$.each($(".gallery"), function(index, elem){
+			getJadeAsHtml("/views/gallery-opts.jade")
+			.then(function(htmlString){
+				$(elem).prepend(htmlString);
+				$(".show-latest").toggleClass("active");
+
+				sortOpts.forEach(function(opt){
+					$("." + opt).click(function(event){
+						if(currentSort !== opt){
+							currentSort = opt;
+							clearAndLoadGallery.bind(_this)();
+							$(this).toggleClass("active");
+						}
+						event.preventDefault();
+					});
+				});
+			});
+		});
+	}
+
 	this.loadGallery = function(){
 		var gallery = this;
+		console.log("sdfa");
 		$.each($(".gallery"), function(index, elem){
 			var $galleryList = $(elem);	
 			var username = $galleryList.attr("name");
@@ -60,58 +84,43 @@ var Art = function(){
 			}
 
 			resource.query(queryData)
-			.then(function(err){
-				var $noMoreThumbsNote = $("<h3></h3>");
-				$noMoreThumbsNote.html("No more images to display");
-				$galleryList.append($noMoreThumbsNote);
-				return;
-			}, function(result){
-				$galleryList.append(result.responseText);
+			.then(function(data){
+				var html = getJadeAsHtml("views/thumbnails.jade", data);
+				$galleryList.append(html);
+				$.each($(".view-art"), function(index, elem){
+					$(elem).click(function(event){
+						new Resource("/art").view($(elem).attr("name"))
+						.then(function(data){
+							displayWithJade($(".content"), "/views/art.jade", data);
+						})
+					});
+				});
 				$galleryList.show();
 
 				$("#see-more-btn").hover(function(event){
 			  		$("#see-more-btn").remove();
 			  		gallery.loadGallery();
 				});
-				
-				$(".show-latest").toggleClass("active");
-
-				sortOpts.forEach(function(opt){
-					$("." + opt).click(function(event){
-						console.log(currentSort);
-						if(currentSort !== opt){
-							clear();
-							currentSort = opt;
-							gallery.loadGallery();
-							$(this).toggleClass("active");
-						}
-						event.preventDefault();
-					});
-		});
+			}, function(err){
+				var $noMoreThumbsNote = $("<h3></h3>");
+				$noMoreThumbsNote.html("No more images to display");
+				$galleryList.append($noMoreThumbsNote);
+				return;
 			});
 		});
+	}
+
+	var clearAndLoadGallery = function(){
+		clear();
+		loadGalleryOpts.bind(this)();
+		this.loadGallery();
 	}
 
 	this.init = function(){
 		var _this = this;
 		
-		clear();
-
-		$.each($(".gallery"), function(index, elem){
-			$.get("/views/gallery-opts.jade", function(jadeString){
-				var galleryOptsHtml = jade.render(jadeString);
-				console.log(galleryOptsHtml);
-				console.log($(elem));
-				$(elem).prepend(galleryOptsHtml);
-			});
-		});
-
-		this.loadGallery();
+		clearAndLoadGallery.bind(_this)();
 
 		this.viewAddArtForm();
-
-		$.each($(".fa.fa-star"), function(index, elem){
-			$(elem).click(_this.likeArtPiece);
-		});
 	}
 }

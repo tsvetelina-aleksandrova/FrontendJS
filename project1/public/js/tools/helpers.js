@@ -2,7 +2,13 @@ function displayWithJade($container, fileName, data){
 	return Q($.get(fileName)).then(function(jadeString){
 		var renderedHtml = jade.render(jadeString, data);
 		$container.html(renderedHtml);
-	})
+	});
+}
+
+function getJadeAsHtml(fileName, data){
+	return Q($.get(fileName)).then(function(jadeString){
+		return jade.render(jadeString, data);
+	});
 }
 
 function getDataFromForm($form){

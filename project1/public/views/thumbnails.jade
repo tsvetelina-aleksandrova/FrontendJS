@@ -3,7 +3,7 @@ for art in galleryData
         .col-md-1
         li.col-md-10
             .row.thumbnail
-                a(href="/art:" + art._id)
+                a.view-art(href="#", name=art._id)
                     img.img-thumbnail.img-responsive.center-block(src="img/" + art.img, alt=art.name + "by" + art.artist)
                 .row.caption.center-block
                     h2 
@@ -11,7 +11,7 @@ for art in galleryData
                         a.pull-right.fa.fa-shopping-cart(href="#")
                         a.pull-right.fa.fa-star(name=art._id)
                     h4 by &nbsp
-                        a(href="#") #{art.artist}
+                        a.view-profile(href="#", name=art.artist) #{art.artist}
 .col-md-1
 .col-md-10
     button.btn.btn-default.center-block#see-more-btn

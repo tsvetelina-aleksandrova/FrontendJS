@@ -43,9 +43,10 @@ app.get('/logout', function(req, res) {
   res.redirect('/');
 });
 
-app.get("/profile", function(req, res){
+app.get("/users/:username", function(req, res){
   var username = req.session.username;
-  dbHelper.getArtOfUser(username, res);
+  var profileUsername = req.params.username;
+  dbHelper.getArtOfUser(username, profileUsername, res);
 });
 
 app.get("/art", function(req, res){
@@ -57,8 +58,8 @@ app.get("/art/users/:username", function(req, res){
   dbHelper.getGalleryData(req.query, res, username);
 });
 
-app.get("/art:id", function(req, res){
-  var id = req.params.id.substring(1);
+app.get("/art/:id", function(req, res){
+  var id = req.params.id;
   var username = req.session.username;
   dbHelper.getArtPieceData(id, username, res);
 });

@@ -1,0 +1,24 @@
+.col-md-3
+    .thumbnail
+        img.img-thumbnail(src="/img/" + profileUser.img, alt=profileUser.username + " profile photo")
+        .capture
+            h3 #{profileUser.username}
+            hr
+            h4 Contact:
+            h4 #{profileUser.email}
+.col-md-9
+    nav.nav.nav-tabs
+        ul.nav.nav-tabs.navbar-left
+            li.active
+                a(href="#") Art
+            li
+                a(href="#") Groups
+            li
+                a(href="#") Friends
+            li
+                if user == profileUser.username
+                    a.fa.fa-plus.add-art-btn(href="#") &nbsp Add art
+                else
+                    a.fa.fa-plus(href="#") &nbsp Befriend
+    .content-fluid.profile-content
+        ul.thumbnails.gallery(name=profileUser.username)

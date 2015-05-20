@@ -51,10 +51,35 @@ var User = function(){
 		
 	}
 
+	this.view = function(event){
+		console.log(this);
+		var username = $(this).attr("name");
+		resource.view(username)
+		.then(function(data){
+			displayWithJade($(".content"), "/views/profile.jade", data)
+			.then(function(data){
+				var art = new Art();
+				art.init();
+			});
+		});
+		event.preventDefault();
+	}
+
 	this.init = function(){
+		var _this = this;
+
 		$('#login-form').submit(this.login);
 		$("#logout-elem").click(this.logout);
 		$("#register-form").submit(this.register);
 		$("#form-search").submit(this.searchForUser);
+
+		$.each($(".view-profile"), function(index, elem){
+			console.log("1");
+			$(elem).click(_this.view);
+		});
+
+		$.each($(".fa.fa-star"), function(index, elem){
+			$(elem).click(_this.likeArtPiece);
+		});
 	}
 }

@@ -13,10 +13,9 @@ var Comments = function(){
 		new Resource(resourceUrl).query()
 		.then(function(err){
 			console.log("Oops");
-		}, function(htmlResult){
-				$commentSec.html(htmlResult.responseText);
-				$commentSec.show();
-				$("#comment-form").submit(comments.addComment);
+		}, function(data){
+			displayWithJade($commentSec, "/views/comments.jade", data);
+			$("#comment-form").submit(comments.addComment);
 		});
 	}
 

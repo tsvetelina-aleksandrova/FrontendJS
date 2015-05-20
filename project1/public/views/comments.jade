@@ -6,6 +6,6 @@ h3 Comments
 for c in comments
     .comment
         h4 
-            a(href="#") #{c.writer}
+            a.view-profile(href="#", name=c.writer) #{c.writer}
         .text #{c.text}
 

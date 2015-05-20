@@ -6,4 +6,5 @@ $(document).ready(function() {
 	user.init();
 	comments.init();
 	art.init();
+
 });
