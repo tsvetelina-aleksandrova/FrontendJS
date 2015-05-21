@@ -3,31 +3,26 @@ var Art = function(){
 	var sortOpts = ["show-latest", "show-popular"];
 	var currentSort = sortOpts[0];
 
-	this.handleArtLikes = function(event){
-		$.each($(".fa.fa-star"), function(index, elem){
-			$(elem).click(function(event){
-				var _this = $(this);
-				var artId = _this.attr("name");
-				var res = new Resource("/art:" + artId + "/likes");
-
-				res.create()
-				.then(function(err){
-					console.log("Oops");
-				}, function(data){
-					_this.toggleClass("fa-star");
-					_this.text("Liked");
-					_this.removeAttr('href');
-				});
-				event.preventDefault();
-			});
+	this.viewAddArtForm = function(){
+		var _this = this;
+		$(".add-art-btn").click(function(event){
+			displayWithJade($(".profile-content"), "/views/add-art.jade");
+			toggleNavActive($(this));
+	   		_this.handleViewGalleryElems();
 		});
 	}
 
-	this.viewAddArtForm = function(){
-		$(".add-art-btn").click(function(event){
-			displayWithJade($(".profile-content"), "/views/add-art.jade");
-			$(".nav-tabs").find(".active").removeClass("active");
-	   		$(this).parent().addClass("active");
+	this.handleViewGalleryElems = function(){
+   		$.each($(".view-gallery"), function(index, elem){
+			$(elem).click(function(event){
+				var $gallery = $("<ul></ul>");
+				$gallery.toggleClass("thumbnails gallery");
+				$gallery.attr("name", $(this).attr("name"));
+				$(".profile-content").html($gallery);
+				$(".nav-tabs").find(".active").removeClass("active");
+					$(this).parent().addClass("active");
+				new Art().init();
+			});
 		});
 	}
 
@@ -45,15 +40,8 @@ var Art = function(){
 		return params;
 	}
 
-	var clear = function(){
-		$.each($(".gallery"), function(index, elem){
-			$(elem).empty();
-		});
-	}
-
-	var loadGalleryOpts = function(){
+	this.loadGalleryOpts = function(){
 		var _this = this;
-
 		$.each($(".gallery"), function(index, elem){
 			getJadeAsHtml("/views/gallery-opts.jade")
 			.then(function(htmlString){
@@ -64,7 +52,7 @@ var Art = function(){
 					$("." + opt).click(function(event){
 						if(currentSort !== opt){
 							currentSort = opt;
-							clearAndLoadGallery.bind(_this)();
+							_this.clearAndLoadGallery();
 							$(this).toggleClass("active");
 						}
 						event.preventDefault();
@@ -80,9 +68,8 @@ var Art = function(){
 		.then(function(data){
 			displayWithJade($(".content"), "/views/art.jade", data)
 			.then(function(res){
-				var comments = new Comments();
-				comments.init();
-				_this.handleArtLikes();
+				new Comments().init();
+				new Likes().init();
 
 				$.each($(".delete-art"), function(index, elem) {
 					$(elem).click(function(event){
@@ -101,8 +88,28 @@ var Art = function(){
 		});
 	}
 
+	this.loadThumbnails = function($galleryList, html){
+		var _this = this;
+		$galleryList.append(html);
+
+		$.each($(".view-art"), function(index, elem){
+			$(elem).click(function(event){
+				_this.viewArt($(elem).attr("name"));
+				new Likes().init();
+			});
+		});
+		var user = new User();
+		user.handleProfileView();
+
+		$("#see-more-btn").hover(function(event){
+	  		$(this).remove();
+	  		_this.loadGallery();
+		});
+	}
+
 	this.loadGallery = function(){
-		var gallery = this;
+		var _this = this;
+
 		$.each($(".gallery"), function(index, elem){
 			var $galleryList = $(elem);	
 			var username = $galleryList.attr("name");
@@ -121,40 +128,26 @@ var Art = function(){
 				}
 				getJadeAsHtml("views/thumbnails.jade", data)
 				.then(function(html){
-					$galleryList.append(html);
-
-					$.each($(".view-art"), function(index, elem){
-						$(elem).click(function(event){
-							gallery.viewArt($(this).attr("name"));
-						});
-					});
-					var user = new User();
-					user.handleProfileView();
-					user.handleProfileEdit();
-					gallery.handleArtLikes();
-
-					$("#see-more-btn").hover(function(event){
-				  		$("#see-more-btn").remove();
-				  		gallery.loadGallery();
-					});
-				});
-
+					_this.loadThumbnails($galleryList, html);
+				}).done();
 			});
 		});
 	}
 
-	var clearAndLoadGallery = function(){
-		clear();
-		loadGalleryOpts.bind(this)();
+	this.clearAndLoadGallery = function(){
+		$.each($(".gallery"), function(index, elem){
+			$(elem).empty();
+		});
+		this.loadGalleryOpts();
 		this.loadGallery();
 	}
 
 	this.init = function(){
 		var _this = this;
-		
-		clearAndLoadGallery.bind(_this)();
+		var likes = new Likes();
 
+		this.clearAndLoadGallery();
 		this.viewAddArtForm();
-		this.handleArtLikes();
+		likes.init();
 	}
 }

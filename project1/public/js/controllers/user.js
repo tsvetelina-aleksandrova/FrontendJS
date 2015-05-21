@@ -7,11 +7,12 @@ var User = function(){
 
 	   	new Resource("/login").create(userData)
 		.then(function(data){
-			//wtf
+			var $loginErrorNote = $form.find(".error");
+			$loginErrorNote.html("Incorrect user name/password");
+			window.location = "/";
 		}, function(err) {
 			var $loginErrorNote = $form.find(".error");
 			$loginErrorNote.html("Incorrect user name/password");
-			//wtf
 			window.location = "/";
 		});
 		event.preventDefault();
@@ -59,28 +60,24 @@ var User = function(){
 		});
 	}
 
-	this.handleProfileEdit = function(){
-		var user = this;
-		$(".edit-profile").click(function(event){
-			var username = $(this).attr("name");
+	this.loadEditProfile = function(event){
+		var username = $(this).attr("name");
+		toggleNavActive($(this));
 
-			resource.view(username)
-			.then(function(data){
-				displayWithJade($(".content"), "/views/profile.jade", data)
-				.then(function(res){
-					displayWithJade($(".profile-content"), 
-						"/views/edit-profile.jade", data)
-					.then(function(r){
-						$("#delete-user-btn").click(function(event){
-							console.log(user);
-							user.deleteUser(username);
-						});
+		resource.view(username)
+		.then(function(data){
+			displayWithJade($(".content"), "/views/profile.jade", data)
+			.then(function(){
+				displayWithJade($(".profile-content"), 
+					"/views/edit-profile.jade", data)
+				.then(function(){
+					$("#delete-user-btn").click(function(){
+						new User().deleteUser(username);
 					});
 				});
 			});
-			$(".nav-tabs").find(".active").removeClass("active");
-	   		$(this).parent().addClass("active");
 		});
+		
 	}
 
 	this.handleProfileView = function(){
@@ -92,6 +89,7 @@ var User = function(){
 					displayWithJade($(".content"), "/views/profile.jade", data)
 					.then(function(res){
 						var art = new Art();
+						$(".gallery").empty();
 						art.init();
 					}).done();
 				});
@@ -101,13 +99,11 @@ var User = function(){
 	}
 
 	this.init = function(){
-		var _this = this;
-
+		this.handleProfileView();
 		$('#login-form').submit(this.login);
 		$("#logout-elem").click(this.logout);
 		$("#register-form").submit(this.register);
 		$("#form-search").submit(this.searchForUser);
-		this.handleProfileView();
-		this.handleProfileEdit();
+		$(".edit-profile").click(this.loadEditProfile);
 	}
 }

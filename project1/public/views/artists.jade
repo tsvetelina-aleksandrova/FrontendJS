@@ -1,13 +1,13 @@
-.col-md-1
 if users.length > 0
     for user in users
         .row.thumbnail
-            a.view-profile(href="#")
-                img.img-thumbnail(src="/img/" + user.img, alt=user.username + " profile photo") 
-            h3 
-                a.view-profile(href="#") #{user.username}
-            hr
-            h4 Contact:
-            h4 #{user.email}
+            .col-md-1
+            .col-md-3
+                a.view-profile(href="#")
+                    img.img-thumbnail(src="/img/" + user.img, alt=user.username + " profile photo") 
+            .col-md-2
+                h3 
+                    a.view-profile(href="#") #{user.username}
+                h4 Contact: #{user.email}
 else
     h3 No users match this search

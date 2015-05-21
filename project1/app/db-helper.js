@@ -2,9 +2,9 @@ var mongoose = require('mongoose');
 var jade = require("jade");
 var dbConfig = require("./config/db-config.js");
 
-var ArtPieces = require('./db/art-piece-model.js');
-var Users = require('./db/user-model.js');
-var Comments = require('./db/comment-model.js');
+require('./db/art-piece-model.js');
+require('./db/user-model.js');
+require('./db/comment-model.js');
 
 var ArtPieces = mongoose.model('ArtPieces');
 var Users = mongoose.model('Users');

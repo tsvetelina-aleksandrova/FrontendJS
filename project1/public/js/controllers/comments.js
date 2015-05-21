@@ -1,13 +1,11 @@
 var Comments = function(){
-	var resourceUrl;
-
 	var onLoadComments = function(comments){
 		var $commentSec = $(this);
 		var artId = $commentSec.attr("name");
 		
 		$commentSec.empty();
 
-		resourceUrl = ["/art:", artId, "/comments"].join("");
+		var resourceUrl = ["/art:", artId, "/comments"].join("");
 
 		new Resource(resourceUrl).query()
 		.then(function(data){
@@ -20,7 +18,7 @@ var Comments = function(){
 		var commentData = getDataFromForm($(this));
 		var artId = $(this).attr("name");
 		
-		resourceUrl = ["/art:", artId, "/comments"].join("");
+		var resourceUrl = ["/art:", artId, "/comments"].join("");
 		
 		new Resource(resourceUrl).create(commentData)
 		.then(function(err){

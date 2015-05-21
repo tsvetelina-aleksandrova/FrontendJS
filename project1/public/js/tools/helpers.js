@@ -20,3 +20,8 @@ function getDataFromForm($form){
 	})
 	return data;
 }
+
+var toggleNavActive = function($elem){
+		$(".nav-tabs").find(".active").removeClass("active");
+	   	$elem.parent().addClass("active");
+	}
