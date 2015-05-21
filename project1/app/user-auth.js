@@ -7,13 +7,11 @@ module.exports = function(){
     newUser.username = username;
     newUser.password = encr.createHash(password);
     newUser.email = req.body.email;
-    newUser.firstName = req.body.firstName;
-    newUser.lastName = req.body.lastName;
-
+    
     newUser.save(function(err){
       if (err){ 
         throw err;  
-      }   
+      }  
       return done(null, newUser);
     });
   }

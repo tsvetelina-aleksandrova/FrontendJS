@@ -24,9 +24,7 @@ var Art = function(){
 	}
 
 	this.viewAddArtForm = function(){
-		var user = this;
 		$(".add-art-btn").click(function(event){
-			$("ul .thumbnails.gallery").empty();
 			displayWithJade($(".profile-content"), "/views/add-art.jade");
 			$(".nav-tabs").find(".active").removeClass("active");
 	   		$(this).parent().addClass("active");
@@ -117,7 +115,8 @@ var Art = function(){
 						});
 					});
 					var user = new User();
-					user.handleProfileViews();
+					user.handleProfileView();
+					user.handleProfileEdit();
 					gallery.handleArtLikes();
 
 					$("#see-more-btn").hover(function(event){

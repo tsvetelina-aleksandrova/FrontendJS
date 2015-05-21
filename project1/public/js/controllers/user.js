@@ -6,11 +6,11 @@ var User = function(){
 		var userData = getDataFromForm($form);
 
 	   	new Resource("/login").create(userData)
-		.then(function(err){
+		.then(function(data){
+			window.location = "/";
+		}, function(err) {
 			var $loginErrorNote = $form.find(".error");
 			$loginErrorNote.html("Incorrect user name/password");
-		}, function(data) {
-			window.location = "/";
 		});
 		event.preventDefault();
 	}
@@ -27,10 +27,10 @@ var User = function(){
 
 		resource.create(userData)
 	  	.then(function(){
-	   		window.location = "/";
-	  	}, function(){
-			var $regErrorNote = $form.find(".error");
+	  		var $regErrorNote = $form.find(".error");
 			$regErrorNote.html("User was not registered");
+	  	}, function(){
+	  		window.location = "/";
 		});
 		event.preventDefault();
 	}
@@ -47,11 +47,38 @@ var User = function(){
 		event.preventDefault();
 	}
 
-	this.edit = function(event){
-		
+	this.deleteUser = function(username){
+		resource.deleteR(username)
+		.then(function(res){
+			window.location('/');
+		});
 	}
 
-	this.handleProfileViews = function(){
+	this.handleProfileEdit = function(){
+		var user = this;
+		$(".edit-profile").click(function(event){
+			var username = $(this).attr("name");
+
+			resource.view(username)
+			.then(function(data){
+				displayWithJade($(".content"), "/views/profile.jade", data)
+				.then(function(res){
+					displayWithJade($(".profile-content"), 
+						"/views/edit-profile.jade", data)
+					.then(function(r){
+						$("#delete-user-btn").click(function(event){
+							console.log(user);
+							user.deleteUser(username);
+						});
+					});
+				});
+			});
+			$(".nav-tabs").find(".active").removeClass("active");
+	   		$(this).parent().addClass("active");
+		});
+	}
+
+	this.handleProfileView = function(){
 		$.each($(".view-profile"), function(index, elem){
 			$(elem).click(function(event){
 				var username = $(this).attr("name");
@@ -75,6 +102,7 @@ var User = function(){
 		$("#logout-elem").click(this.logout);
 		$("#register-form").submit(this.register);
 		$("#form-search").submit(this.searchForUser);
-		this.handleProfileViews();
+		this.handleProfileView();
+		this.handleProfileEdit();
 	}
 }

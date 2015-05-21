@@ -2,6 +2,7 @@ var express = require('express');
 var multer = require('multer');
 var bodyParser = require('body-parser');
 var path = require("path");
+var methodOverride = require('method-override');
 var expressSession = require('express-session');
 var flash = require('connect-flash');
 var passport = require('./passport-config.js')();
@@ -22,6 +23,7 @@ module.exports = function(){
 	app.use(passport.session());
 	app.use(flash());
 	app.use(multer({dest: multerPath}));
+	app.use(methodOverride());
 
 	app.set('views', './views');
 	app.set('view engine', 'jade');

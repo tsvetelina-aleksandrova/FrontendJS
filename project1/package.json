@@ -16,6 +16,7 @@
     "express-session": "^1.11.1",
     "fs": "0.0.2",
     "jade": "^1.9.2",
+    "method-override": "^2.3.3",
     "mongodb-core": "^1.1.25",
     "mongoose": "^4.0.2",
     "multer": "^0.1.8",

@@ -8,6 +8,7 @@ var multer = require('multer');
 app.all("*", function(req, res, next){
   var username = req.session.username;
   if((req.url === "/login" && req.method === "POST") ||
+     (req.url === "/users" && req.method === "POST") ||
       username){
     next();
   } else {
@@ -49,6 +50,35 @@ app.get("/users/:username", function(req, res){
   dbHelper.getArtOfUser(username, profileUsername, res);
 });
 
+app.delete("/users/:username", function(req, res){
+  var username = req.params.username;
+  dbHelper.deleteUser(username, res);
+  req.session.username = "";
+  req.logout();
+  res.json({msg: "User deleted successfully"});
+});
+
+app.post("/users/:username", function(req, res){
+  var backURL=req.header('Referer') || '/';
+
+  var username = req.params.username;
+  var flashData = {};
+  if(req.files.image){
+    var imgName = req.files.image.originalname;
+    var imgPath = req.files.image.path;
+    flashData = fsHelper.saveImage(imgName, imgPath, res);
+  }
+  var userData = {
+    img: imgName,
+    email: req.body.email,
+    password: req.body.password
+  };
+  dbHelper.updateUser(username, userData, res);
+  
+  req.flash(flashData);
+  res.redirect(backURL);
+});
+
 app.get("/art", function(req, res){
   dbHelper.getGalleryData(req.query, res);
 });
@@ -82,8 +112,14 @@ app.post('/art:artId/comments/', function(req, res){
 });
 
 app.post("/art", function(req, res){
-  var imgName = req.files.image.originalname;
-  var imgPath = req.files.image.path;
+  var backURL=req.header('Referer') || '/';
+
+  var flashData = {};
+  if(req.files.image){
+    var imgName = req.files.image.originalname;
+    var imgPath = req.files.image.path;
+    flashData = fsHelper.saveImage(imgName, imgPath, res);
+  }
   var artData = {
     name: req.body.name,
     artist: req.session.username,
@@ -92,8 +128,9 @@ app.post("/art", function(req, res){
     descr: req.body.descr
   };
 
-  fsHelper.saveImage(imgName, imgPath, res);
   dbHelper.addArt(artData, res);
+  req.flash(flashData);
+  res.redirect(backURL);
 });
 
 

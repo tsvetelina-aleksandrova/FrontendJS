@@ -17,13 +17,22 @@ mongoose.connection.on("open", function(){
 mongoose.connect(dbConfig.url);
 
 module.exports = function(){
-	var logMongoSave = function(e){
-	  if(e){
-	    console.log('Error while saving mongo document.')
+	var logMongoSave = function(err){
+	  if(err){
+	    console.log('Error while saving mongo document.', err);
 	  } else{
-	    console.log('Mongo document is saved.')
+	    console.log('Mongo document is saved.');
 	  }
   }
+
+  var logMongoRemove = function(err){
+    if (err){
+      console.log('Error while removing mongo document.', err);
+    }
+    else{
+      console.log('Mongo document is removed.');
+    }
+}
 
 	var getArtOfUser = function(username, profileUsername, res){
 		Users.findOne({username: profileUsername}, function(e, user){
@@ -105,6 +114,23 @@ module.exports = function(){
 		console.log("Added");
 	}
 
+	var updateUser = function(username, userData, res){
+		Users.findOne({ username : username }, function(err, user) {
+     	user.email = userData.email || user.email;
+     	user.img = userData.img || user.img;
+     	user.password = userData.password || user.password;
+      user.save(logMongoSave);
+      console.log("Saved");
+    });
+	}
+
+	var deleteUser = function(username, res){
+		Users.remove({username: username}, logMongoRemove);
+		ArtPieces.remove({artist: username}, logMongoRemove);
+		Comments.remove({writer: username}, logMongoRemove);
+		console.log("User + art and comments deleted");
+	}
+
 	return {
 		getArtOfUser: getArtOfUser,
 		getGalleryData: getGalleryData,
@@ -112,6 +138,8 @@ module.exports = function(){
 		likeArtPiece: likeArtPiece,
 		getCommentsForArtPiece: getCommentsForArtPiece,
 		getArtPieceData: getArtPieceData,
-		addArt: addArt
+		addArt: addArt,
+		updateUser: updateUser,
+		deleteUser: deleteUser
 	};
 }

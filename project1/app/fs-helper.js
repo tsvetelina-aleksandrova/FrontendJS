@@ -4,18 +4,20 @@ var path = require("path");
  module.exports = function(){
 
  	var saveImage = function(imgName, imgPath, res){
+ 		var flashData;
  		fs.readFile(imgPath, function (err, data) {
 		    var newPath = path.resolve(__dirname + 
 		    	"/../public/img/" + imgName);
-		    console.log(newPath);
+		    console.log("Image saved to: " + newPath);
 		    fs.writeFile(newPath, data, function (err) {
 		    	if(err){
-		      		res.json({error: "Image could not be saved"});
+		      		flashData = {msg: "Image could not be saved"};
 		    	} else {
-		    		res.json({msg: "Image saved successfully"});
+		    		flashData = {err: "Image saved successfully"};
 		    	}
 		    });
  		});
+		return flashData;
  	}
 
  	return {

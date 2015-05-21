@@ -1,0 +1,19 @@
+.col-md-1
+.content-fluid.col-md-7
+	h5.art-added
+	h4 Edit user profile
+	form(role="form", method="post", action="/users/" + user, enctype="multipart/form-data")
+		.form-group
+			label Profile image
+			input.form-control(type="file", name="image", accept="image/*")
+		.form-group
+			label Email
+			input.form-control(type="text", name="email")
+		.form-group
+			label Password
+			input.form-control(type="password", name="password")
+		button.btn.btn-default(type="submit") Save
+	hr
+	h4 Delete user profile
+	button.btn.btn-default.center-block#delete-user-btn Delete
+
