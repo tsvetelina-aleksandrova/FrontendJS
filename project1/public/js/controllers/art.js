@@ -3,27 +3,12 @@ var Art = function(){
 	var sortOpts = ["show-latest", "show-popular"];
 	var currentSort = sortOpts[0];
 
-	this.viewAddArtForm = function(){
-		var _this = this;
-		$(".add-art-btn").click(function(event){
-			displayWithJade($(".profile-content"), "/views/add-art.jade");
-			toggleNavActive($(this));
-	   		_this.handleViewGalleryElems();
-		});
-	}
-
-	this.handleViewGalleryElems = function(){
-   		$.each($(".view-gallery"), function(index, elem){
-			$(elem).click(function(event){
-				var $gallery = $("<ul></ul>");
-				$gallery.toggleClass("thumbnails gallery");
-				$gallery.attr("name", $(this).attr("name"));
-				$(".profile-content").html($gallery);
-				$(".nav-tabs").find(".active").removeClass("active");
-					$(this).parent().addClass("active");
-				new Art().init();
-			});
-		});
+	this.viewGallery = function(event){
+		var $gallery = $("<ul></ul>");
+		$gallery.toggleClass("thumbnails gallery");
+		$gallery.attr("name", $(this).attr("name"));
+		$(".profile-content").html($gallery);
+		helpers.toggleNavActive($(this));
 	}
 
 	var getGalleryParams = function(){
@@ -42,8 +27,9 @@ var Art = function(){
 
 	this.loadGalleryOpts = function(){
 		var _this = this;
+		console.log('opts');
 		$.each($(".gallery"), function(index, elem){
-			getJadeAsHtml("/views/gallery-opts.jade")
+			helpers.getJadeAsHtml("/views/gallery/gallery-opts.jade")
 			.then(function(htmlString){
 				$(elem).prepend(htmlString);
 				$(".show-latest").toggleClass("active");
@@ -52,7 +38,7 @@ var Art = function(){
 					$("." + opt).click(function(event){
 						if(currentSort !== opt){
 							currentSort = opt;
-							_this.clearAndLoadGallery();
+							_this.clearAndLoadGallery.bind(_this)();
 							$(this).toggleClass("active");
 						}
 						event.preventDefault();
@@ -62,54 +48,32 @@ var Art = function(){
 		});
 	}
 
-	this.viewArt = function(id){
-		var _this = this;
+	this.viewArt = function(){
+		var id = $(this).attr("name");
+
 		new Resource("/art").view(id)
 		.then(function(data){
-			displayWithJade($(".content"), "/views/art.jade", data)
-			.then(function(res){
+			helpers.displayWithJade($(".content"), "/views/art/art.jade", data)
+			.then(function(){
 				new Comments().init();
-				new Likes().init();
-
-				$.each($(".delete-art"), function(index, elem) {
-					$(elem).click(function(event){
-						_this.deleteArt(id);
-					});
-				});
-			});
+			}).done();
 		});
 	}
 
-	this.deleteArt = function(artId){
+	this.deleteArt = function(event){
+		var artId = $(this).attr("name");
+
 		new Resource('/art').deleteR(artId)
 		.then(function(res){
 			event.preventDefault();
     		history.back(1);
 		});
-	}
-
-	this.loadThumbnails = function($galleryList, html){
-		var _this = this;
-		$galleryList.append(html);
-
-		$.each($(".view-art"), function(index, elem){
-			$(elem).click(function(event){
-				_this.viewArt($(elem).attr("name"));
-				new Likes().init();
-			});
-		});
-		var user = new User();
-		user.handleProfileView();
-
-		$("#see-more-btn").hover(function(event){
-	  		$(this).remove();
-	  		_this.loadGallery();
-		});
+		event.preventDefault();
 	}
 
 	this.loadGallery = function(){
 		var _this = this;
-
+		console.log("gal");
 		$.each($(".gallery"), function(index, elem){
 			var $galleryList = $(elem);	
 			var username = $galleryList.attr("name");
@@ -121,33 +85,42 @@ var Art = function(){
 			resource.query(queryData)
 			.then(function(data){
 				if(data.end){
-					var $noMoreThumbsNote = $("<h3></h3>");
-					$noMoreThumbsNote.html("No more images to display");
-					$galleryList.append($noMoreThumbsNote);
+					if($galleryList.find(".error")){
+						var $noMoreThumbsNote = $("<h3 class=\".error\"></h3>");
+						$noMoreThumbsNote.html("No more images to display");
+						$galleryList.append($noMoreThumbsNote);
+						$("#see-more-btn").remove();
+					}
 					return;
 				}
-				getJadeAsHtml("views/thumbnails.jade", data)
+				helpers.getJadeAsHtml("views/gallery/thumbnails.jade", data)
 				.then(function(html){
-					_this.loadThumbnails($galleryList, html);
+					$("#see-more-btn").remove();
+					$galleryList.append(html);
 				}).done();
 			});
 		});
 	}
 
 	this.clearAndLoadGallery = function(){
-		$.each($(".gallery"), function(index, elem){
-			$(elem).empty();
-		});
+		console.log("1");
+		$(".gallery").empty();
 		this.loadGalleryOpts();
 		this.loadGallery();
 	}
 
 	this.init = function(){
 		var _this = this;
-		var likes = new Likes();
 
 		this.clearAndLoadGallery();
-		this.viewAddArtForm();
-		likes.init();
+
+		$(".content").on("click", ".delete-art", this.deleteArt);
+		$(document.body).on("click", ".view-art", this.viewArt);
+		$(document.body).on("mouseover", "#see-more-btn", this.loadGallery);
+		$(document.body).on("click", ".view-gallery", function(event){
+			_this.viewGallery.bind(this)();
+			_this.clearAndLoadGallery();
+			event.preventDefault();
+		});
 	}
 }

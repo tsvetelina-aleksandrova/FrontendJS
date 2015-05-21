@@ -1,29 +1,27 @@
 var Comments = function(){
-	var onLoadComments = function(comments){
+	var loadComments = function(){
 		var $commentSec = $(this);
 		var artId = $commentSec.attr("name");
 		
 		$commentSec.empty();
+		console.log(artId);
 
 		var resourceUrl = ["/art:", artId, "/comments"].join("");
 
 		new Resource(resourceUrl).query()
 		.then(function(data){
-			displayWithJade($commentSec, "/views/comments.jade", data).done();
-			$("#comment-form").submit(comments.addComment);
-		});
+			helpers.displayWithJade($commentSec, "/views/art/comments.jade", data);
+		}).done();
 	}
 
 	this.addComment = function(event){
-		var commentData = getDataFromForm($(this));
+		var commentData = helpers.getDataFromForm($(this));
 		var artId = $(this).attr("name");
-		
+		console.log(commentData);
 		var resourceUrl = ["/art:", artId, "/comments"].join("");
 		
 		new Resource(resourceUrl).create(commentData)
-		.then(function(err){
-			console.log("Oops");
-		}, function() {
+		.then(function(){
 			$.each($(".comment-section"), function(index, elem){
 				$(elem).trigger("load");
 			});
@@ -33,12 +31,11 @@ var Comments = function(){
 	}
 
 	this.init = function(){
-		var _this = this;
+		$(".comment-section").on("submit", "#comment-form", this.addComment);
 		$.each($(".comment-section"), function(index, elem){
-			var elemCommentsLoad = onLoadComments.bind(elem, _this);
-
-			$(elem).load(onLoadComments);
-			elemCommentsLoad();
+			var boundLoadComments = loadComments.bind(elem);
+			$(elem).load(boundLoadComments);
+			boundLoadComments();
 		});
 	}
 }

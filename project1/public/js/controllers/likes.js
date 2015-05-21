@@ -1,6 +1,6 @@
 var Likes = function(artId){
 
-	this.handleArtLikes = function(event){
+	this.likeArt = function(event){
 		var _this = $(this);
 		var artId = _this.attr("name");
 
@@ -17,9 +17,6 @@ var Likes = function(artId){
 
 	this.init = function(){
 		var _this = this;
-		$.each($(".fa.fa-star"), function(index, elem){
-			console.log(this);
-			$(elem).click(_this.handleArtLikes);
-		});
+		$(".content").on("click", ".fa.fa-star", this.likeArt);
 	}
 }
