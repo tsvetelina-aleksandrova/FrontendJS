@@ -7,10 +7,12 @@ var User = function(){
 
 	   	new Resource("/login").create(userData)
 		.then(function(data){
-			window.location = "/";
+			//wtf
 		}, function(err) {
 			var $loginErrorNote = $form.find(".error");
 			$loginErrorNote.html("Incorrect user name/password");
+			//wtf
+			window.location = "/";
 		});
 		event.preventDefault();
 	}
@@ -36,12 +38,15 @@ var User = function(){
 	}
 
 	this.searchForUser = function(event){
-		var formData = $(this).serializeArray();
-		var searchData = {"searchName": formData[0].value};
+		var searchData = getDataFromForm($(this));
 
 		resource.query(searchData)
 		.then(function(data){
-		    window.location = "/search";
+			console.log(data);
+		    displayWithJade($(".content"), "/views/artists.jade", data)
+		    .then(function(res){
+		    	new User().handleProfileView();
+		    }).done();
 		});
 		$(this)[0].reset();
 		event.preventDefault();

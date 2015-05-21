@@ -83,7 +83,21 @@ var Art = function(){
 				var comments = new Comments();
 				comments.init();
 				_this.handleArtLikes();
+
+				$.each($(".delete-art"), function(index, elem) {
+					$(elem).click(function(event){
+						_this.deleteArt(id);
+					});
+				});
 			});
+		});
+	}
+
+	this.deleteArt = function(artId){
+		new Resource('/art').deleteR(artId)
+		.then(function(res){
+			event.preventDefault();
+    		history.back(1);
 		});
 	}
 

@@ -88,10 +88,26 @@ app.get("/art/users/:username", function(req, res){
   dbHelper.getGalleryData(req.query, res, username);
 });
 
+app.get("/users", function(req, res){
+  var nameMatch = req.query.nameMatch;
+  dbHelper.getMatchingUsers(nameMatch, res);
+});
+
 app.get("/art/:id", function(req, res){
   var id = req.params.id;
   var username = req.session.username;
   dbHelper.getArtPieceData(id, username, res);
+});
+
+app.delete("/art/:artId", function(req, res){
+  var backURL=req.header('Referer') || '/'
+
+  var artId = req.params.artId;
+  console.log(artId);
+  console.log(dbHelper.deleteArt);
+  dbHelper.deleteArt(artId, res);
+
+  res.json({msg: "Art deleted successfully"});
 });
 
 app.get("/art:artId/comments", function(req, res){

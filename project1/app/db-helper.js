@@ -128,7 +128,21 @@ module.exports = function(){
 		Users.remove({username: username}, logMongoRemove);
 		ArtPieces.remove({artist: username}, logMongoRemove);
 		Comments.remove({writer: username}, logMongoRemove);
-		console.log("User + art and comments deleted");
+	}
+
+	var deleteArt = function(artId, res){
+		ArtPieces.remove({_id: artId}, logMongoRemove);
+	}
+
+	var getMatchingUsers = function(nameMatch, res){
+		Users.find({}, function(err, users){
+			var matchingUsers = users.filter(function(user){
+				return user.username.match(nameMatch);
+			});
+			res.send({
+				users: matchingUsers
+			});
+		});
 	}
 
 	return {
@@ -140,6 +154,8 @@ module.exports = function(){
 		getArtPieceData: getArtPieceData,
 		addArt: addArt,
 		updateUser: updateUser,
-		deleteUser: deleteUser
+		deleteUser: deleteUser,
+		deleteArt: deleteArt,
+		getMatchingUsers: getMatchingUsers
 	};
 }

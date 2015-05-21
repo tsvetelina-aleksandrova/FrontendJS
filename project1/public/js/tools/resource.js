@@ -32,7 +32,6 @@ var Resource = function(url){
 	}
 
 	this.deleteR = function(id) {
-		console.log( url + "/" + id);
 		return Q($.ajax({
 		    url: url + "/" + id,
 		    method: "delete",
