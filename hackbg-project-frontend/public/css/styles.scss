@@ -87,11 +87,56 @@ body {
 }
 
 .btn.btn-info {
-	background-color: LightSeaGreen;
+	background-color: #65B2B2;
 	&:hover, &:active {
-		background-color: LightSeaGreen;
+		background-color: #74BABA;
 	}
 }
+
+form .form-control:focus {
+    border-color: #74BABA;
+    box-shadow: 0 0 6px #74BABA;
+}
+
 .about-section {
 	background-image: url('/img/sandpaper.png'); 
+	.thumbnail {
+		background-color: #65B2B2;
+	}
+	.caption p {
+		text-align: center;
+		color: white;
+	}
+}
+
+a.btn.btn-default.active {
+	cursor: default;
+}
+
+.slide-right {
+    animation-duration: 1s;
+  	animation-name: slidein-right;
+}
+
+@keyframes slidein-right {
+  from {
+    margin-left: 10%;
+  }
+  to {
+    margin-left: 0%;
+  }
+}
+
+.slide-left {
+    animation-duration: 1s;
+  	animation-name: slidein-left;
+}
+
+@keyframes slidein-left {
+  from {
+    margin-right: 10%;
+  }
+  to {
+    margin-right: 0%;
+  }
 }

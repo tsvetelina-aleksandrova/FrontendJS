@@ -1,46 +1,23 @@
-html
-	head
-	title Moviebook
-	link(rel="stylesheet", type="text/css", href="/css/styles.css")
-	link(rel="stylesheet", type="text/css", href="/lib/bootstrap/dist/css/bootstrap.css")
-	link(rel="stylesheet", type="text/css", href="/lib/fontawesome/css/font-awesome.css")
-	link(href='http://fonts.googleapis.com/css?family=Comfortaa:700', rel='stylesheet', type='text/css')
-	link(href='http://fonts.googleapis.com/css?family=Limelight', rel='stylesheet', type='text/css')
-	link(href='http://fonts.googleapis.com/css?family=Lemon', rel='stylesheet', type='text/css')
-	link(href='http://fonts.googleapis.com/css?family=Fascinate', rel='stylesheet', type='text/css')
-	link(href='http://fonts.googleapis.com/css?family=Coustard:900', rel='stylesheet', type='text/css')
+extends layout
 
-	link(rel="stylesheet", type="text/css", href="/lib/fullpage.js/jquery.fullPage.css")
-
-	
-
-	body
-		include header-nav
-		#fullpage
-			.section
-				.center-form-div
-					h1.brand-name Moviebook
-					form
-						input.form-control(type="text", placeholder="Name")
-						input.form-control(type="password", placeholder="Password")
-						button.btn.btn-info Log in
-			.section.about-section
-				.about-div
-					h1 Why is 
-						span.brand-name Moviebook 
-						| cool?
-					h4 
-						Moviebook is an awesome place for movie enthusiasts!
-					button.btn.btn-info Check out the Moviebook team					
-			.section
-				.center-form-div
-					h1.brand-name Moviebook
-					form
-						input.form-control(type="text", placeholder="Name")
-						input.form-control(type="text", placeholder="Email")
-						input.form-control(type="password", placeholder="Password")
-						button.btn.btn-info Sign up
-
-			script(src="/lib/jquery/dist/jquery.min.js")
-			script(type="text/javascript", src="/lib/fullpage.js/jquery.fullPage.js")
-			script(src="/js/vertical-fullpage-scroll.js")
+block content
+	include nouser-header-nav
+	#fullpage
+		.section
+			.center-form-div
+				h1.brand-name Moviebook
+				form
+					input.form-control(type="text", placeholder="Name")
+					input.form-control(type="password", placeholder="Password")
+					button.btn.btn-info Log in
+		.section.about-section
+			.about-div
+			
+		.section
+			.center-form-div
+				h1.brand-name Moviebook
+				form
+					input.form-control(type="text", placeholder="Name")
+					input.form-control(type="text", placeholder="Email")
+					input.form-control(type="password", placeholder="Password")
+					button.btn.btn-info Sign up

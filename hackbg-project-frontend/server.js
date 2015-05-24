@@ -11,15 +11,7 @@ app.set('view engine', 'jade')
 
 app.get('/', function (req, res) {
   res.render('index');
-})
-
-app.get('/user-profile', function (req, res) {
-  res.render('user-profile');
-})
-
-app.get('/piece', function (req, res) {
-  res.render('piece');
-})
+});
 
 var server = app.listen(3000, function () {
 
