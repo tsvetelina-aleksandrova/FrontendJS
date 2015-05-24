@@ -1,0 +1,57 @@
+.center-form-div h1 {
+	font-size: 3.3vw;
+}
+
+.center-form-div, .about-div {
+	background-color: white;
+	border-radius: 5px;
+	-webkit-box-shadow: 0 0 20px black;
+    box-shadow: 0 0 20px black;
+	.btn {
+		width: 100%;
+	}
+	.form-control, .btn {
+		margin: 5px;
+	}
+}
+
+@media (min-width: 600px){
+	.center-form-div {
+		width: 30%;
+		padding: 50px;
+		text-align:center;
+		margin-left: 35%;
+	}
+
+	.about-div {
+		width: 60%;
+		padding: 50px;
+		margin-left: 20%;
+		.btn {
+			width: 60%;
+		}
+	}
+}
+
+@media (max-width: 600px){
+	.center-form-div {
+		width: 100%;
+	}
+}
+
+.about-section {
+	background-image: url('/img/sandpaper.png'); 
+	.thumbnail {
+		background-color: #65B2B2;
+	}
+	.caption p {
+		text-align: center;
+		color: white;
+	}
+}
+
+.section, .section .center-form-div{
+	position: absolute;
+	margin-top: 0;
+	top: 20%;
+}

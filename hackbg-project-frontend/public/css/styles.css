@@ -1,27 +1,37 @@
-* {
-  font-family: Verdana; }
+.slide-right {
+  animation-duration: 1s;
+  animation-name: slidein-right; }
 
-body, .btn, .form-control {
-  font-family: 'Comfortaa', cursive; }
+@keyframes slidein-right {
+  from {
+    margin-left: 10%; }
+  to {
+    margin-left: 0%; } }
+.slide-left {
+  animation-duration: 1s;
+  animation-name: slidein-left; }
 
-.brand-name {
-  font-family: 'Lemon', cursive; }
-
-.center-form-div h1 {
-  font-size: 3.3vw; }
-
+@keyframes slidein-left {
+  from {
+    margin-right: 10%; }
+  to {
+    margin-right: 0%; } }
 header.navbar {
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999; }
+  z-index: 9999;
+  background: transparent; }
   header.navbar .navbar-right {
     margin: 7px; }
     header.navbar .navbar-right .btn {
       margin: 0 4px 0 4px; }
   header.navbar .navbar-header a {
     color: black; }
+
+.center-form-div h1 {
+  font-size: 3.3vw; }
 
 .center-form-div, .about-div {
   background-color: white;
@@ -49,16 +59,30 @@ header.navbar {
 @media (max-width: 600px) {
   .center-form-div {
     width: 100%; } }
+.about-section {
+  background-image: url("/img/sandpaper.png"); }
+  .about-section .thumbnail {
+    background-color: #65B2B2; }
+  .about-section .caption p {
+    text-align: center;
+    color: white; }
+
 .section, .section .center-form-div {
   position: absolute;
   margin-top: 0;
   top: 20%; }
 
-header, .navbar {
-  background: transparent; }
+* {
+  font-family: Verdana; }
 
 body {
   background-image: url("/img/mochaGrunge_@2X.png"); }
+
+body, .btn, .form-control {
+  font-family: 'Comfortaa', cursive; }
+
+.brand-name {
+  font-family: 'Lemon', cursive; }
 
 .btn.btn-info {
   background-color: #65B2B2; }
@@ -69,34 +93,7 @@ form .form-control:focus {
   border-color: #74BABA;
   box-shadow: 0 0 6px #74BABA; }
 
-.about-section {
-  background-image: url("/img/sandpaper.png"); }
-  .about-section .thumbnail {
-    background-color: #65B2B2; }
-  .about-section .caption p {
-    text-align: center;
-    color: white; }
-
 a.btn.btn-default.active {
   cursor: default; }
-
-.slide-right {
-  animation-duration: 1s;
-  animation-name: slidein-right; }
-
-@keyframes slidein-right {
-  from {
-    margin-left: 10%; }
-  to {
-    margin-left: 0%; } }
-.slide-left {
-  animation-duration: 1s;
-  animation-name: slidein-left; }
-
-@keyframes slidein-left {
-  from {
-    margin-right: 10%; }
-  to {
-    margin-right: 0%; } }
 
 /*# sourceMappingURL=styles.css.map */

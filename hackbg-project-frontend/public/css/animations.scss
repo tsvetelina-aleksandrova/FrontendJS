@@ -1,0 +1,27 @@
+.slide-right {
+    animation-duration: 1s;
+  	animation-name: slidein-right;
+}
+
+@keyframes slidein-right {
+  from {
+    margin-left: 10%;
+  }
+  to {
+    margin-left: 0%;
+  }
+}
+
+.slide-left {
+    animation-duration: 1s;
+  	animation-name: slidein-left;
+}
+
+@keyframes slidein-left {
+  from {
+    margin-right: 10%;
+  }
+  to {
+    margin-right: 0%;
+  }
+}

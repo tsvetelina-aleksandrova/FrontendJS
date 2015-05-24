@@ -4,86 +4,25 @@
 // font-family: 'Fascinate', cursive;
 // font-family: 'Coustard', serif;
 
+@import 'animations';
+@import 'header';
+@import 'index';
+
 * {
 	font-family: Verdana;
 }
 
+body {
+	background-image: url('/img/mochaGrunge_@2X.png');
+}
+
 body, .btn, .form-control {
 	font-family: 'Comfortaa', cursive;
+
 }
+
 .brand-name{
 	font-family: 'Lemon', cursive;
-}
-.center-form-div h1 {
-	font-size: 3.3vw;
-}
-
-header.navbar {
-	width: 100%;
-	position: fixed;
-	top: 0;
-	left: 0;
-	z-index: 9999;
-	.navbar-right {
-		margin: 7px;
-		.btn {
-			margin: 0 4px 0 4px;
-		}
-	}
-	.navbar-header a {
-		color: black;
-	}
-}
-
-.center-form-div, .about-div {
-	background-color: white;
-	border-radius: 5px;
-	-webkit-box-shadow: 0 0 20px black;
-    box-shadow: 0 0 20px black;
-	.btn {
-		width: 100%;
-	}
-	.form-control, .btn {
-		margin: 5px;
-	}
-}
-
-@media (min-width: 600px){
-	.center-form-div {
-		width: 30%;
-		padding: 50px;
-		text-align:center;
-		margin-left: 35%;
-	}
-
-	.about-div {
-		width: 60%;
-		padding: 50px;
-		margin-left: 20%;
-		.btn {
-			width: 60%;
-		}
-	}
-}
-
-@media (max-width: 600px){
-	.center-form-div {
-		width: 100%;
-	}
-}
-
-.section, .section .center-form-div{
-	position: absolute;
-	margin-top: 0;
-	top: 20%;
-}
-
-header, .navbar{
-	background: transparent;
-}
-
-body {
-	background-image: url('/img/mochaGrunge_@2X.png'); 
 }
 
 .btn.btn-info {
@@ -98,45 +37,6 @@ form .form-control:focus {
     box-shadow: 0 0 6px #74BABA;
 }
 
-.about-section {
-	background-image: url('/img/sandpaper.png'); 
-	.thumbnail {
-		background-color: #65B2B2;
-	}
-	.caption p {
-		text-align: center;
-		color: white;
-	}
-}
-
 a.btn.btn-default.active {
 	cursor: default;
-}
-
-.slide-right {
-    animation-duration: 1s;
-  	animation-name: slidein-right;
-}
-
-@keyframes slidein-right {
-  from {
-    margin-left: 10%;
-  }
-  to {
-    margin-left: 0%;
-  }
-}
-
-.slide-left {
-    animation-duration: 1s;
-  	animation-name: slidein-left;
-}
-
-@keyframes slidein-left {
-  from {
-    margin-right: 10%;
-  }
-  to {
-    margin-right: 0%;
-  }
 }
