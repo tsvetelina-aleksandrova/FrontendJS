@@ -1,10 +1,9 @@
 var HomeCtrl = (function(){
 
 	var init = function(){
-		$(".content").empty();
 		helpers.displayWithJade($("header"), "/views/user-header-nav.jade");
-		helpers.displayWithJade($(".content"), "/views/homejade")
-		.then(function(){
+		helpers.displayWithJade($(".content"), "/views/homejade");
+		/*.then(function(){
 
 			$('#fullpage').fullpage({
 		      anchors:['loginPage', 'aboutPage', 'signupPage'],
@@ -13,7 +12,7 @@ var HomeCtrl = (function(){
 		      navigationTooltips: ['Log in', 'About', 'Sign up'],
 		      menu: '#header-nav-menu'
 		    });
-		});
+		});*/
 	}
 
 	return {

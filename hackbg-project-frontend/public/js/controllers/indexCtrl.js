@@ -46,18 +46,22 @@ var IndexCtrl = (function(){
 	}
 
 	var init = function(){
-		viewAboutInfo();
+		helpers.displayWithJade($("header"), "/views/anon-header-nav.jade");
+		helpers.displayWithJade($(".content"), "/views/index.jade")
+		.then(function(){
+			viewAboutInfo();
 
-		$(".about-div").on("click", "#view-team-info", viewTeamInfo);
-		$(".about-div").on("click", "#view-about-info", viewAboutInfo);
+			$(".about-div").on("click", "#view-team-info", viewTeamInfo);
+			$(".about-div").on("click", "#view-about-info", viewAboutInfo);
 
-		$('#fullpage').fullpage({
-      anchors:['loginPage', 'aboutPage', 'signupPage'],
-      navigation: true,
-      navigationPosition: 'left',
-      navigationTooltips: ['Log in', 'About', 'Sign up'],
-      menu: '#header-nav-menu'
-    });
+			$('#fullpage').fullpage({
+		      anchors:['loginPage', 'aboutPage', 'signupPage'],
+		      navigation: true,
+		      navigationPosition: 'left',
+		      navigationTooltips: ['Log in', 'About', 'Sign up'],
+		      menu: '#header-nav-menu'
+		    });
+		});
 	}
 
 	return {

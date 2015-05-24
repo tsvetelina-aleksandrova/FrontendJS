@@ -34,10 +34,18 @@ header.navbar {
 	.navbar-right {
 		margin-top: 0;
 		a {
-			line-height: 24px;
+			line-height: 20px;
+		}
+		li.dropdown.open .dropdown-toggle {
+			background-color:  transparent;
+			color: #65B2B2;
 		}
 	}
 	.dropdown-menu {
 		background-color:  transparent;
+		a:hover {
+			background-color:  transparent;
+			color: #65B2B2;
+		}	
 	}
 }

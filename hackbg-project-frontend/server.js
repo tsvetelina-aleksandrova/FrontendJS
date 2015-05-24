@@ -10,14 +10,10 @@ var itemInfoVars = require('./item-info-data.json')
 app.set('views', './views')
 app.set('view engine', 'jade')
 
-app.get('/', function (req, res) {
-	res.render('index');
-})
-
-app.get('/home', function (req, res) {
-	res.render('home');
-})
-
+app.get('*', function (req, res) {
+	res.render('layout');
+});
+/*
 // listen for files: /product.html -> /views/product.jade
 app.get("/:fileName", function(req, res, next){
 	if(req.params && req.params.fileName){
@@ -35,7 +31,7 @@ app.get("/:fileName", function(req, res, next){
 		next();
 	}
 });
-
+*/
 var server = app.listen(3000, function () {
 
   var host = server.address().address

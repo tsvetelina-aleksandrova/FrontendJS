@@ -11,7 +11,6 @@ var Router = (function(){
 	var init = function(){
 		$(window).on("hashchange",function(){
 			 url = location.hash.slice(1) || '/';
-
 			 routes.forEach(function(route){
 			 	if(route.url == url){
 			 		route.callback();
@@ -21,7 +20,8 @@ var Router = (function(){
 
 		// trigger default route's callback
 		routes.forEach(function(route){
-			if(route.default === true){
+			if(route.url === window.location.pathname && 
+					route.default === true){
 				route.callback();
 			}
 		})

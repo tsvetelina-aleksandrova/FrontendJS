@@ -43,9 +43,15 @@ header.navbar {
   header.navbar .navbar-right {
     margin-top: 0; }
     header.navbar .navbar-right a {
-      line-height: 24px; }
+      line-height: 20px; }
+    header.navbar .navbar-right li.dropdown.open .dropdown-toggle {
+      background-color: transparent;
+      color: #65B2B2; }
   header.navbar .dropdown-menu {
     background-color: transparent; }
+    header.navbar .dropdown-menu a:hover {
+      background-color: transparent;
+      color: #65B2B2; }
 
 .center-form-div h1 {
   font-size: 3.3vw; }
