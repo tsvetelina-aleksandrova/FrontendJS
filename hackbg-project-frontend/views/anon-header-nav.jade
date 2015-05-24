@@ -1,5 +1,9 @@
 header.navbar
 	.navbar-header
+		button.navbar-toggle.collapsed(type="button", 
+        data-toggle="collapse", data-target="#header-nav-menu")
+			span.sr-only Toggle navigation
+			span.fa.fa-bars.btn.btn-default
 		a.navbar-brand.brand-name(href="/") Moviebook
 	.nav.navbar-nav.navbar-right#header-nav-menu
 		a.btn.btn-default.active(data-menuanchor="loginPage", href="#loginPage") Log in

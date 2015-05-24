@@ -22,13 +22,30 @@ header.navbar {
   top: 0;
   left: 0;
   z-index: 9999;
-  background: transparent; }
+  background: transparent;
+  border: 0; }
   header.navbar .navbar-right {
     margin: 7px; }
     header.navbar .navbar-right .btn {
       margin: 0 4px 0 4px; }
-  header.navbar .navbar-header a {
+  header.navbar .navbar-header a, header.navbar .navbar-nav.navbar-right a {
     color: black; }
+  header.navbar .navbar-form {
+    height: 10%;
+    padding: 0;
+    margin-top: 13px; }
+    header.navbar .navbar-form .input-group .input-group-addon, header.navbar .navbar-form .form-control {
+      height: 24px; }
+    header.navbar .navbar-form .input-group .input-group-addon {
+      color: #65B2B2; }
+    header.navbar .navbar-form .input-group-addon i {
+      line-height: 9px; }
+  header.navbar .navbar-right {
+    margin-top: 0; }
+    header.navbar .navbar-right a {
+      line-height: 24px; }
+  header.navbar .dropdown-menu {
+    background-color: transparent; }
 
 .center-form-div h1 {
   font-size: 3.3vw; }
@@ -78,7 +95,7 @@ header.navbar {
 body {
   background-image: url("/img/mochaGrunge_@2X.png"); }
 
-body, .btn, .form-control {
+body, .btn, .form-control, .dropdown .dropdown-menu a, .dropdown-toggle {
   font-family: 'Comfortaa', cursive; }
 
 .brand-name {

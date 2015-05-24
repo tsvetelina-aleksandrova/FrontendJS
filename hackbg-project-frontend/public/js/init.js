@@ -5,15 +5,13 @@ $(document).ready(function() {
 		.addRoute({
 			"url": "/",
 			"default": true,
-			//"view": "views/home.jade",
 			"container": "body",
 			"callback": IndexCtrl.init
 		})
 		.addRoute({
 			"url": "/home",
-			//"view": "views/home.jade",
-			//"container": "#content"
-			"container": "body"
+			"container": "body",
+			"callback": HomeCtrl.init
 		})
 		.init();
 
