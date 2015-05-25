@@ -14,6 +14,11 @@ var app = (function(){
 			url: "/movies",
 			default: true,
 			ctrl: "MoviesCtrl"
+		},
+		{
+			url: "/users",
+			default: true,
+			ctrl: "UsersCtrl"
 		}
 
 	];

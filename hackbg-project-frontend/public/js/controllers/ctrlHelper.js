@@ -1,6 +1,6 @@
 var ctrlHelper = (function() {
 	var init = function() {
-		helpers.displayWithJade($(".header"), "/views/user-header-nav.jade")
+		helpers.displayWithJade($(".header"), "/views/common/user-header-nav.jade")
 		.then(function(){
 			var $mainNav = $("#main-nav");
 			var $headerBrand = $('.navbar-header');
@@ -23,7 +23,7 @@ var ctrlHelper = (function() {
 				event.preventDefault();
 			});
 		})
-		.then(helpers.displayWithJade($("footer"), "/views/footer.jade"));
+		.then(helpers.displayWithJade($("footer"), "/views/common/footer.jade"));
 	}
 
 	return {

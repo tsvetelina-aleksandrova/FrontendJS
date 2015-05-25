@@ -96,7 +96,7 @@ a.btn.btn-default.active {
 		margin-left: 20px;
 	}
 	.img-thumbnail {
-		max-height: 500px;
+		max-height: 600px;
 	}
 
 	.movie-info-content {
@@ -104,6 +104,9 @@ a.btn.btn-default.active {
 		padding: 10px;
 		border-radius: 10px;
 		margin-top: 20px;
+		display: inline-block;
+		min-width: 100%;
+		min-height: 60%;
 	}
 }
 
@@ -132,6 +135,7 @@ a.btn.btn-default.active {
 		opacity: 1;
 		position: fixed;
 		right: 0;
+		bottom: 200px;
 	}
 }
 

@@ -1,28 +1,26 @@
 .section
 	.movie-info
-		h1 
+		h1 Movie title
 			.side-movie-opts-small
 				a.movie-rating(href="#", title="Add to favorites")
 					i.fa.fa-star
 				a(href="#", title="Watch later")
 					i.fa.fa-clock-o
-			| Movie title
 
-		.movie-info-frame
-			.col-md-4
-				a(href="#")
-					img.img-thumbnail(src="/img/team-img.jpg")
-			.col-md-4
-				ul.nav.nav-tabs
-					li.active
-						a#show-movie-gen-info(href="#") General info
-					li
-						a#show-movie-story(href="#") Storyline
-					li
-						a#show-movie-crew(href="#") Crew
-				.movie-info-content
-
-		.col-md-4
+		.col-md-3
+			a(href="#")
+				img.img-thumbnail(src="../img/team-img.jpg")
+		.col-md-7
+			ul.nav.nav-tabs
+				li.active
+					a#show-movie-gen-info(href="#") General info
+				li
+					a#show-movie-story(href="#") Storyline
+				li
+					a#show-movie-crew(href="#") Crew
+			.movie-info-content
+			
+		.col-md-2
 			h1
 				.side-movie-opts-large
 					.col-md-1

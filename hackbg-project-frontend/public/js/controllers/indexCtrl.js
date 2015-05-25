@@ -34,20 +34,21 @@ var IndexCtrl = (function(){
 			]
 		};
 
-		helpers.displayWithJade($(".about-div"), "/views/team-info.jade", teamData);
+		helpers.displayWithJade($(".about-div"), "/views/common/team-info.jade", teamData);
 		event.preventDefault();
 	}
 
 	var viewAboutInfo = function(event){
-		helpers.displayWithJade($(".about-div"), "/views/about-moviebook.jade");
+		helpers.displayWithJade($(".about-div"), "/views/common/about-moviebook.jade");
 		if(event){
 			event.preventDefault();
 		}
 	}
 
 	var init = function(){
-		helpers.displayWithJade($("header"), "/views/anon-header-nav.jade");
-		helpers.displayWithJade($(".content"), "/views/index.jade")
+		console.log($(".header")[0]);
+		helpers.displayWithJade($(".header"), "/views/common/anon-header-nav.jade")
+		.then(helpers.displayWithJade($(".content"), "/views/common/index.jade"))
 		.then(function(){
 			viewAboutInfo();
 
