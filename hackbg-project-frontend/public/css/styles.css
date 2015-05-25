@@ -29,7 +29,8 @@ header.navbar {
     header.navbar .navbar-right .btn {
       margin: 0 4px 0 4px; }
   header.navbar .navbar-header a, header.navbar .navbar-nav.navbar-right a {
-    color: black; }
+    color: black;
+    background-image: url("/img/mochaGrunge.png"); }
   header.navbar .navbar-form {
     height: 10%;
     padding: 0;
@@ -52,6 +53,8 @@ header.navbar {
       header.navbar .navbar-right .dropdown-menu a:hover {
         background-color: transparent;
         color: #555; }
+  header.navbar #main-nav {
+    background-image: url("/img/mochaGrunge.png"); }
 
 .center-form-div h1 {
   font-size: 3.3vw; }
@@ -84,10 +87,14 @@ header.navbar {
 .about-section {
   background-image: url("/img/sandpaper.png"); }
   .about-section .thumbnail {
-    background-color: #65B2B2; }
+    background-color: #65B2B2;
+    max-height: 130px; }
+    .about-section .thumbnail .img-thumbnail {
+      max-height: 80px; }
   .about-section .caption p {
     text-align: center;
-    color: white; }
+    color: white;
+    font-size: 80%; }
 
 .fullpage-section, .fullpage-section .center-form-div {
   position: absolute;

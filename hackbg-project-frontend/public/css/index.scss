@@ -42,10 +42,15 @@
 	background-image: url('/img/sandpaper.png'); 
 	.thumbnail {
 		background-color: #65B2B2;
+		max-height: 130px;
+		.img-thumbnail {
+			max-height: 80px;
+		}
 	}
 	.caption p {
 		text-align: center;
 		color: white;
+		font-size: 80%;
 	}
 }
 

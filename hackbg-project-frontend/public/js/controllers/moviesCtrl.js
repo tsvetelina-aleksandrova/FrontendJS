@@ -1,16 +1,28 @@
 var MoviesCtrl = (function(){
 
 	var init = function(){
-		helpers.displayWithJade($("header"), "/views/user-header-nav.jade");
+		helpers.displayWithJade($(".header"), "/views/user-header-nav.jade");
 		helpers.displayWithJade($(".content"), "/views/view-movies.jade")
 		.then(function(){
-			$('header').hover(function(event){
-				$("#main-nav").removeClass("hidden");
-				$("#main-nav").addClass("visible");
+			var $mainNav = $("#main-nav");
+			var $headerBrand = $('.navbar-header');
+			
+			$('.header').hover(function(event){
+				$mainNav.removeClass("hidden");
+				$mainNav.addClass("visible");
+
+				$headerBrand.removeClass("hidden");
+				$headerBrand.addClass("visible");
+
 				event.preventDefault();
 			}, function(event){
-				$("#main-nav").addClass("hidden");
-				$("#main-nav").removeClass("visible");
+				$mainNav.addClass("hidden");
+				$mainNav.removeClass("visible");
+
+				$headerBrand.addClass("hidden");
+				$headerBrand.removeClass("visible");
+
+				event.preventDefault();
 			});
 		});
 	}

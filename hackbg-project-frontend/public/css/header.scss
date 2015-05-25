@@ -15,6 +15,7 @@ header.navbar {
 	}
 	.navbar-header a, .navbar-nav.navbar-right a {
 		color: black;
+		background-image: url('/img/mochaGrunge.png');
 	}
 
 	.navbar-form {
@@ -47,5 +48,9 @@ header.navbar {
 				color: #555;
 			}	
 		}
+	}
+
+	#main-nav {
+		background-image: url('/img/mochaGrunge.png');
 	}
 }
