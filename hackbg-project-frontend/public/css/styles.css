@@ -49,7 +49,7 @@ header.navbar {
       background-color: transparent;
       color: #555; }
     header.navbar .navbar-right .dropdown-menu {
-      background-image: url("/img/sandpaper.png"); }
+      background-image: url("/img/mochaGrunge.png"); }
       header.navbar .navbar-right .dropdown-menu a:hover {
         background-color: transparent;
         color: #555; }
@@ -84,38 +84,32 @@ header.navbar {
 @media (max-width: 600px) {
   .center-form-div {
     width: 100%; } }
-.about-section {
-  background-image: url("/img/sandpaper.png"); }
-  .about-section .thumbnail {
-    background-color: #65B2B2;
-    max-height: 130px; }
-    .about-section .thumbnail .img-thumbnail {
-      max-height: 80px; }
-  .about-section .caption p {
-    text-align: center;
-    color: white;
-    font-size: 80%; }
+.about-section .thumbnail {
+  background-color: #65B2B2;
+  max-height: 130px; }
+  .about-section .thumbnail .img-thumbnail {
+    max-height: 80px; }
+.about-section .caption p {
+  text-align: center;
+  color: white;
+  font-size: 80%; }
 
 .fullpage-section, .fullpage-section .center-form-div {
   position: absolute;
   margin-top: 0;
   top: 20%; }
 
-.picks .row {
-  width: 100%; }
-.picks .see-more {
-  font-family: 'Comfortaa', cursive;
-  text-align: center;
-  margin-top: 150%; }
+#fullpage .section > div {
+  background-image: url("/img/sandpaper.png"); }
 
 .section {
   width: 100%; }
   .section > div {
-    background-image: url("/img/sandpaper.png");
+    background-color: #eee;
     width: 100%;
     padding: 10px;
     display: inline-block;
-    box-shadow: 0 0 10px #555;
+    box-shadow: 0 0 10px black;
     margin: 5% 0 0 0; }
   .section a {
     color: #65B2B2; }
@@ -124,11 +118,17 @@ header.navbar {
       text-decoration: none; }
   .section .movie-rating, .section .movie-rating a, .section .movie-rating a:hover {
     font-family: 'Comfortaa', cursive;
-    color: #FFFF00; }
+    color: #FF9900; }
   .section .movie-rating a:hover i {
     transform: scale(1.1); }
   .section h3 {
     font-family: 'Comfortaa', cursive; }
+  .section .picks .row {
+    width: 100%; }
+  .section .picks .see-more {
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
+    margin-top: 150%; }
 
 .movie-table {
   margin-left: 10%;
@@ -145,9 +145,8 @@ header.navbar {
 
 .btn-play {
   color: #65B2B2;
-  background-color: gray;
   display: inline-block;
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 5px 5px 5px 10px; }
   .btn-play:hover {
     color: #74BABA;
@@ -196,13 +195,14 @@ a.btn.btn-default.active {
   display: inline-block;
   padding: 5px;
   text-align: left;
-  color: white; }
+  color: #555;
+  width: 70%; }
 
 .movie-title {
   font-family: 'Comfortaa', cursive; }
 
 .thumbnail {
-  background-image: url("/img/mochaGrunge.png");
+  background-image: url("/img/sandpaper.png");
   display: inline;
   box-shadow: 0 0 7px #555;
   transition: all .4s ease; }

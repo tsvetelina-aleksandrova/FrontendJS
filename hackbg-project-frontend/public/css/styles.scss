@@ -63,7 +63,8 @@ a.btn.btn-default.active {
 	display: inline-block;
 	padding: 5px;
 	text-align: left;
-	color: white;
+	color: #555;
+	width: 70%;
 }
 
 .movie-title {
@@ -71,7 +72,7 @@ a.btn.btn-default.active {
 }
 
 .thumbnail {
-	background-image: url('/img/mochaGrunge.png');
+	background-image: url('/img/sandpaper.png');
 	display: inline;
 	.img-thumbnail {
 		padding: 0;

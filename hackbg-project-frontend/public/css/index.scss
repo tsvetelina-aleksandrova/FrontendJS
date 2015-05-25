@@ -39,7 +39,6 @@
 }
 
 .about-section {
-	background-image: url('/img/sandpaper.png'); 
 	.thumbnail {
 		background-color: #65B2B2;
 		max-height: 130px;
@@ -58,4 +57,8 @@
 	position: absolute;
 	margin-top: 0;
 	top: 20%;
+}
+
+#fullpage .section > div {
+	background-image: url('/img/sandpaper.png');
 }

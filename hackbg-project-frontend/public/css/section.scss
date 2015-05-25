@@ -1,22 +1,11 @@
-.picks {
-	.row {
-		width: 100%;
-	}
-	.see-more {
-		font-family: 'Comfortaa', cursive;
-		text-align: center;
-		margin-top: 150%;
-	}
-}
-
 .section {
 	width: 100%;
 	> div {
-		background-image: url('/img/sandpaper.png');
+		background-color: #eee;
 		width: 100%;
 		padding: 10px;
 		display: inline-block;
-		box-shadow: 0 0 10px #555;
+		box-shadow: 0 0 10px black;
 		margin: 5% 0 0 0;
 	}
 	a {
@@ -29,13 +18,23 @@
 
 	.movie-rating, .movie-rating a,  .movie-rating a:hover{
 		font-family: 'Comfortaa', cursive;
-		color: #FFFF00;
+		color: #FF9900;
 	}
 	.movie-rating a:hover i { 
 		transform: scale(1.1); 
 	}
 	h3 {
 		font-family: 'Comfortaa', cursive;
+	}
+	.picks {
+		.row {
+			width: 100%;
+		}
+		.see-more {
+			font-family: 'Comfortaa', cursive;
+			text-align: center;
+			margin-top: 150%;
+		}
 	}
 }
 
@@ -58,9 +57,8 @@
 
 .btn-play {
 	color: #65B2B2;
-	background-color: gray;
 	display: inline-block;
-	border-radius: 10px;
+	border-radius: 20px;
 	padding: 5px 5px 5px 10px;
 	&:hover {
 		color: #74BABA;
