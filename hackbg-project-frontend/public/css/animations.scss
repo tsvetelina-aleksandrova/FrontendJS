@@ -1,6 +1,6 @@
 .slide-right {
-    animation-duration: 1s;
-  	animation-name: slidein-right;
+  animation-duration: 1s;
+  animation-name: slidein-right;
 }
 
 @keyframes slidein-right {
@@ -8,13 +8,13 @@
     margin-left: 10%;
   }
   to {
-    margin-left: 0%;
+    margin-left: 0;
   }
 }
 
 .slide-left {
-    animation-duration: 1s;
-  	animation-name: slidein-left;
+  animation-duration: 1s;
+  animation-name: slidein-left;
 }
 
 @keyframes slidein-left {
@@ -22,6 +22,6 @@
     margin-right: 10%;
   }
   to {
-    margin-right: 0%;
+    margin-right: 0;
   }
 }

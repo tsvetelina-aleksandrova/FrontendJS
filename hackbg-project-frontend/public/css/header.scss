@@ -38,14 +38,14 @@ header.navbar {
 		}
 		li.dropdown.open .dropdown-toggle {
 			background-color:  transparent;
-			color: #65B2B2;
+			color: #555;
 		}
-	}
-	.dropdown-menu {
-		background-color:  transparent;
-		a:hover {
-			background-color:  transparent;
-			color: #65B2B2;
-		}	
+		.dropdown-menu {
+			background-image: url('/img/sandpaper.png');
+			a:hover {
+				background-color:  transparent;
+				color: #555;
+			}	
+		}
 	}
 }

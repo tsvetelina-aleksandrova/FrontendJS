@@ -6,7 +6,7 @@
   from {
     margin-left: 10%; }
   to {
-    margin-left: 0%; } }
+    margin-left: 0; } }
 .slide-left {
   animation-duration: 1s;
   animation-name: slidein-left; }
@@ -15,7 +15,7 @@
   from {
     margin-right: 10%; }
   to {
-    margin-right: 0%; } }
+    margin-right: 0; } }
 header.navbar {
   width: 100%;
   position: fixed;
@@ -46,12 +46,12 @@ header.navbar {
       line-height: 20px; }
     header.navbar .navbar-right li.dropdown.open .dropdown-toggle {
       background-color: transparent;
-      color: #65B2B2; }
-  header.navbar .dropdown-menu {
-    background-color: transparent; }
-    header.navbar .dropdown-menu a:hover {
-      background-color: transparent;
-      color: #65B2B2; }
+      color: #555; }
+    header.navbar .navbar-right .dropdown-menu {
+      background-image: url("/img/sandpaper.png"); }
+      header.navbar .navbar-right .dropdown-menu a:hover {
+        background-color: transparent;
+        color: #555; }
 
 .center-form-div h1 {
   font-size: 3.3vw; }
@@ -59,7 +59,6 @@ header.navbar {
 .center-form-div, .about-div {
   background-color: white;
   border-radius: 5px;
-  -webkit-box-shadow: 0 0 20px black;
   box-shadow: 0 0 20px black; }
   .center-form-div .btn, .about-div .btn {
     width: 100%; }
@@ -118,5 +117,69 @@ form .form-control:focus {
 
 a.btn.btn-default.active {
   cursor: default; }
+
+.hidden {
+  opacity: 0;
+  transition: opacity 0.7s;
+  transition-timing-function: ease; }
+
+.visible {
+  opacity: 1;
+  transition: opacity 0.7s;
+  transition-timing-function: ease; }
+
+.movie-year {
+  font-family: 'Comfortaa', cursive;
+  color: #555;
+  font-size: 80%; }
+
+.capture {
+  display: inline-block;
+  padding: 5px;
+  text-align: left;
+  color: white; }
+
+.movie-rating {
+  font-family: 'Comfortaa', cursive;
+  color: #FFFF00; }
+
+.movie-title {
+  font-family: 'Comfortaa', cursive; }
+
+.section h3 {
+  font-family: 'Coustard', serif; }
+
+.picks {
+  background-image: url("/img/sandpaper.png");
+  border-radius: 7px;
+  padding: 20px;
+  box-shadow: 0 0 10px #555;
+  margin-left: 4%; }
+  .picks .row {
+    width: 90%; }
+
+.thumbnail {
+  background-image: url("/img/mochaGrunge.png");
+  box-shadow: 0 0 7px #555;
+  transition: all .4s ease; }
+  .thumbnail .img-thumbnail {
+    padding: 0; }
+  .thumbnail:hover {
+    transform: scale(1.02); }
+
+.see-more {
+  font-family: 'Comfortaa', cursive;
+  position: absolute;
+  top: 40%;
+  margin-left: 85%; }
+  .see-more p {
+    text-align: center;
+    margin-top: 10px; }
+
+.btn-play {
+  color: #65B2B2; }
+  .btn-play:hover {
+    color: #74BABA;
+    text-decoration: none; }
 
 /*# sourceMappingURL=styles.css.map */
