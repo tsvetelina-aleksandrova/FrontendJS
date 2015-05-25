@@ -8,6 +8,8 @@
 @import 'header';
 @import 'index';
 @import 'section';
+@import 'footer';
+@import 'tables';
 
 * {
 	font-family: Verdana;
@@ -82,5 +84,60 @@ a.btn.btn-default.active {
 	transition: all .4s ease;
 	&:hover { 
 		transform: scale(1.02); 
+	}
+}
+
+.movie-info {
+	background-image: url('/img/sandpaper.png');
+	margin-left: 5%;
+	h1 {
+		font-family: 'Comfortaa', cursive;
+		margin-bottom: 20px;
+		margin-left: 20px;
+	}
+	.img-thumbnail {
+		max-height: 500px;
+	}
+
+	.movie-info-content {
+		background-color: #eee;
+		padding: 10px;
+		border-radius: 10px;
+		margin-top: 20px;
+	}
+}
+
+.nav-tabs {
+	li > a{
+		color:  #555;
+		font-family: 'Comfortaa', cursive;
+		&:hover {
+			color: #74BABA;
+		}
+	}
+}
+
+.side-movie-opts-large, .side-movie-opts-small {
+	.movie-rating, .movie-rating:hover{
+		font-family: 'Comfortaa', cursive;
+		color: #FF9900;
+	}
+	a:hover i { 
+		transform: scale(1.1); 
+	}
+}
+
+@media(min-width: 600px){
+	.side-movie-opts-large {
+		opacity: 1;
+		position: fixed;
+		right: 0;
+	}
+}
+
+@media(max-width: 600px){
+	.side-movie-opts-large {
+		opacity: 0;
+
 	}
 }

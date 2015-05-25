@@ -1,0 +1,25 @@
+.movie-table {
+	margin-left: 10%;
+	border: 1px solid #65B2B2;
+	border-radius: 10px;
+	border-collapse: collapse;
+	td {
+		padding: 20px 50px 10px 50px;
+	}
+	tr {
+		border: 1px solid #65B2B2;
+	}
+	tr:nth-of-type(even) {
+		background-color: rgba(0.5, 0.5, 0.5, 0.05);
+	}	
+	.img-thumbnail {
+		max-height: 600px;
+	}
+}
+
+.movie-info-table {
+	margin-top: 20px;
+	td {
+		padding: 0 30px 20px 0;
+	}
+}

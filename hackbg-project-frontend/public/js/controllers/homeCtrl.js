@@ -1,30 +1,8 @@
 var HomeCtrl = (function(){
 
 	var init = function(){
-		helpers.displayWithJade($(".header"), "/views/user-header-nav.jade");
-		helpers.displayWithJade($(".content"), "/views/home.jade")
-		.then(function(){
-			var $mainNav = $("#main-nav");
-			var $headerBrand = $('.navbar-header');
-			
-			$('.header').hover(function(event){
-				$mainNav.removeClass("hidden");
-				$mainNav.addClass("visible");
-
-				$headerBrand.removeClass("hidden");
-				$headerBrand.addClass("visible");
-
-				event.preventDefault();
-			}, function(event){
-				$mainNav.addClass("hidden");
-				$mainNav.removeClass("visible");
-
-				$headerBrand.addClass("hidden");
-				$headerBrand.removeClass("visible");
-
-				event.preventDefault();
-			});
-		});
+		ctrlHelper.init();
+		helpers.displayWithJade($(".content"), "/views/home.jade");
 	}
 
 	return {

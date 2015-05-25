@@ -38,23 +38,6 @@
 	}
 }
 
-.movie-table {
-	margin-left: 10%;
-	border: 1px solid #65B2B2;
-	border-radius: 10px;
-	border-collapse: collapse;
-	td {
-		padding: 20px 50px 10px 50px;
-		border: 1px solid #65B2B2;
-	}
-	tr:nth-of-type(even) {
-		background-color: rgba(0.5, 0.5, 0.5, 0.05);
-	}	
-	.thumbnail .img-thumbnail {
-		max-height: 100px;
-	}
-}
-
 .btn-play {
 	color: #65B2B2;
 	display: inline-block;
