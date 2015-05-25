@@ -89,10 +89,62 @@ header.navbar {
     text-align: center;
     color: white; }
 
-.section, .section .center-form-div {
+.fullpage-section, .fullpage-section .center-form-div {
   position: absolute;
   margin-top: 0;
   top: 20%; }
+
+.picks .row {
+  width: 100%; }
+.picks .see-more {
+  font-family: 'Comfortaa', cursive;
+  text-align: center;
+  margin-top: 150%; }
+
+.section {
+  width: 100%; }
+  .section > div {
+    background-image: url("/img/sandpaper.png");
+    width: 100%;
+    padding: 10px;
+    display: inline-block;
+    box-shadow: 0 0 10px #555;
+    margin: 5% 0 0 0; }
+  .section a {
+    color: #65B2B2; }
+    .section a:hover {
+      color: #74BABA;
+      text-decoration: none; }
+  .section .movie-rating, .section .movie-rating a, .section .movie-rating a:hover {
+    font-family: 'Comfortaa', cursive;
+    color: #FFFF00; }
+  .section .movie-rating a:hover i {
+    transform: scale(1.1); }
+  .section h3 {
+    font-family: 'Comfortaa', cursive; }
+
+.movie-table {
+  margin-left: 10%;
+  border: 1px solid #65B2B2;
+  border-radius: 10px;
+  border-collapse: collapse; }
+  .movie-table td {
+    padding: 20px 50px 10px 50px;
+    border: 1px solid #65B2B2; }
+  .movie-table tr:nth-of-type(even) {
+    background-color: rgba(0, 0, 0, 0.05); }
+  .movie-table .thumbnail .img-thumbnail {
+    max-height: 100px; }
+
+.btn-play {
+  color: #65B2B2;
+  background-color: gray;
+  display: inline-block;
+  border-radius: 10px;
+  padding: 5px 5px 5px 10px; }
+  .btn-play:hover {
+    color: #74BABA;
+    text-decoration: none; }
 
 * {
   font-family: Verdana; }
@@ -139,47 +191,18 @@ a.btn.btn-default.active {
   text-align: left;
   color: white; }
 
-.movie-rating {
-  font-family: 'Comfortaa', cursive;
-  color: #FFFF00; }
-
 .movie-title {
   font-family: 'Comfortaa', cursive; }
 
-.section h3 {
-  font-family: 'Coustard', serif; }
-
-.picks {
-  background-image: url("/img/sandpaper.png");
-  border-radius: 7px;
-  padding: 20px;
-  box-shadow: 0 0 10px #555;
-  margin-left: 4%; }
-  .picks .row {
-    width: 90%; }
-
 .thumbnail {
   background-image: url("/img/mochaGrunge.png");
+  display: inline;
   box-shadow: 0 0 7px #555;
   transition: all .4s ease; }
   .thumbnail .img-thumbnail {
-    padding: 0; }
+    padding: 0;
+    max-height: 150px; }
   .thumbnail:hover {
     transform: scale(1.02); }
-
-.see-more {
-  font-family: 'Comfortaa', cursive;
-  position: absolute;
-  top: 40%;
-  margin-left: 85%; }
-  .see-more p {
-    text-align: center;
-    margin-top: 10px; }
-
-.btn-play {
-  color: #65B2B2; }
-  .btn-play:hover {
-    color: #74BABA;
-    text-decoration: none; }
 
 /*# sourceMappingURL=styles.css.map */

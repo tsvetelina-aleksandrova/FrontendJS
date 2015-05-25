@@ -10,7 +10,12 @@ var app = (function(){
 			url: "/home",
 			default: true,
 			ctrl: "HomeCtrl"
+		}, {
+			url: "/movies",
+			default: true,
+			ctrl: "MoviesCtrl"
 		}
+
 	];
 
 	var init = function(){

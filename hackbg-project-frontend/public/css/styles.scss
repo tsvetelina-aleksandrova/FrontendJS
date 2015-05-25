@@ -7,6 +7,7 @@
 @import 'animations';
 @import 'header';
 @import 'index';
+@import 'section';
 
 * {
 	font-family: Verdana;
@@ -65,57 +66,20 @@ a.btn.btn-default.active {
 	color: white;
 }
 
-.movie-rating {
-	font-family: 'Comfortaa', cursive;
-	color: #FFFF00;
-}
-
 .movie-title {
 	font-family: 'Comfortaa', cursive;
 }
 
-.section h3 {
-	font-family: 'Coustard', serif;
-}
-
-.picks {
-	background-image: url('/img/sandpaper.png');
-	border-radius: 7px;
-	padding: 20px;
-	box-shadow: 0 0 10px #555;
-	margin-left: 4%;
-	.row {
-		width: 90%;
-	}
-}
-
 .thumbnail {
 	background-image: url('/img/mochaGrunge.png');
+	display: inline;
 	.img-thumbnail {
 		padding: 0;
+		max-height: 150px;
 	}
 	box-shadow: 0 0 7px #555;
 	transition: all .4s ease;
 	&:hover { 
 		transform: scale(1.02); 
-	}
-}
-
-.see-more {
-	font-family: 'Comfortaa', cursive;
-	position: absolute;
-	top: 40%;
-	margin-left: 85%;
-	p {
-		text-align: center;
-		margin-top: 10px;
-	}
-}
-
-.btn-play {
-	color: #65B2B2;
-	&:hover {
-		color: #74BABA;
-		text-decoration: none;
 	}
 }

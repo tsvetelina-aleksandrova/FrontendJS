@@ -1,8 +1,8 @@
-var HomeCtrl = (function(){
+var MoviesCtrl = (function(){
 
 	var init = function(){
 		helpers.displayWithJade($("header"), "/views/user-header-nav.jade");
-		helpers.displayWithJade($(".content"), "/views/home.jade")
+		helpers.displayWithJade($(".content"), "/views/view-movies.jade")
 		.then(function(){
 			$('header').hover(function(event){
 				$("#main-nav").removeClass("hidden");

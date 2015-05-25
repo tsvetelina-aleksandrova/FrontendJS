@@ -1,6 +1,6 @@
-#fullpage
-	.section
-		.picks
+.section
+	.picks
+		.col-md-11
 			h3 Newest
 			.row
 				.col-md-3.col-lg-3.col-sm-6
@@ -47,13 +47,13 @@
 									.col-md-6
 										p.movie-rating.pull-right 4.9 
 											i.fa.fa-star
-			.see-more
-				h4 See more
-					p
-						a.btn-play(href="#") 
-							i.fa.fa-forward.fa-3x
-	.section
-		.picks
+		.col-md-1
+			.row
+				h4.see-more
+					a.btn-play(href="#") 
+						i.fa.fa-forward.fa-3x
+	.picks
+		.col-md-11
 			h3 Top rated
 			.row
 				.col-md-3.col-lg-3.col-sm-6
@@ -100,61 +100,37 @@
 									.col-md-6
 										p.movie-rating.pull-right 4.9 
 											i.fa.fa-star
-			.see-more
-				h4 See more
-					p
-						a.btn-play(href="#") 
-							i.fa.fa-forward.fa-3x
-	.section
-		.picks
-			h3 Categories
+		.col-md-1
 			.row
-				.col-md-3.col-lg-3.col-sm-6
-					a(href="#")
-						.thumbnail
-							img.img-thumbnail(src="/img/team-img.jpg")
-							.capture.center-block
-								.row
-									.col-md-6
-										p.movie-title Title
-									.col-md-6
-										p.movie-rating.pull-right 4.9 
-											i.fa.fa-star
-				.col-md-3.col-lg-3.col-sm-6
-					a(href="#")
-						.thumbnail
-							img.img-thumbnail(src="/img/team-img.jpg")
-							.capture.center-block
-								.row
-									.col-md-6
-										p.movie-title Title
-									.col-md-6
-										p.movie-rating.pull-right 4.9 
-											i.fa.fa-star
-				.col-md-3.col-lg-3.col-sm-6
-					a(href="#")
-						.thumbnail
-							img.img-thumbnail(src="/img/team-img.jpg")
-							.capture.center-block
-								.row
-									.col-md-6
-										p.movie-title Title
-									.col-md-6
-										p.movie-rating.pull-right 4.9 
-											i.fa.fa-star
-				.col-md-3.col-lg-3.col-sm-6
-					a(href="#")
-						.thumbnail
-							img.img-thumbnail(src="/img/team-img.jpg")
-							.capture.center-block
-								.row
-									.col-md-6
-										p.movie-title Title
-									.col-md-6
-										p.movie-rating.pull-right 4.9 
-											i.fa.fa-star
-			.see-more
-				h4 See more
-					p
-						a.btn-play(href="#") 
-							i.fa.fa-forward.fa-3x
+				h4.see-more
+					a.btn-play(href="#") 
+						i.fa.fa-forward.fa-3x
+.section
+	div
+		h3 Categories
+		.row
+			.col-md-3
+				a(href="#")
+					h4 Comedy
+			.col-md-3
+				a(href="#")
+					h4 Animation
+			.col-md-3
+				a(href="#")
+					h4 Crime
+			.col-md-3
+				a(href="#")
+					h4 Horror
+		.row
+			.col-md-3
+				a(href="#")
+					h4 Sci-fi
+			.col-md-3
+				a(href="#")
+					h4 Thriller
+			.col-md-3
+				a(href="#")
+					h4 Mystery
+			.col-md-3
+				a(href="#")
+					h4 Horror
