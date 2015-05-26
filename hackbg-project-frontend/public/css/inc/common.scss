@@ -1,0 +1,119 @@
+* {
+	font-family: Verdana;
+}
+
+body {
+	background-image: url('/img/mochaGrunge_@2X.png');
+}
+
+body, .btn, .form-control, .dropdown .dropdown-menu a, .dropdown-toggle {
+	font-family: 'Comfortaa', cursive;
+}
+
+.brand-name {
+	font-family: 'Lemon', cursive;
+}
+
+.btn.btn-info {
+	background-color: #65B2B2;
+	&:hover, &:active {
+		background-color: #74BABA;
+	}
+}
+
+form .form-control:focus {
+    border-color: #74BABA;
+    box-shadow: 0 0 6px #74BABA;
+}
+
+a.btn.btn-default.active {
+	cursor: default;
+}
+
+.hidden {
+	opacity: 0;
+    transition: opacity 0.7s;
+    transition-timing-function: ease;
+}
+
+.visible {
+	opacity: 1;
+	transition: opacity 0.7s;
+    transition-timing-function: ease;
+}
+
+.movie-year {
+	font-family: 'Comfortaa', cursive;
+	color: #555;
+	font-size: 80%;
+}
+
+.capture {
+	display: inline-block;
+	padding: 5px;
+	text-align: left;
+	color: #555;
+	width: 70%;
+}
+
+.movie-title {
+	font-family: 'Comfortaa', cursive;
+}
+
+.thumbnail {
+	background-image: url('/img/sandpaper.png');
+	display: inline;
+	.img-thumbnail {
+		padding: 0;
+		max-height: 150px;
+	}
+	box-shadow: 0 0 7px #555;
+	transition: all .4s ease;
+	&:hover { 
+		transform: scale(1.02); 
+	}
+}
+
+.nav-tabs {
+	li > a{
+		color:  #555;
+		font-family: 'Comfortaa', cursive;
+		&:hover {
+			color: #74BABA;
+		}
+	}
+}
+
+.side-movie-opts-large, .side-movie-opts-small {
+	.movie-rating, .movie-rating:hover{
+		font-family: 'Comfortaa', cursive;
+		color: #FF9900;
+	}
+	a:hover i { 
+		transform: scale(1.1); 
+	}
+}
+
+.side-movie-opts-large {
+	background-color: #eee;
+	border-radius: 10px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+	padding: 5px;
+}
+
+@media(min-width: 600px){
+	.side-movie-opts-large {
+		opacity: 1;
+		position: fixed;
+		right: 0;
+		bottom: 200px;
+	}
+}
+
+@media(max-width: 600px){
+	.side-movie-opts-large {
+		opacity: 0;
+
+	}
+}

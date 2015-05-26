@@ -1,0 +1,32 @@
+.content(ng-controller="IndexCtrl")
+	#fullpage
+		.section.fullpage-section
+			.center-form-div
+				h1.brand-name Moviebook
+				form
+					input.form-control(type="text", placeholder="Name")
+					input.form-control(type="password", placeholder="Password")
+					button.btn.btn-info Log in
+		.section.fullpage-section
+			.about-section(ng-controller="IndexCtrl")
+				.about-div(ng-bind-html="to_trusted(contentInfo)")
+			
+		.section.fullpage-section
+			.center-form-div
+				h1.brand-name Moviebook
+				form
+					input.form-control(type="text", placeholder="Name")
+					input.form-control(type="text", placeholder="Email")
+					input.form-control(type="password", placeholder="Password")
+					button.btn.btn-info Sign up
+	script(type='text/javascript').
+		$(document).ready(function(){
+			$('#fullpage').fullpage({
+			  anchors:['loginPage', 'aboutPage', 'signupPage'],
+			  navigation: true,
+			  navigationPosition: 'left',
+			  navigationTooltips: ['Log in', 'About', 'Sign up'],
+			  menu: '#header-nav-menu'
+			});
+		});
+		

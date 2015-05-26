@@ -48,3 +48,27 @@
 		text-decoration: none;
 	}
 }
+
+.movie-info {
+	background-image: url('/img/sandpaper.png');
+	margin-left: 5%;
+	h1 {
+		font-family: 'Comfortaa', cursive;
+		margin-bottom: 20px;
+		margin-left: 20px;
+	}
+	.img-thumbnail {
+		max-height: 600px;
+	}
+
+	.movie-info-content {
+		background-color: #eee;
+		padding: 10px;
+		border-radius: 10px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+		display: inline-block;
+		min-width: 100%;
+		min-height: 60%;
+	}
+}

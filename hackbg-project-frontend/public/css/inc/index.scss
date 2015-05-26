@@ -40,7 +40,8 @@
 
 .about-section {
 	.thumbnail {
-		background-color: #65B2B2;
+		background-color: #eee;
+		background-image: none;
 		max-height: 130px;
 		.img-thumbnail {
 			max-height: 80px;
@@ -48,7 +49,7 @@
 	}
 	.caption p {
 		text-align: center;
-		color: white;
+		color: #555;
 		font-size: 80%;
 	}
 }
