@@ -1,36 +1,18 @@
-var UsersCtrl = (function(){
+var UsersCtrl = function($scope, $state, $http, $sce){
+	$scope.tabsVisibility = {
+		info: true,
+		favs: false,
+		watchlist: false
+	};
 
-	var init = function(){
-		ctrlHelper.init();
-		helpers.displayWithJade($(".content"), "/views/users/user.jade")
-		.then(function() {
-			$(".movie-info").on("click", "#show-user-info", function(event){
-				helpers.displayWithJade($(".movie-info-content"), 
-					"/views/users/user-general.jade").done();
-				helpers.toggleNavActive($(this));
-				event.preventDefault();
-			});
-
-			$(".movie-info").on("click", "#show-user-favs", function(event){
-				helpers.displayWithJade($(".movie-info-content"), 
-					"/views/movies/view-movies.jade").done();
-				helpers.toggleNavActive($(this));
-				event.preventDefault();
-			});
-
-			$(".movie-info").on("click", "#show-user-watchlist", function(event){
-				helpers.displayWithJade($(".movie-info-content"), 
-					"/views/movies/view-movies.jade").done();
-				helpers.toggleNavActive($(this));
-				event.preventDefault();
-			});
-
-			$("#show-user-info").trigger("click");
-		    
+	$scope.showTabContent = function(name){
+		console.log(name);
+		Object.keys($scope.tabsVisibility).forEach(function(key){
+			if(key === name) {
+				$scope.tabsVisibility[key] = true;
+			} else {
+				$scope.tabsVisibility[key] = false;
+			}
 		});
 	}
-
-	return {
-		init: init
-	};
-}());
+};

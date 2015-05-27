@@ -1,23 +1,34 @@
-var IndexCtrl = function ($scope, $state, $http, $sce){//, Auth) {
+var IndexCtrl = function ($scope, $state, $http, $sce, Auth) {
 
-	//$scope.$state = $state;
+	$scope.$state = $state;
 
-	$//scope.userData = Auth.getUserData();
+	$scope.userData = Auth.getUserData();
 
-/*
+	$scope.userCreds = {
+		username: "", 
+		password: ""
+	};
+
+	$scope.userRegData = {
+		username: "", 
+		password: "",
+		email: ""
+	};
+
 	$scope.loggedIn = function(){
 		return Auth.loggedIn();
 	}
 
-	$scope.login = function(user){
-		Auth.login(user).then(function(){
-			$state.go("admin");
+	$scope.login = function(){
+		console.log($scope.userCreds);
+		Auth.login($scope.userCreds).then(function(){
+			$state.go("home");
 			$scope.userData = Auth.getUserData();
 		});
 	}
 
-	$scope.register = function(user){
-		Auth.register(user).then(function(){
+	$scope.register = function(){
+		Auth.register($scope.userRegData).then(function(){
 			$state.go("home");
 		});
 	}
@@ -37,33 +48,37 @@ var IndexCtrl = function ($scope, $state, $http, $sce){//, Auth) {
 					$state.go("home");
 				}
 		});
-*/
 
-	$scope.callFunction = function (name){
-		if(typeof name === "string" && name!=""){
-        	angular.isFunction($scope[name])
-        	$scope[name]()
-        }
-    }
+	$scope.team = [
+		{
+			name: "Tsvetelina Aleksandrova",
+			img: "team-img.jpg"
+		},
+		{
+			name: "Tsvetan Hristov",
+			img: "team-img.jpg"
+		},
+		{
+			name: "Philip Ghenev",
+			img: "team-img.jpg"
+		},
+		{
+			name: "Stilian Tanev",
+			img: "team-img.jpg"
+		},
+		{
+			name: "Ivelin Todorov",
+			img: "team-img.jpg"
+		},
+		{
+			name: "Ivan Atanasov",
+			img: "team-img.jpg"
+		},
+		{
+			name: "Vladislav Atanasov",
+			img: "team-img.jpg"
+		}
+	];
 
-	$scope.showTeamInfo = function(){
-		$http.get("/states/common/team-info").then(function(contentInfo){
-			$scope.contentInfo = contentInfo.data;
-			console.log($scope.contentInfo);
-		});
-	}
-
-	$scope.showAbout = function(){
-		$http.get("/states/common/about-moviebook").then(function(contentInfo){
-			$scope.contentInfo = contentInfo.data;
-			console.log($scope.contentInfo);
-		});
-	}
-
-	$scope.to_trusted = function(html_code) {
-    	return $sce.trustAsHtml(html_code);
-	}
-
-	$scope.showAbout();
-
+	$scope.showTeamInfo = false;
 };

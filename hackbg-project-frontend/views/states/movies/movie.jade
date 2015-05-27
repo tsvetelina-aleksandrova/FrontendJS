@@ -1,4 +1,4 @@
-.section
+.section(ng-controller="MoviesCtrl")
 	.movie-info
 		h1 Movie title
 			.side-movie-opts-small
@@ -12,21 +12,73 @@
 				img.img-thumbnail(src="../img/team-img.jpg")
 		.col-md-7
 			ul.nav.nav-tabs
-				li.active
-					a#show-movie-gen-info(href="#") General info
-				li
-					a#show-movie-story(href="#") Storyline
-				li
-					a#show-movie-crew(href="#") Crew
+				li(ng-class="{'active': tabsVisibility.info}")
+					a(href="#", ng-click="showTabContent('info')") General info
+				li(ng-class="{'active': tabsVisibility.story}")
+					a(href="#", ng-click="showTabContent('story')") Storyline
+				li(ng-class="{'active': tabsVisibility.crew}")
+					a(href="#", ng-click="showTabContent('crew')") Crew
 			.movie-info-content
-			
+				table.movie-info-table(ng-class="tabsVisibility.info ? 'visible' : 'hidden'")
+					tbody
+						tr
+							td Year:
+							td 1990
+						tr
+							td Duration:
+							td 00:00
+						tr
+							td Genre:
+							td Blah
+				h2(ng-class="tabsVisibility.story ? 'visible' : 'hidden'") Storyline
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+					p fslafjdskfjlsfj
+				table.movie-info-table(ng-class="tabsVisibility.crew ? 'visible' : 'hidden'")
+					tbody
+						tr
+							td Director:
+							td 1990
+						tr
+							td Producer:
+							td 00:00
+						tr
+							td Actors:
+							td Blah
+
 		.col-md-2
 			h1
 				.side-movie-opts-large
 					.col-md-1
-						a.movie-rating(href="#", title="Add to favorites")
+						a.movie-rating(title="Add to favorites")
 							i.fa.fa-star
-						a(href="#", title="Watch later")
+						a(title="Watch later")
 							i.fa.fa-clock-o
 
 

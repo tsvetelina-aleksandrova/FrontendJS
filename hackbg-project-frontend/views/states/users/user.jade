@@ -1,4 +1,4 @@
-.section
+.section(ng-controller="UsersCtrl")
 	.movie-info
 		h1 User name
 			.side-movie-opts-small
@@ -9,13 +9,177 @@
 				img.img-thumbnail(src="../img/team-img.jpg")
 		.col-md-7
 			ul.nav.nav-tabs
-				li.active
-					a#show-user-info(href="#") Info
-				li
-					a#show-user-favs(href="#") Favorites
-				li
-					a#show-user-watchlist(href="#") Watchlist
+				li(ng-class="{'active': tabsVisibility.info}")
+					a#show-user-info(href="#", ng-click="showTabContent('info')") Info
+				li(ng-class="{'active': tabsVisibility.favs}")
+					a#show-user-favs(href="#", ng-click="showTabContent('favs')") Favorites
+				li(ng-class="{'active': tabsVisibility.watchlist}")
+					a#show-user-watchlist(href="#", ng-click="showTabContent('watchlist')") Watchlist
 			.movie-info-content
+				table.movie-info-table(ng-class="tabsVisibility.info ? 'visible' : 'hidden'")
+					tbody
+						tr
+							td Real name:
+							td Ramsay
+						tr
+							td Years:
+							td 30
+						tr
+							td Sex:
+							td m/f
+						tr
+							td Fb:
+							td linkhere
+				table.movie-table(ng-class="tabsVisibility.favs ? 'visible' : 'hidden'")
+					tbody
+					tr
+						td
+							a(href="#")
+								img.img-thumbnail(src="../img/team-img.jpg")
+						td
+							p.movie-title Title
+						td 
+							p.movie-year 1990
+						td
+							p.movie-rating.pull-right 4.9 
+						td 
+							h2.movie-rating
+								a(href="#")
+									i.fa.fa-star
+						td 
+							h2
+								a(href="#")
+									i.fa.fa-clock-o
+					tr
+						td
+							a(href="#")
+								img.img-thumbnail(src="../img/team-img.jpg")
+						td
+							p.movie-title Title
+						td 
+							p.movie-year 1990
+						td
+							p.movie-rating.pull-right 4.9 
+						td 
+							h2.movie-rating
+								a(href="#")
+									i.fa.fa-star
+						td 
+							h2
+								a(href="#")
+									i.fa.fa-clock-o
+					tr
+						td
+							a(href="#")
+								img.img-thumbnail(src="../img/team-img.jpg")
+						td
+							p.movie-title Title
+						td 
+							p.movie-year 1990
+						td
+							p.movie-rating.pull-right 4.9 
+						td 
+							h2.movie-rating
+								a(href="#")
+									i.fa.fa-star
+						td 
+							h2
+								a(href="#")
+									i.fa.fa-clock-o
+					tr
+						td
+							a(href="#")
+								img.img-thumbnail(src="../img/team-img.jpg")
+						td
+							p.movie-title Title
+						td 
+							p.movie-year 1990
+						td
+							p.movie-rating.pull-right 4.9 
+						td 
+							h2.movie-rating
+								a(href="#")
+									i.fa.fa-star
+						td 
+							h2
+								a(href="#")
+									i.fa.fa-clock-o
+				table.movie-table(ng-class="tabsVisibility.watchlist ? 'visible' : 'hidden'")
+					p Watch
+					tbody
+					tr
+						td
+							a(href="#")
+								img.img-thumbnail(src="../img/team-img.jpg")
+						td
+							p.movie-title Title
+						td 
+							p.movie-year 1990
+						td
+							p.movie-rating.pull-right 4.9 
+						td 
+							h2.movie-rating
+								a(href="#")
+									i.fa.fa-star
+						td 
+							h2
+								a(href="#")
+									i.fa.fa-clock-o
+					tr
+						td
+							a(href="#")
+								img.img-thumbnail(src="../img/team-img.jpg")
+						td
+							p.movie-title Title
+						td 
+							p.movie-year 1990
+						td
+							p.movie-rating.pull-right 4.9 
+						td 
+							h2.movie-rating
+								a(href="#")
+									i.fa.fa-star
+						td 
+							h2
+								a(href="#")
+									i.fa.fa-clock-o
+					tr
+						td
+							a(href="#")
+								img.img-thumbnail(src="../img/team-img.jpg")
+						td
+							p.movie-title Title
+						td 
+							p.movie-year 1990
+						td
+							p.movie-rating.pull-right 4.9 
+						td 
+							h2.movie-rating
+								a(href="#")
+									i.fa.fa-star
+						td 
+							h2
+								a(href="#")
+									i.fa.fa-clock-o
+					tr
+						td
+							a(href="#")
+								img.img-thumbnail(src="../img/team-img.jpg")
+						td
+							p.movie-title Title
+						td 
+							p.movie-year 1990
+						td
+							p.movie-rating.pull-right 4.9 
+						td 
+							h2.movie-rating
+								a(href="#")
+									i.fa.fa-star
+						td 
+							h2
+								a(href="#")
+									i.fa.fa-clock-o
+
 		.col-md-2
 			h1
 				.side-movie-opts-large

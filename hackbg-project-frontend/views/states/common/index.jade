@@ -3,30 +3,48 @@
 		.section.fullpage-section
 			.center-form-div
 				h1.brand-name Moviebook
-				form
-					input.form-control(type="text", placeholder="Name")
-					input.form-control(type="password", placeholder="Password")
+				form(ng-submit="login()")
+					input.form-control(ng-model="userCreds.username", required name="username", type="text", placeholder="Name")
+					input.form-control(ng-model="userCreds.password", required name="password", type="password", placeholder="Password")
 					button.btn.btn-info Log in
 		.section.fullpage-section
-			.about-section(ng-controller="IndexCtrl")
-				.about-div(ng-bind-html="to_trusted(contentInfo)")
-			
+			.about-section
+				.about-div
+					.slide-right(ng-show="!showTeamInfo")
+						h1 What makes 
+							span.brand-name Moviebook 
+							| amazing?
+						h4 Moviebook is an awesome place for movie enthusiasts!
+						h4 What can you do here?
+						ul
+							li Find new movies and add them to your favorites
+							li Create and manage movie watchlists
+							li Find people with common movie interests
+							li Connect with friends from around the world!
+						a(href="#", ng-click="showTeamInfo = true")
+							| Check out the Moviebook team
+							span.fa.fa-long-arrow-right
+
+					.slide-left(ng-show="showTeamInfo")
+						h3 The 
+							span.brand-name Moviebook
+							|  team
+						.container-fluid
+							.col-md-3.col-lg-3.col-sm-6(ng-repeat="person in team track by $index")
+								.thumbnail
+									img.img-thumbnail(ng-src="../img/{{person.img}}")
+									.caption 
+										p {{ person.name }}
+						a(href="#", ng-click="showTeamInfo = false")
+							span.fa.fa-long-arrow-left 
+							| About Moviebook
+
 		.section.fullpage-section
 			.center-form-div
 				h1.brand-name Moviebook
-				form
-					input.form-control(type="text", placeholder="Name")
-					input.form-control(type="text", placeholder="Email")
-					input.form-control(type="password", placeholder="Password")
+				form(ng-submit="register()")
+					input.form-control(ng-model="userRegData.username", required name="username",type="text", placeholder="Name")
+					input.form-control(ng-model="userRegData.email", required name="email",type="text", placeholder="Email")
+					input.form-control(ng-model="userRegData.password", required name="password",type="password", placeholder="Password")
 					button.btn.btn-info Sign up
-	script(type='text/javascript').
-		$(document).ready(function(){
-			$('#fullpage').fullpage({
-			  anchors:['loginPage', 'aboutPage', 'signupPage'],
-			  navigation: true,
-			  navigationPosition: 'left',
-			  navigationTooltips: ['Log in', 'About', 'Sign up'],
-			  menu: '#header-nav-menu'
-			});
-		});
-		
+script(src="js/init.js")

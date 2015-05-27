@@ -1,8 +1,8 @@
 var app = angular.module('moviebook', [
 	'ui.router',
-	'ngSanitize'/*,
+	'ngSanitize',
 	'ngResource',
-	'ngCookies'*/
+	'ngCookies'
 	]);
 
 app.config([
@@ -10,7 +10,12 @@ app.config([
 	'$urlRouterProvider', 
 	'$httpProvider', 
 	'$locationProvider',
-	StateProvider
+	appConfig
 ]);
 
 app.controller('IndexCtrl', IndexCtrl);
+app.controller('HomeCtrl', HomeCtrl);
+app.controller('MoviesCtrl', MoviesCtrl);
+app.controller('UsersCtrl', UsersCtrl);
+
+app.factory('Auth', Auth);
